@@ -1,3 +1,4 @@
+import "./Left.css"
 const Left = () => {
     return (
         <div className="LeftNavbar">

@@ -1,3 +1,4 @@
+import "./Rigth.css"
 const Rigth = () => {
     return (
         <div className="rigthUsers">

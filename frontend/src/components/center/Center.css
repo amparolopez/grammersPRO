@@ -1,0 +1,141 @@
+:root{
+    --ColorPurple : #a974ff;
+    --ColorTopMenu : #ffffff;
+    --ColorDegradeMenu : #eaedf7;
+    --OffColor : #a4b6e1;
+    --TitleOrName : #25396f;
+    --ColorSubmit : #58b9ff;
+    --ColorFondComment : #f4f8fe;
+    --LineasApagadas : #dfeeff;
+    --LikeAndNotify : #fd4874;
+}
+.horizontal-line{
+    width: 100%;
+    background-color: var(--LineasApagadas);
+    height: 1px;
+    border: 1px ridge var(--LineasApagadas) ;
+    border-radius: 2px;
+}
+.ContenedorCenter{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ContenedorSecCenter{
+    height:90%;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.ContenedorProfileCen{
+    width:100%;
+    height:16%;
+    display: flex;
+    justify-content:space-between;
+}
+.ContenedorPublicCen{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+}
+.ContainerProfileTotal{
+    width:13%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.ContainerProfileTotal p {
+    font-weight: 700;
+    color: var(--TitleOrName);
+}
+.ContainerIconCent{
+    width:80px;
+    height:80px;
+    border-radius: 50%;
+    background-color: var(--ColorPurple);
+}
+.ContenedorFilerCent{
+    width: 100%;
+    height: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+.ContenedorFilerCent div{
+    display: flex;
+}
+.ContenedorFilerCent p{
+    color: var(--TitleOrName);
+}
+.ContenedorFilerCent div p{
+    padding-left: 1vw;
+    color: var(--OffColor);
+}
+.filtActiveCen{
+    color: var(--ColorPurple) !important;
+}
+.ContainerTotalPublics{
+    width: 100%;
+    height:93%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.publicContainerProfil{
+    width:48.5%;
+    height:50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-weight: 700;
+}
+.ContainerImgPublic{
+    width:100%;
+    height: 70%;
+    border-radius: 20px;
+    border: 4px solid white;
+    background-color: var(--ColorPurple)
+}
+.publicProfilContainer{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.IconsPublicVoted{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    color: var(--OffColor);
+}
+.IconsPublicVoted svg{
+    margin: 0 0.5vw 0 0.5vw;
+    font-size: 1.5rem;
+}
+.ProfilePublicTotal{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: var(--TitleOrName);
+}
+.ProfilePublicTotal div{
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--ColorPurple);
+    margin-right: 1vw;
+}
+.ColorActiveLike{
+    color: var(--LikeAndNotify);
+}

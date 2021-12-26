@@ -22,6 +22,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Poppins', sans-serif;
 }
 .container-all{
   height: 95vh;
@@ -44,11 +45,16 @@ body{
   height: 100%;
   background-color:var(--ColorTopMenu);
   border-radius: 2rem 0 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .CenterContent{
   width: 55%;
   height: 100%;
   background-color:var(--ColorFondComment);
+  display: flex;
+  justify-content:space-between;
 }
 .rigthUsers{
   width: 25%;

@@ -1,4 +1,3 @@
-import "./Center.css"
 import { AiFillMessage } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
 

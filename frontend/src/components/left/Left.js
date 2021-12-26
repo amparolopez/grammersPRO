@@ -1,8 +1,7 @@
-import "./Left.css"
 import { MdHomeFilled } from "react-icons/md";
 import { AiFillMessage } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
-import { CgAlbum } from "react-icons/cg";
+import { BsFillBookmarkDashFill } from "react-icons/bs";
 import { AiTwotoneSetting } from "react-icons/ai";
 const Left = () => {
     return (
@@ -27,7 +26,7 @@ const Left = () => {
                             <p>Profile</p>
                         </div>
                         <div>
-                            <CgAlbum />
+                            <BsFillBookmarkDashFill />
                             <p>Saved Post</p>
                         </div>
                         <div>

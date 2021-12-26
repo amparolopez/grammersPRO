@@ -1,22 +1,146 @@
-.inputSearch{
-    height: 3.5rem;
-    border-radius: 3.5rem;
-    width: 13rem;
-   background-color: rgba(139, 69, 19, 0);
-   text-align: center;
-   font-size: 1.2rem;
+.rigthUsers {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.bell{
-    width: 3.5rem;
-    height: 3.5rem;
-    padding: 15px;
-    border: solid black 2px;
-    border-radius: 50%;
+.inputSearch {
+  height: 3.5rem;
+  border-radius: 3.5rem;
+  width: 13rem;
+  background-color: rgba(139, 69, 19, 0);
+  text-align: center;
+  font-size: 1.2rem;
 }
 
-.Searchs{
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+.bell {
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 15px;
+  border: solid black 2px;
+  border-radius: 50%;
+}
+
+.Searchs {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.Suggestions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.user {
+  margin-top: 1.2rem;
+}
+
+.userImg {
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 5px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(95, 223, 255, 0.301);
+}
+.userContainer {
+  border-bottom-style: outset;
+  padding-bottom: 1.5rem;
+}
+.userFollow {
+  margin-top: 1.2rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.imgText {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.userText {
+  margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.text {
+  margin-top: 4px;
+}
+
+.btn-Follow {
+  height: 1.7rem;
+  width: 5rem;
+  font-size: 0.7rem;
+  border-radius: 0.5rem;
+}
+
+.latestPost {
+  margin-top: 1.5rem;
+}
+
+.ActivityImg {
+  width: 10rem;
+  height: 7rem;
+  background-color: rgb(156, 243, 122);
+  border: none;
+  border-radius: 1.5rem;
+}
+
+.iconActivity {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.cardActivity {
+  display: flex;
+}
+
+.cardIcon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 1.5rem;
+}
+
+.cardText {
+  display: flex;
+}
+
+.minimalStair {
+  width: 110px;
+}
+
+.cardPost {
+  background-color: rgb(0, 136, 255);
+  height: 200px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.textAllPost {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.allCont {
+  display: flex;
 }

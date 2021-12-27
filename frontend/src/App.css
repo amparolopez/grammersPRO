@@ -105,7 +105,7 @@ div .vertical-line{
 }
 .MenuLeft .MenuLeftDirection{
   width:100%;
-  height:100%;
+  height:80%;
   display: flex;
   flex-direction: column;
   justify-content:space-between;
@@ -119,14 +119,17 @@ div .vertical-line{
 .MenuLeft .MenuLeftDirection div:hover svg{
   color: var(--ColorPurple);
 }
-.MenuLeft .MenuLeftDirection div:hover p{
+.MenuLeft .MenuLeftDirection div:hover a{
   color: var(--TitleOrName);
 }
 .MenuLeft .MenuLeftDirection div svg{
   font-size:1.5rem;
 }
-.MenuLeft .MenuLeftDirection div p{
+.MenuLeft .MenuLeftDirection div a{
   margin-left: 1vw;
+  margin-left: 1vw;
+  text-decoration: none;
+  color: var(--OffColor);
 }
 .ActiveSvg{
   color: var(--ColorPurple);

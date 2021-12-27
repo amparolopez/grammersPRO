@@ -82,7 +82,7 @@ const Rigth = () => {
         </div>
       </div>
       <div className="InfoRigthApp">
-        <h4>About - Help - Terms - Popular - Lenguage</h4>
+        <h4>About - Help - Terms - Popular - Language</h4>
       </div>
     </div>
   );

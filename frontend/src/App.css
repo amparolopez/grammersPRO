@@ -1,77 +1,85 @@
-:root{
-  --ColorPurple : #a974ff;
-  --ColorTopMenu : #ffffff;
-  --ColorDegradeMenu : #eaedf7;
-  --OffColor : #a4b6e1;
-  --TitleOrName : #25396f;
-  --ColorSubmit : #58b9ff;
-  --ColorFondComment : #f4f8fe;
-  --LineasApagadas : #dfeeff;
-  --LikeAndNotify : #fd4874;
+:root {
+  --ColorPurple: #a974ff;
+  --ColorTopMenu: #ffffff;
+  --ColorDegradeMenu: #eaedf7;
+  --OffColor: #a4b6e1;
+  --TitleOrName: #25396f;
+  --ColorSubmit: #58b9ff;
+  --ColorFondComment: #f4f8fe;
+  --LineasApagadas: #dfeeff;
+  --LikeAndNotify: #fd4874;
 }
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-body{
+body {
   height: 100vh;
   width: 100vw;
-  background: rgb(234,241,255);
-  background: linear-gradient(135deg, rgba(234,241,255,1) 0%, rgba(219,238,255,1) 100%);
+  background: rgb(234, 241, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(234, 241, 255, 1) 0%,
+    rgba(219, 238, 255, 1) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
-.container-all{
+.container-all {
   height: 95vh;
   width: 93vw;
   border-radius: 2rem;
-  background: rgb(253,253,255);
-  background: linear-gradient(180deg, rgba(253,253,255,1) 0%, rgba(243,250,254,1) 100%);
+  background: rgb(253, 253, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(253, 253, 255, 1) 0%,
+    rgba(243, 250, 254, 1) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.containerHome{
+.containerHome {
   height: 98.5%;
   width: 99%;
   border-radius: 2rem;
   display: flex;
 }
-.LeftNavbar{
+.LeftNavbar {
   width: 20%;
   height: 100%;
-  background-color:var(--ColorTopMenu);
+  background-color: var(--ColorTopMenu);
   border-radius: 2rem 0 0 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.CenterContent{
+.CenterContent {
   width: 55%;
   height: 100%;
-  background-color:var(--ColorFondComment);
+  background-color: var(--ColorFondComment);
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.rigthUsers{
+.rigthUsers {
   width: 25%;
   height: 100%;
-  background-color:var(--ColorFondComment);
+  background-color: var(--ColorFondComment);
   border-radius: 0 2rem 2rem 0;
 }
-div .vertical-line{
+div .vertical-line {
   width: 1px;
   background-color: var(--LineasApagadas);
   height: 90%;
   margin-top: 5vh;
   float: right;
-  border: 1px ridge var(--LineasApagadas) ;
+  border: 1px ridge var(--LineasApagadas);
   border-radius: 2px;
 }
-.LeftContainer{
+.LeftContainer {
   width: 75%;
   height: 90%;
   display: flex;
@@ -79,146 +87,146 @@ div .vertical-line{
   justify-content: space-between;
   font-weight: 700;
 }
-.LogoLeft{
+.LogoLeft {
   width: 100%;
   height: 13%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.LogoLeft img{
+.LogoLeft img {
   height: 80%;
 }
-.MenuLeft{
+.MenuLeft {
   width: 100%;
   height: 35%;
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
 }
-.AccountLeft{
+.AccountLeft {
   width: 100%;
   height: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.MenuLeft .MenuLeftDirection{
-  width:100%;
-  height:80%;
+.MenuLeft .MenuLeftDirection {
+  width: 100%;
+  height: 80%;
   display: flex;
   flex-direction: column;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.MenuLeft .MenuLeftDirection div{
+.MenuLeft .MenuLeftDirection div {
   display: flex;
   align-items: center;
   color: var(--OffColor);
   cursor: pointer;
 }
-.MenuLeft .MenuLeftDirection div:hover svg{
+.MenuLeft .MenuLeftDirection div:hover svg {
   color: var(--ColorPurple);
 }
-.MenuLeft .MenuLeftDirection div:hover a{
+.MenuLeft .MenuLeftDirection div:hover a {
   color: var(--TitleOrName);
 }
-.MenuLeft .MenuLeftDirection div svg{
-  font-size:1.5rem;
+.MenuLeft .MenuLeftDirection div svg {
+  font-size: 1.5rem;
 }
-.MenuLeft .MenuLeftDirection div a{
+.MenuLeft .MenuLeftDirection div a {
   margin-left: 1vw;
   margin-left: 1vw;
   text-decoration: none;
   color: var(--OffColor);
 }
-.ActiveSvg{
+.ActiveSvg {
   color: var(--ColorPurple);
 }
-.ActiveParrafo{
+.ActiveParrafo {
   color: var(--TitleOrName);
 }
-.MenuTitleSecond{
+.MenuTitleSecond {
   color: var(--TitleOrName);
   font-size: 1.2rem;
 }
-.ContenedorProfileLeft{
+.ContenedorProfileLeft {
   width: 100%;
   height: 85%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-.ContenedorProfileLeftSec{
+.ContenedorProfileLeftSec {
   width: 100%;
   height: 25%;
   display: flex;
   align-items: center;
 }
-.ContenedorPublicidadLeft{
+.ContenedorPublicidadLeft {
   width: 100%;
   height: 65%;
-  background-color:var(--ColorPurple);
-  border-radius: 10px;
-  border: 2px solid var(--ColorDegradeMenu)
-}
-.ProfileIconLeft{
-  width:50px;
-  height:50px;
   background-color: var(--ColorPurple);
-  border-radius:50%;
+  border-radius: 10px;
+  border: 2px solid var(--ColorDegradeMenu);
 }
-.TitleProfileSecLeft{
+.ProfileIconLeft {
+  width: 50px;
+  height: 50px;
+  background-color: var(--ColorPurple);
+  border-radius: 50%;
+}
+.TitleProfileSecLeft {
   margin-left: 1vw;
   font-size: 0.8rem;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   flex-direction: column;
   color: var(--OffColor);
-  height:70%;
+  height: 70%;
 }
-.TitleProfileSecLeft h2{
+.TitleProfileSecLeft h2 {
   font-size: 1.1rem;
   color: var(--TitleOrName);
 }
-.horizontal-line{
+.horizontal-line {
   width: 100%;
   background-color: var(--LineasApagadas);
   height: 1px;
-  border: 1px ridge var(--LineasApagadas) ;
+  border: 1px ridge var(--LineasApagadas);
   border-radius: 2px;
 }
-.ContenedorCenter{
+.ContenedorCenter {
   height: 100%;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.ContenedorSecCenter{
-  height:90%;
+.ContenedorSecCenter {
+  height: 90%;
   width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
 }
-.ContenedorProfileCen{
-  width:100%;
-  height:16%;
+.ContenedorProfileCen {
+  width: 100%;
+  height: 16%;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.ContenedorPublicCen{
+.ContenedorPublicCen {
   width: 100%;
   height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:space-between;
+  justify-content: space-between;
 }
-.ContainerProfileTotal{
-  width:13%;
-  height:100%;
+.ContainerProfileTotal {
+  width: 13%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -228,13 +236,13 @@ div .vertical-line{
   font-weight: 700;
   color: var(--TitleOrName);
 }
-.ContainerIconCent{
-  width:70px;
-  height:70px;
+.ContainerIconCent {
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   background-color: var(--ColorPurple);
 }
-.ContenedorFilerCent{
+.ContenedorFilerCent {
   width: 100%;
   height: 5%;
   display: flex;
@@ -242,76 +250,76 @@ div .vertical-line{
   align-items: center;
   font-weight: 700;
 }
-.ContenedorFilerCent div{
+.ContenedorFilerCent div {
   display: flex;
 }
-.ContenedorFilerCent p{
+.ContenedorFilerCent p {
   color: var(--TitleOrName);
 }
-.ContenedorFilerCent div p{
+.ContenedorFilerCent div p {
   padding-left: 1vw;
   color: var(--OffColor);
 }
-.ContenedorFilerCent div p:hover{
+.ContenedorFilerCent div p:hover {
   color: var(--TitleOrName);
-  cursor:pointer;
+  cursor: pointer;
 }
-.filtActiveCen{
+.filtActiveCen {
   color: var(--ColorPurple) !important;
 }
-.ContainerTotalPublics{
+.ContainerTotalPublics {
   width: 100%;
-  height:93%;
+  height: 93%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.publicContainerProfil{
-  width:48.5%;
-  height:50%;
+.publicContainerProfil {
+  width: 48.5%;
+  height: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   font-weight: 700;
 }
-.ContainerImgPublic{
-  width:100%;
+.ContainerImgPublic {
+  width: 100%;
   height: 70%;
   border-radius: 20px;
   border: 4px solid var(--ColorTopMenu);
-  background-color: var(--ColorPurple)
+  background-color: var(--ColorPurple);
 }
-.publicProfilContainer{
+.publicProfilContainer {
   width: 100%;
   height: 10%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.IconsPublicVoted{
+.IconsPublicVoted {
   display: flex;
   align-items: center;
   height: 100%;
   color: var(--OffColor);
 }
-.IconsPublicVoted svg{
+.IconsPublicVoted svg {
   margin: 0 0.5vw 0 0.5vw;
   font-size: 1.5rem;
 }
-.ProfilePublicTotal{
+.ProfilePublicTotal {
   height: 100%;
   display: flex;
   align-items: center;
   color: var(--TitleOrName);
 }
-.ProfilePublicTotal div{
-  width:40px;
+.ProfilePublicTotal div {
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   background-color: var(--ColorPurple);
   margin-right: 1vw;
 }
-.ColorActiveLike{
+.ColorActiveLike {
   color: var(--LikeAndNotify);
 }
 .rigthUsers {
@@ -337,7 +345,7 @@ div .vertical-line{
   border-radius: 50%;
   color: var(--ColorTopMenu);
 }
-.bell:hover{
+.bell:hover {
   background-color: var(--ColorPurple);
   cursor: pointer;
 }
@@ -355,8 +363,13 @@ div .vertical-line{
   margin-top: 2rem;
   color: var(--TitleOrName);
 }
-.Suggestions h4{
-  color: var(--ColorPurple)
+.Suggestions a {
+  color: var(--ColorPurple);
+  text-decoration: none;
+  font-weight: 600;
+}
+.Suggestions a:hover{
+  color: var(--TitleOrName);
 }
 .user {
   margin-top: 1.2rem;
@@ -390,10 +403,10 @@ div .vertical-line{
   flex-direction: column;
   height: 100%;
 }
-.userText h4{
+.userText h4 {
   color: var(--TitleOrName);
 }
-.userText h6{
+.userText h6 {
   color: var(--OffColor);
 }
 .text {
@@ -404,8 +417,8 @@ div .vertical-line{
   height: 2rem;
   width: 6rem;
   font-size: 0.7rem;
-  background-color:var(--ColorPurple);
-  border:none;
+  background-color: var(--ColorPurple);
+  border: none;
   border-radius: 10px;
   color: white;
   cursor: pointer;
@@ -413,7 +426,7 @@ div .vertical-line{
 .latestPost {
   margin-top: 1.5rem;
 }
-.latestPost h4{
+.latestPost h4 {
   color: var(--TitleOrName);
 }
 .ActivityImg {
@@ -430,7 +443,7 @@ div .vertical-line{
   flex-direction: row;
   align-items: flex-end;
 }
-.iconActivity svg{
+.iconActivity svg {
   color: var(--OffColor);
 }
 .cardActivity {
@@ -458,27 +471,28 @@ div .vertical-line{
   justify-content: center;
   margin-top: 2rem;
   border: 4px solid var(--ColorTopMenu);
-} 
+}
 .textAllPost {
   text-align: center;
   margin-top: 1.5rem;
-  color: var(--ColorPurple)!important;
+  color: var(--ColorPurple) !important;
 }
 .allCont {
   display: flex;
 }
-.InfoRigthApp{
+.InfoRigthApp {
   display: flex;
   justify-content: center;
   color: var(--OffColor);
 }
-.ContainerTotalRigthUser{
+.ContainerTotalRigthUser {
   height: 80%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
 }
 
+<<<<<<< HEAD
 /* modal post */
 .postLabel{
   border-bottom: 2px solid #a4b6e1;
@@ -492,15 +506,181 @@ div .vertical-line{
 @media (max-width:1220px) {
   .ProfilePublicTotal div{
     display:none;
+=======
+/* User Unico */
+
+.ProfileRelativeUse {
+  position: relative;
+  width: 100%;
+  height: 40%;
+}
+.ProfileFondoImgAbsolute {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  border-radius: 20px 20px 0 0;
+  background: rgb(169, 116, 255);
+  background: linear-gradient(
+    180deg,
+    rgba(169, 116, 255, 1) 0%,
+    rgba(234, 237, 247, 0) 100%
+  );
+}
+.OcupadorDeEspacio {
+  height: 35%;
+  width: 100%;
+}
+.ContenedorUserDates {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  z-index: 99;
+  position: relative;
+  justify-content: space-around;
+  align-items: center;
+}
+.ContainerUserImgNice {
+  width: 18%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: var(--ColorPurple);
+  border: 4px solid var(--ColorTopMenu);
+}
+.ContainerDataUserNice {
+  width: 75%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.ContainerDataUserNice h1 {
+  color: var(--TitleOrName);
+}
+.ContainerDataUserNice p {
+  color: var(--OffColor);
+  font-weight: 500;
+}
+.ContainerStaticsUser {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.OcupadorDeEspacioVTwo {
+  width: 18%;
+  height: 100%;
+}
+.EstatisFollowerAndPost {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  height: 100%;
+}
+div .vertical-lines {
+  width: 1px;
+  background-color: var(--LineasApagadas);
+  float: right;
+  border: 1px ridge var(--LineasApagadas);
+  border-radius: 2px;
+}
+.ContenedorEstadisticasDeTodo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 30%;
+}
+.ContenedorEstadisticasDeTodo h2{
+  color: var(--ColorSubmit);
+}
+.ContenedorEstadisticasDeTodo p{
+  color: var(--OffColor);
+}
+.PostUserSolari{
+  height: 55%;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  overflow-y: scroll;
+}
+.PostUserSolari::-webkit-scrollbar{
+    display: none;
+}
+.PostUserSolari div{
+  width: 45%;
+  height: 40%;
+  background-color: var(--ColorPurple);
+  margin: 0 2.5% 2.5% 2.5%;
+  border-radius: 10px;
+}
+.ContenedorFollowProfile{
+  width: 90%;
+  height: 15vh;
+  padding:1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 6px solid var(--ColorTopMenu);
+  border-radius: 10px;
+}
+.ProfileImgFollow{
+  width:60px;
+  height:60px;
+  background-color: var(--ColorPurple);
+  border-radius: 20px;
+  border: 4px solid var(--ColorTopMenu);
+}
+.ContainerProfileFollowData{
+  width: 75%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.ContainerProfileFollowData h2{
+  color: var(--TitleOrName);
+  font-weight: 700;
+}
+.ContainerProfileFollowData p{
+  color: var(--OffColor);
+  font-weight: 400;
+}
+.buttonFollowProfile{
+  color: var(--ColorTopMenu);
+  width: 10%;
+  height:3rem;
+  background-color: var(--ColorPurple);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+.buttonFollowProfile:hover{
+  background-color: var(--ColorSubmit);
+  cursor:pointer;
+}
+.ScrollBarFollorProfile{
+  overflow-y: scroll;
+}
+.ScrollBarFollorProfile::-webkit-scrollbar{
+  display: none;
+}
+@media (max-width: 1220px) {
+  .ProfilePublicTotal div {
+    display: none;
+>>>>>>> bf4da86a9c977a6e363167dda7a151946f48ba47
   }
-  .ContainerProfileTotal:nth-child(8){
-    display:none;
+  .ContainerProfileTotal:nth-child(8) {
+    display: none;
   }
-  .ContainerProfileTotal:nth-child(7){
-    display:none;
+  .ContainerProfileTotal:nth-child(7) {
+    display: none;
   }
-  .ProfileIconLeft{
-    width:30px;
-    height:30px;
+  .ProfileIconLeft {
+    width: 30px;
+    height: 30px;
   }
 }

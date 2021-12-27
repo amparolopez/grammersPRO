@@ -1,6 +1,7 @@
 import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
+<<<<<<< HEAD
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -73,9 +74,26 @@ const Rigth = (props) => {
             </form>
           </DialogContent>
         </Dialog>
+=======
+import { Link } from "react-router-dom";
+const Rigth = () => {
+  let user = false 
+  return (
+    <div className="rigthUsers">
+        <div className="ContainerTotalRigthUser">
+            <div className="Searchs">
+                {user ? 
+                (<>
+                  <input placeholder="Search" className="inputSearch" type="text"/>
+                  <FaRegBell className="bell" />
+                  <FaCloudUploadAlt className="bell" />
+                </>) 
+                : <h1>Sign In</h1>}
+            </div>
+>>>>>>> bf4da86a9c977a6e363167dda7a151946f48ba47
         <div className="Suggestions">
           <h3>Suggestions For You</h3>
-          <h4>See All</h4>
+          <Link to="/Browser">See All</Link>
         </div>
         <div className="userContainer">
           <div className="userFollow">

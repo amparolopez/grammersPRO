@@ -1,6 +1,7 @@
 
 const initialState = {
-    user: { email:"", img:"", firstName:"", token: "", _id:"", },
+    userData: { email:"", img:"", firstName:"", token: "", _id:"", },
+    user:false,
     errors: '', 
 };
 
@@ -15,13 +16,15 @@ const userReducer = (state = initialState, action) => {
             localStorage.setItem("_id", action.payload._id)
             return {
                 ...state,
-                user: action.payload,
+                userData: action.payload,
+                user:true
             };
             
         case 'logOut':
             return {
                 ...state,
-                user: '',
+                userData: '',
+                user:false
             };
         default:
             return state;

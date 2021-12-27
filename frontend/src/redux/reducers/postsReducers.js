@@ -1,5 +1,5 @@
 const initialState = {
-    post: null
+    post: []
 }
 
 const postsReducers = (state = initialState, action) => {
@@ -7,7 +7,7 @@ const postsReducers = (state = initialState, action) => {
         case 'getPost':
             return {
                 ...state, 
-                post: action.payload
+                post: action.payload.response
             }
             default:
                 return state

@@ -1,18 +1,78 @@
-import {FaRegBell,FaCloudUploadAlt,FaEarlybirds} from "react-icons/fa";
+import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
+import { useState, useRef } from "react";
 import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
-const Rigth = () => {
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import Avatar from "@mui/material/Avatar";
+import {connect} from "react-redux";
+import postsActions from "../../redux/actions/postsActions";
+
+const Rigth = (props) => {
+  const [open, setOpen] = useState(false);
+  const postRef = useRef();
+  const postTitleRef = useRef();
+  const { postAPost } = props;
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    postAPost(postTitleRef.current.value,postRef.current.value);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div className="rigthUsers">
-        <div className="ContainerTotalRigthUser">
-            <div className="Searchs">
-                <input
-                placeholder="Search"
-                className="inputSearch"
-                type="text"
-                ></input>
-                <FaRegBell className="bell" />
-                <FaCloudUploadAlt className="bell" />
-            </div>
+      <div className="ContainerTotalRigthUser">
+        <div className="Searchs">
+          <input
+            placeholder="Search"
+            className="inputSearch"
+            type="text"
+          ></input>
+          <FaRegBell className="bell" />
+          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+        </div>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle className="postLabel">Create a post</DialogTitle>
+          <DialogContent style={{ display: "flex" }}>
+            <Avatar
+              alt="Remy Sharp"
+              src="/static/images/avatar/1.jpg"
+              style={{ marginRight: "2rem", marginTop: "1rem" }}
+            />
+            <form onSubmit={(e) => handleSubmit(e)}>
+            <TextField
+            label="Title"
+                inputRef={postTitleRef}
+                id="standard-multiline-static"
+                variant="standard"
+              />
+              <TextField
+              label="What are you gonna tell us?"
+                inputRef={postRef}
+                id="standard-multiline-static"
+                multiline
+                rows={4}
+                variant="standard"
+                className="postInput"
+              />
+          <DialogActions>
+            <button onClick={handleClose} className="btn-Follow">
+              Cancel
+            </button>
+            <button type="submit" className="btn-Follow">
+              Public
+            </button>
+          </DialogActions>
+            </form>
+          </DialogContent>
+        </Dialog>
         <div className="Suggestions">
           <h3>Suggestions For You</h3>
           <h4>See All</h4>
@@ -87,4 +147,12 @@ const Rigth = () => {
   );
 };
 
-export default Rigth;
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = {
+  postAPost: postsActions.postAPost,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

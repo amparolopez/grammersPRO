@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
+  postTitle:{type:String, require:true},
   postText: { type: String, require: true },
   postImage: { type: String },
   user: { type: mongoose.Types.ObjectId, ref: "user" },
@@ -11,7 +12,8 @@ const postSchema = new Schema({
       user: { type: mongoose.Types.ObjectId, ref: "user", required: true },
     },
   ],
-  commentDate: { type: Date, default: Date.now, require: true },
+  date: { type: Date, default: Date.now, require: true },
+  like:[{user:{ type:mongoose.Types.ObjectId, ref:'user',}}]
 });
 
 

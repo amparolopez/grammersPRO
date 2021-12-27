@@ -23,9 +23,15 @@ const storage = multer.diskStorage({
     },
     fileFilter: fileFilter
   })
-const Router = require("express").Router();
-const { getAllPosts, postAPost } = PostController;
 
-Router.route("/post").get(getAllPosts).post(upload.single('postImage'),postAPost);
+const Router = require("express").Router();
+
+const { getAllPosts, postAPost, deleteAPost , editAPost ,likeDislike, postACommentary,getCommentaries, editCommentary,deleteCommentary } = PostController;
+
+Router.route("/post").get(getAllPosts).post(upload.single('postImage'),postAPost)
+Router.route('/post/:id').delete(deleteAPost).put(editAPost)
+
+Router.route("/comments").get(getCommentaries).post(postACommentary)
+Router.route("/comments/:id").delete(deleteCommentary).put(editCommentary)
 
 module.exports = Router;

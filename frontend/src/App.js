@@ -22,6 +22,7 @@ function App(props) {
         <Routes>
           <Route path="/" element={<HomeRouter />}/>
           <Route path="/Profile" element={<HomeRouter />}/>
+          <Route path="/Browser" element={<HomeRouter />}/>
         </Routes>
       </BrowserRouter>
     </div>

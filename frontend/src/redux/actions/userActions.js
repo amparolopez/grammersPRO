@@ -1,5 +1,5 @@
 const axios = require('axios');
-const Swal = require('sweetalert2');
+// const Swal = require('sweetalert2');
 
 const userActions = {
 
@@ -10,24 +10,24 @@ const userActions = {
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem("token", user.data.response.token);
                     dispatch({ type: 'user', payload: user.data.response })
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Congratulations! You successfully registered!',
-                        text: 'Please sign in to continue.', 
-                        timer: 1500,
-                      })
+                    // Swal.fire({
+                    //     position: 'top-end',
+                    //     icon: 'success',
+                    //     title: 'Congratulations! You successfully registered!',
+                    //     text: 'Please sign in to continue.', 
+                    //     timer: 1500,
+                    //   })
                 } else {
                     const error =user.data.error
                     if(user.data.error){
                     
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'error',
-                        title:error,
-                        showConfirmButton: true,
-                        timer: 1500
-                      }) 
+                    // Swal.fire({
+                    //     position: 'top-end',
+                    //     icon: 'error',
+                    //     title:error,
+                    //     showConfirmButton: true,
+                    //     timer: 1500
+                    //   }) 
                     } else {
                     return { errors: user.data.errors };  
                 }}
@@ -47,13 +47,13 @@ const userActions = {
                 } else {
                     console.log(user.data)
                     const error = user.data.error
-                    Swal.fire({
-                        position: 'top.end',
-                        icon: 'error',
-                        title: error,
-                        showConfirmButton: true,
-                        timer: 3000
-                    })
+                    // Swal.fire({
+                    //     position: 'top.end',
+                    //     icon: 'error',
+                    //     title: error,
+                    //     showConfirmButton: true,
+                    //     timer: 3000
+                    // })
 
                 }
             } catch (error) {
@@ -64,14 +64,14 @@ const userActions = {
 
     logOut: () => {
         return (dispatch, getState) => {
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'You have successfully unlogged!',
-                text: 'See you soon!',
-                showConfirmButton: false,
-                timer: 3000
-            })
+            // Swal.fire({
+            //     position: 'top-end',
+            //     icon: 'success',
+            //     title: 'You have successfully unlogged!',
+            //     text: 'See you soon!',
+            //     showConfirmButton: false,
+            //     timer: 3000
+            // })
             dispatch({ type: 'logOut', payload: {} })
             localStorage.removeItem("token", "userLogged")
         }
@@ -90,7 +90,7 @@ const userActions = {
             }
         }
     },
-},
+}
 
 
 export default userActions;

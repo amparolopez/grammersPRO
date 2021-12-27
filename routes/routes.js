@@ -1,6 +1,13 @@
 const PostController = require("../controllers/postController");
 const multer = require('multer')
 const path = require('path');
+const Router = require ('express').Router()
+const validator = require ('../config/validator')
+const userControllers = require ('../controllers/userControllers')
+const passport = require ("../config/passport")
+
+const {addUser, signIn, startWithToken}=userControllers
+const { getAllPosts, postAPost, deleteAPost , editAPost ,likeDislike, postACommentary,getCommentaries, editCommentary,deleteCommentary } = PostController;
 
 const storage = multer.diskStorage({
     destination: path.join(__dirname, '../frontend/public/uploads'),
@@ -24,14 +31,19 @@ const storage = multer.diskStorage({
     fileFilter: fileFilter
   })
 
-const Router = require("express").Router();
-
-const { getAllPosts, postAPost, deleteAPost , editAPost ,likeDislike, postACommentary,getCommentaries, editCommentary,deleteCommentary } = PostController;
-
 Router.route("/post").get(getAllPosts).post(upload.single('postImage'),postAPost)
 Router.route('/post/:id').delete(deleteAPost).put(editAPost)
 
 Router.route("/comments").get(getCommentaries).post(postACommentary)
 Router.route("/comments/:id").delete(deleteCommentary).put(editCommentary)
 
-module.exports = Router;
+Router.route('/user/signup')
+.post(validator,addUser)
+
+Router.route('/user/signin')
+.post(signIn)
+
+Router.route('/user/signin/token')
+.post(passport.authenticate("jwt",{session:false}),startWithToken)
+
+module.exports = Router

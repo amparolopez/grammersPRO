@@ -5,7 +5,7 @@ import userActions from './redux/actions/userActions';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import FormSignUp from './components/FormSignUp';
 import FormSignIn from './components/FormSignIn';
-
+import Home from '/pages/Home.js'
 
 function App(props) {
 
@@ -16,7 +16,9 @@ function App(props) {
   }, [])
 
   return (
-    <></>
+    <div className="container-all">
+      <Home />
+    </div>
   );
 }
 

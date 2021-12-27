@@ -3,21 +3,25 @@ import { connect } from 'react-redux';
 import './App.css';
 import userActions from './redux/actions/userActions';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import FormSignUp from './components/FormSignUp';
-import FormSignIn from './components/FormSignIn';
 import Home from '/pages/Home.js'
+import withRouter from '/utils/withRouter'
+
+const HomeRouter = withRouter(Home)
 
 function App(props) {
-
   useEffect(() => {
     if (localStorage.getItem("token")) {
       props.isAuth(localStorage.getItem("token"))
     }
   }, [])
-
   return (
     <div className="container-all">
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomeRouter />}/>
+          <Route path="/Profile" element={<HomeRouter />}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
@@ -32,4 +36,4 @@ const mapDispatchToProps = {
   isAuth: userActions.isAuth,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App)

@@ -3,11 +3,12 @@ import Left from "../components/left/Left"
 import Rigth from "../components/rigth/Rigth"
 
 
-const Home = () => {
+const Home = (props) => {
+    console.log(props)
     return (
         <div className="containerHome">
-            <Left />
-            <Center />
+            <Left location={props.location.pathname}/>
+            {props.location.pathname === "/" ? <Center /> : null}
             <Rigth />
         </div>
     )

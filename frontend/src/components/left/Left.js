@@ -1,9 +1,9 @@
 import { MdHomeFilled } from "react-icons/md";
-import { AiFillMessage } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { BsFillBookmarkDashFill } from "react-icons/bs";
 import { AiTwotoneSetting } from "react-icons/ai";
-const Left = () => {
+import { Link } from "react-router-dom";
+const Left = ({location}) => {
     return (
         <div className="LeftNavbar">
             <div className="LeftContainer">
@@ -14,24 +14,20 @@ const Left = () => {
                 <div className="MenuLeft">
                     <div className="MenuLeftDirection">
                         <div>
-                            <MdHomeFilled className="ActiveSvg"/> 
-                            <p className="ActiveParrafo">Home</p>
+                            <MdHomeFilled className={location === "/" ? "ActiveSvg" : null}/> 
+                            <Link to="/">Home</Link>
                         </div>
                         <div>
-                            <AiFillMessage />
-                            <p>Message</p>
-                        </div>
-                        <div>
-                            <FaUser />
-                            <p>Profile</p>
+                            <FaUser className={location === "/Profile" ? "ActiveSvg" : null}/>
+                            <Link to="/Profile">Profile</Link>
                         </div>
                         <div>
                             <BsFillBookmarkDashFill />
-                            <p>Saved Post</p>
+                            <Link to="/Save">Saved Post</Link>
                         </div>
                         <div>
                             <AiTwotoneSetting />
-                            <p>Settings</p>
+                            <Link to="/Settings">Settings</Link>
                         </div>
                     </div>
                 </div>

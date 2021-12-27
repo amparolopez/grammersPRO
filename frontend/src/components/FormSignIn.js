@@ -1,4 +1,4 @@
-import React, { userRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import userActions from '../redux/actions/userActions';
 import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';

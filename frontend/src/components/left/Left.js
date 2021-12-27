@@ -8,7 +8,7 @@ const Left = () => {
         <div className="LeftNavbar">
             <div className="LeftContainer">
                 <div className="LogoLeft">
-                    <img src="./assets/programmerslogo.png"></img>
+                    <img src="./assets/programmerslogo.png" alt="logo" ></img>
                 </div>
                 <p className="MenuTitleSecond">Menu</p>
                 <div className="MenuLeft">

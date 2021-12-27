@@ -61,7 +61,6 @@ const Rigth = () => {
                   <div className="cardText">
                     <div className="cardIcon">
                       <h4 className="minimalStair">Minimalist Stairs</h4>
-
                       <div className="iconActivity">
                         <AiFillHeart />
                         <h6 className="text">12</h6>

@@ -7,7 +7,7 @@ import FormSignUp from './components/FormSignUp';
 import FormSignIn from './components/FormSignIn';
 
 
-function App() {
+function App(props) {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -16,19 +16,7 @@ function App() {
   }, [])
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        {props.user.token ? (
-          <Route path="*" element={<Home />} />
-        ) : (
-          <>
-            <Route path="#" element={<FormSignUp />} />
-            <Route path="#" element={<FormSignIn />} />
-          </>
-        )}
-      </Routes>
-    </BrowserRouter>
+    <></>
   );
 }
 

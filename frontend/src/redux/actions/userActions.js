@@ -42,6 +42,7 @@ const userActions = {
             try {
 
                 const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
+                console.log(user)
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem('token', user.data.response.token);
                     dispatch({ type: 'user', payload: user.data.response })

@@ -30,7 +30,6 @@ const userControllers = {
     },
     signIn: async (req, res) => {
         const { email, password } = req.body
-        console.log(email)
         try {
             const userExists = await User.findOne({ email })
             console.log(userExists)
@@ -52,6 +51,14 @@ const userControllers = {
     },
     startWithToken: async (req, res) => {
         res.json({ success: true, answer: {email:req.user.email, imgUrl:req.user.imgUrl, id: req.user._id}, error: null })
+    },
+    getUser: async(req, res) => {
+        try {
+            const user = await User.find();
+            res.json({ success: true, response: user });
+          } catch (error) {
+            res.json({ success: false, response: error });
+          }
     }
   }
 

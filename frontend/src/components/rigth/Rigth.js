@@ -1,7 +1,6 @@
 import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
 import { useState, useRef } from "react";
 import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
-<<<<<<< HEAD
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,12 +9,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Avatar from "@mui/material/Avatar";
 import {connect} from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
+import {Link} from 'react-router-dom'
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
   const postRef = useRef();
   const postTitleRef = useRef();
-  const { postAPost } = props;
+  const { postAPost, user } = props;
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -31,6 +31,8 @@ const Rigth = (props) => {
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
+          {user ?
+            <>
           <input
             placeholder="Search"
             className="inputSearch"
@@ -38,6 +40,10 @@ const Rigth = (props) => {
           ></input>
           <FaRegBell className="bell" />
           <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+            </>
+            :
+            <h1>Sign In</h1>
+        }
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
@@ -74,23 +80,6 @@ const Rigth = (props) => {
             </form>
           </DialogContent>
         </Dialog>
-=======
-import { Link } from "react-router-dom";
-const Rigth = () => {
-  let user = false 
-  return (
-    <div className="rigthUsers">
-        <div className="ContainerTotalRigthUser">
-            <div className="Searchs">
-                {user ? 
-                (<>
-                  <input placeholder="Search" className="inputSearch" type="text"/>
-                  <FaRegBell className="bell" />
-                  <FaCloudUploadAlt className="bell" />
-                </>) 
-                : <h1>Sign In</h1>}
-            </div>
->>>>>>> bf4da86a9c977a6e363167dda7a151946f48ba47
         <div className="Suggestions">
           <h3>Suggestions For You</h3>
           <Link to="/Browser">See All</Link>
@@ -165,8 +154,10 @@ const Rigth = () => {
   );
 };
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return {
+    user: state.userReducers.user
+  };
 };
 
 const mapDispatchToProps = {

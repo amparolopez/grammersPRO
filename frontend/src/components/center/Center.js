@@ -3,7 +3,7 @@ import { AiFillHeart } from "react-icons/ai";
 import postsActions from "../../redux/actions/postsActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import userActions from "../../redux/actions/userActions";
+
 const Center = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);

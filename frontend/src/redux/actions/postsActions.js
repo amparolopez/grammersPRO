@@ -30,21 +30,6 @@ const postsActions = {
       }
     };
   },
-
-  /////////////////////////////
-    getAllPosts: (id) => {
-        return async (dispatch, getState) => {
-            const response = await axios.get('http://localhost:4000/api/post'+id)
-            if (response.data.length > 0){
-                dispatch({ type: "getPost", payload: response.data })
-            } else {
-                dispatch({ type: "getPost", payload: null })
-            } 
-        } 
-    },
-    
-    ////////////////////
-
     addComment: (id, comment, token) => {
         return async () => {
             try {

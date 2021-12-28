@@ -13,9 +13,30 @@ import {Link} from 'react-router-dom'
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
+  const [imageAsset, setImageAsset] = useState();
+  const [wrongImageType, setWrongImageType] = useState(false);
   const postRef = useRef();
   const postTitleRef = useRef();
   const { postAPost, user } = props;
+
+  const uploadImage = (e) => {
+    const selectedFile = e.target.files[0];
+    // uploading asset to sanity
+    if (selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/tiff') {
+      setWrongImageType(false);
+      client.assets
+        .upload('image', selectedFile, { contentType: selectedFile.type, filename: selectedFile.name })
+        .then((document) => {
+          setImageAsset(document);
+        })
+        .catch((error) => {
+          console.log('Upload failed:', error.message);
+        });
+    } else {
+      setWrongImageType(true);
+    }
+  };
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -24,9 +45,11 @@ const Rigth = (props) => {
     e.preventDefault();
     postAPost(postTitleRef.current.value,postRef.current.value);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">

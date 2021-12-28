@@ -27,7 +27,7 @@ const Center = (props) => {
       setPostsAux(res.response);
     });
   }, []);
-  console.log(posts);
+
   const handleFilterNewest = () => {
     const postFilter = postsAux.sort((a, b) => {
       if (new Date(b.date) < new Date(a.date)) return -1;
@@ -36,6 +36,7 @@ const Center = (props) => {
     });
     setPosts(postFilter);
   };
+
   const handleFilterPopular = () => {
     const postFilter = postsAux.sort((a, b) => {
       if (b.like.length < a.like.length) return -1;
@@ -44,9 +45,11 @@ const Center = (props) => {
     });
     setPosts(postFilter);
   };
+
   const handleFilterFollowing = () => {
     const postFilter = postsAux.filter((post) => post.user === user);
   };
+
   return (
     <div className="CenterContent">
       <div className="ContenedorCenter">

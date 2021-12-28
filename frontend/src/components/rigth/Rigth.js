@@ -13,9 +13,12 @@ import {Link} from 'react-router-dom'
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
+  const [imageAsset, setImageAsset] = useState();
+  const [wrongImageType, setWrongImageType] = useState(false);
   const postRef = useRef();
   const postTitleRef = useRef();
   const { postAPost, user } = props;
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -24,9 +27,11 @@ const Rigth = (props) => {
     e.preventDefault();
     postAPost(postTitleRef.current.value,postRef.current.value);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">

@@ -36,10 +36,6 @@ const userControllers = {
     },
     signIn: async (req, res) => {
         const { email, password } = req.body
-<<<<<<< HEAD
-=======
-        console.log(req.body)
->>>>>>> 7496f2865b529b5e11bed744c92f15716ac0eb80
         try {
             const userExists = await User.findOne({ email })
             console.log(userExists)

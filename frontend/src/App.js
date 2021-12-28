@@ -28,6 +28,7 @@ function App(props) {
           <Route path="/" element={<HomeRouter />}/>
           <Route path="/Profile" element={<HomeRouter />}/>
           <Route path="/Browser" element={<HomeRouter />}/>
+          <Route path="/Settings" element={<HomeRouter />}/>
           <Route path="/Signup" element={<SignUp />}/>
           <Route path="/Signin" element={<SignIn />}/>
         </Routes>

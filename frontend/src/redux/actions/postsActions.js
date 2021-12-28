@@ -4,7 +4,7 @@ const postsActions = {
 
     getAllPosts: (id) => {
         return async (dispatch, getState) => {
-            const response = await axios.get('#'+id)
+            const response = await axios.get('http://localhost:4000/api/post'+id)
             if (response.data.length > 0){
                 dispatch({ type: "getPost", payload: response.data })
             } else {
@@ -18,7 +18,7 @@ const postsActions = {
     addComment: (id, comment, token) => {
         return async () => {
             try {
-                const response = await axios.put('#'+id, { comment, type: "addComment" }, 
+                const response = await axios.put('http://localhost:4000/api/comments'+id, { comment, type: "addComment" }, 
                 {
                     headers: {
                         Authorization: 'Bearer' + token
@@ -35,7 +35,7 @@ const postsActions = {
     editComment: (id, comment, token) => {
         return async () => {
             try {
-                const response = await axios.put('#'+id, { comment, type: "editComment" }, 
+                const response = await axios.put('http://localhost:4000/api/comments'+id, { comment, type: "editComment" }, 
                 {
                     headers: {
                         Authorization: 'Bearer' + token
@@ -52,7 +52,7 @@ const postsActions = {
     deleteComment: (id, commentId, token) => {
         return async () => {
             try {
-                const response = await axios.put('#'+id, { commentId, type: "deleteComment" }, 
+                const response = await axios.put('http://localhost:4000/api/comments'+id, { commentId, type: "deleteComment" }, 
                 {
                     headers: {
                         Authorization: 'Bearer' + token

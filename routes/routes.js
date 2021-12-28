@@ -51,7 +51,6 @@ Router.route("/comments/:id")
   .post(passport.authenticate("jwt", { session: false }), postACommentary)
   .put(passport.authenticate("jwt", { session: false }), editCommentary)
   .delete(passport.authenticate("jwt", { session: false }), deleteCommentary)
-  
 Router.route("/user/signup").post(validator, addUser);
 
 Router.route("/user/signin").post(signIn);

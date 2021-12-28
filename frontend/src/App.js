@@ -5,6 +5,11 @@ import userActions from './redux/actions/userActions';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home.js'
 import withRouter from './utils/withRouter'
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const HomeRouter = withRouter(Home)
 
@@ -23,7 +28,20 @@ function App(props) {
           <Route path="/" element={<HomeRouter />}/>
           <Route path="/Profile" element={<HomeRouter />}/>
           <Route path="/Browser" element={<HomeRouter />}/>
+          <Route path="/Signup" element={<SignUp />}/>
+          <Route path="/Signin" element={<SignIn />}/>
         </Routes>
+        <ToastContainer
+        position="top-center"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       </BrowserRouter>
     </div>
   );

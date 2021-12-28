@@ -1,74 +1,77 @@
-const axios = require("axios");
-// const Swal = require('sweetalert2');
+const axios = require('axios');
+const Swal = require('sweetalert2');
 
 const userActions = {
-  userSignUp: (User) => {
-    return async (dispatch, getState) => {
-      try {
-        const user = await axios.post("#", { ...User });
-        if (user.data.success && !user.data.error) {
-          localStorage.setItem("token", user.data.response.token);
-          dispatch({ type: "user", payload: user.data.response });
-          // Swal.fire({
-          //     position: 'top-end',
-          //     icon: 'success',
-          //     title: 'Congratulations! You successfully registered!',
-          //     text: 'Please sign in to continue.',
-          //     timer: 1500,
-          //   })
-        } else {
-          const error = user.data.error;
-          if (user.data.error) {
-            // Swal.fire({
-            //     position: 'top-end',
-            //     icon: 'error',
-            //     title:error,
-            //     showConfirmButton: true,
-            //     timer: 1500
-            //   })
-          } else {
-            return { errors: user.data.errors };
-          }
-        }
-      } catch (error) {}
-    };
-  },
 
-  userSignIn: (userLogIn) => {
-    return async (dispatch, getState) => {
-      try {
-        const user = await axios.post("#", { ...userLogIn });
-        if (user.data.success && !user.data.error) {
-          localStorage.setItem("token", user.data.response.token);
-          dispatch({ type: "user", payload: user.data.response });
-        } else {
-          console.log(user.data);
-          const error = user.data.error;
-          // Swal.fire({
-          //     position: 'top.end',
-          //     icon: 'error',
-          //     title: error,
-          //     showConfirmButton: true,
-          //     timer: 3000
-          // })
+    userSignUp: (User) => {
+        return async (dispatch, getState) => {
+            try {
+                const user = await axios.post('http://localhost:4000/api/user/signup', { ...User });
+                if (user.data.success && !user.data.error) {
+                    localStorage.setItem("token", user.data.response.token);
+                    dispatch({ type: 'user', payload: user.data.response })
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Congratulations! You successfully registered!',
+                        text: 'Please sign in to continue.', 
+                        timer: 1500,
+                      })
+                } else {
+                    const error =user.data.answer.message
+                    console.log(error)
+                    if(error){
+                    
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title:error,
+                        showConfirmButton: true,
+                        timer: 1500
+                      }) 
+                    } else {
+                    return { errors: user.data.answer };  
+                }}
+            } catch (error) { }
         }
-      } catch (error) {}
-    };
-  },
+    },
 
-  logOut: () => {
-    return (dispatch, getState) => {
-      // Swal.fire({
-      //     position: 'top-end',
-      //     icon: 'success',
-      //     title: 'You have successfully unlogged!',
-      //     text: 'See you soon!',
-      //     showConfirmButton: false,
-      //     timer: 3000
-      // })
-      dispatch({ type: "logOut", payload: {} });
-      localStorage.removeItem("token", "userLogged");
-    };
+    userSignIn: (userLogIn) => {
+        return async (dispatch, getState) => {
+
+            try {
+
+                const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
+                if (user.data.success && !user.data.error) {
+                    localStorage.setItem('token', user.data.response.token);
+                    dispatch({ type: 'user', payload: user.data.response })
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'You are successfully logged in!',
+                        showConfirmButton: false,
+                        timer: 8500
+                    })
+                } else {
+                    console.log(user.data)
+                    const error = user.data.answer.message
+                    Swal.fire({
+                        position: 'top.end',
+                        icon: 'error',
+                        title: error,
+                        showConfirmButton: true,
+                        timer: 3000
+                    })
+
+                }
+            } catch (error) {
+
+            }
+        };
+    },
+
+    logOut: () => {
+        
   },
   isAuth: (token) => {
     return async (dispatch, getState) => {

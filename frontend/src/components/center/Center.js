@@ -1,116 +1,122 @@
 import { AiFillMessage } from "react-icons/ai";
 import { AiFillHeart } from "react-icons/ai";
+import postsActions from "../../redux/actions/postsActions";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
 
-const Center = () => {
-    return (
-        <div className="CenterContent">
-            <div className="ContenedorCenter">
-                <div className="ContenedorSecCenter">
-                    <div className="ContenedorProfileCen">
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                        <div className="ContainerProfileTotal">
-                            <div className="ContainerIconCent"></div>
-                            <p>You</p>
-                        </div>
-                    </div>
-                    <div className="horizontal-line"></div>
-                    <div className="ContenedorPublicCen">
-                        <div className="ContenedorFilerCent">
-                            <p>Feeds</p>
-                            <div>
-                                <p>All</p>
-                                <p>Following</p>
-                                <p>Newest</p>
-                                <p className="filtActiveCen">Popular</p>
-                            </div>
-                        </div>
-                        <div className="ContainerTotalPublics">
-                            <div className="publicContainerProfil">
-                                <div className="ContainerImgPublic"></div>
-                                <div className="publicProfilContainer">
-                                    <div className="ProfilePublicTotal">
-                                        <div></div>
-                                        <p>Dean Winchester</p>
-                                    </div>
-                                    <div className="IconsPublicVoted">
-                                        <AiFillHeart /><p>360</p>
-                                        <AiFillMessage /><p>45</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="publicContainerProfil">
-                                <div className="ContainerImgPublic"></div>
-                                <div className="publicProfilContainer">
-                                    <div className="ProfilePublicTotal">
-                                        <div></div>
-                                        <p>Dean Winchester</p>
-                                    </div>
-                                    <div className="IconsPublicVoted">
-                                        <AiFillHeart /><p>360</p>
-                                        <AiFillMessage /><p>45</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="publicContainerProfil">
-                                <div className="ContainerImgPublic"></div>
-                                <div className="publicProfilContainer">
-                                    <div className="ProfilePublicTotal">
-                                        <div></div>
-                                        <p>Dean Winchester</p>
-                                    </div>
-                                    <div className="IconsPublicVoted">
-                                        <AiFillHeart /><p>360</p>
-                                        <AiFillMessage /><p>45</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="publicContainerProfil">
-                                <div className="ContainerImgPublic"></div>
-                                <div className="publicProfilContainer">
-                                    <div className="ProfilePublicTotal">
-                                        <div></div>
-                                        <p>Dean Winchester</p>
-                                    </div>
-                                    <div className="IconsPublicVoted">
-                                        <AiFillHeart className="ColorActiveLike"/><p className="ColorActiveLike">360</p>
-                                        <AiFillMessage /><p>45</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+const Center = (props) => {
+  const [posts, setPosts] = useState([]);
+  const [postsAux, setPostsAux] = useState([]);
+  const { getAllPosts, user, userData, likeDislikePost } = props;
+  const [likesArray, setLikeArray] = useState(posts.like);
+  const [like, setLike] = useState(
+    user && likesArray.find((like) => like.user === userData._id)
+  );
+  const handleLike = (postId) => {
+    if (user) {
+      likeDislikePost(postId, userData, like).then((res) => {
+        setLikeArray(res.response);
+        setLike(!like);
+      });
+    }
+  };
+
+  useEffect(() => {
+    getAllPosts().then((res) => {
+      setPosts(res.response);
+      setPostsAux(res.response);
+    });
+  }, []);
+
+  const handleFilterNewest = () => {
+    const postFilter = postsAux.sort((a, b) => {
+      if (new Date(b.date) < new Date(a.date)) return -1;
+      else if (new Date(b.date) > new Date(a.date)) return 1;
+      else return 0;
+    });
+    setPosts(postFilter);
+  };
+
+  const handleFilterPopular = () => {
+    const postFilter = postsAux.sort((a, b) => {
+      if (b.like.length < a.like.length) return -1;
+      else if (b.like.length > a.like.length) return 1;
+      else return 0;
+    });
+    setPosts(postFilter);
+  };
+
+  const handleFilterFollowing = () => {
+    const postFilter = postsAux.filter((post) => post.user === user);
+  };
+
+  return (
+    <div className="CenterContent">
+      <div className="ContenedorCenter">
+        <div className="ContenedorSecCenter">
+          <div className="ContenedorPublicCen">
+            <div className="ContenedorFilerCent">
+              <p>Feeds</p>
+              <div>
+                <p className="filtActiveCen">All</p>
+                <p onClick={handleFilterFollowing}>Following</p>
+                <p onClick={handleFilterNewest}>Newest</p>
+                <p onClick={handleFilterPopular}>Popular</p>
+              </div>
             </div>
-            <div className="vertical-line"></div>
+            <div className="ContainerTotalPublics">
+              {posts ? (
+                posts.map((post, key) => {
+                  return (
+                    <div className="publicContainerProfil" key={key}>
+                      <div className="ContainerImgPublic">
+                        {post.postImage && post.postImage}{" "}
+                      </div>
+                      <div className="publicProfilContainer">
+                        <div className="ProfilePublicTotal">
+                          <div></div>
+                          <p>{post.postTitle && post.postTitle}</p>
+                        </div>
+                        <div className="IconsPublicVoted">
+                          {like ? (
+                            <AiFillHeart
+                              style={{ color: "red", cursor: "pointer" }}
+                              onClick={handleLike}
+                            />
+                          ) : (
+                            <AiFillHeart
+                              onClick={handleLike}
+                              style={{ cursor: "pointer" }}
+                            />
+                          )}
+                          <p>{likesArray ? likesArray : 0}</p>
+                          <AiFillMessage />
+                          <p>300</p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              ) : (
+                <p>There is no post</p>
+              )}
+            </div>
+          </div>
         </div>
-    )
-}
+      </div>
+      <div className="vertical-line"></div>
+    </div>
+  );
+};
+const mapStateToProps = (state) => {
+  return {
+    post: state.postsReducers.post,
+    user: state.userReducers.userLogg,
+  };
+};
+const mapDispatchToProps = {
+  getAllPosts: postsActions.getAllPosts,
+  likeDislikePost: postsActions.likeDislikePost,
+};
 
-export default Center
+export default connect(mapStateToProps, mapDispatchToProps)(Center);

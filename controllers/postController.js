@@ -4,15 +4,14 @@ const PostController = {
   getAllPosts: async (req, res) => {
     try {
       const post = await Post.find();
-      res.json({ success: false, response: post });
+      res.json({ success: true, response: post });
     } catch (error) {
       res.json({ success: false, response: error });
     }
   },
   postAPost: async (req, res) => {
-    const { postText, user, comments, commentDate } = req.body;
-    const { postImage } = req.file;
-    console.log(postImage);
+    const { postText,postImage, user, comments, commentDate } = req.body;
+    console.log(postText)
     let post = await new Post({
       postText,
       postImage,

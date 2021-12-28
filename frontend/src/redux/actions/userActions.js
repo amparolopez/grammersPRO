@@ -72,34 +72,40 @@ const userActions = {
     },
 
     logOut: () => {
-        return (dispatch, getState) => {
-            // Swal.fire({
-            //     position: 'top-end',
-            //     icon: 'success',
-            //     title: 'You have successfully unlogged!',
-            //     text: 'See you soon!',
-            //     showConfirmButton: false,
-            //     timer: 3000
-            // })
-            dispatch({ type: 'logOut', payload: {} })
-            localStorage.removeItem("token", "userLogged")
-        }
-    },
-
-    isAuth: (token) => {
-        return async (dispatch, getState) => {
-            try {
-                const response = await axios.get('#', {
-                    headers: {
-                         Authorization: "Bearer " + token }
-                })
-                dispatch({ type: "user", payload: { token, firstName: response.data.firstName, img: response.data.img, _id: response.data._id } })
-            } catch (error) {
-                // return dispatch({ type: 'logOut'})
-            }
-        }
-    },
-}
-
+        
+  },
+  isAuth: (token) => {
+    return async (dispatch, getState) => {
+      try {
+        const response = await axios.get("#", {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        });
+        dispatch({
+          type: "user",
+          payload: {
+            token,
+            firstName: response.data.firstName,
+            img: response.data.img,
+            _id: response.data._id,
+          },
+        });
+      } catch (error) {
+        // return dispatch({ type: 'logOut'})
+      }
+    };
+  },
+  getUsers: () => {
+    return async (dispatch, getstate) => {
+      const res = await axios.get("http://localhost:4000/api/post");
+      if (res.data.success) {
+        return res.data;
+      } else {
+        console.log("error");
+      }
+    };
+  },
+};
 
 export default userActions;

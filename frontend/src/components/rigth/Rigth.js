@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import {connect} from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
 import {Link} from 'react-router-dom'
+import userActions from "../../redux/actions/userActions";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
@@ -54,7 +55,7 @@ const Rigth = (props) => {
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          {user ?
+          {props.user.token ?
             <>
           <input
             placeholder="Search"
@@ -63,9 +64,10 @@ const Rigth = (props) => {
           ></input>
           <FaRegBell className="bell" />
           <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+          <button onClick={() => props.logOut()}>Log Out</button>
             </>
             :
-            <Link to="/Signup">Sign Up</Link>
+            <h1>Sign In</h1>
         }
         </div>
         <Dialog open={open} onClose={handleClose}>
@@ -179,12 +181,13 @@ const Rigth = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducers.user
+    user: state.userReducers.userData
   };
 };
 
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
+  logOut: userActions.logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

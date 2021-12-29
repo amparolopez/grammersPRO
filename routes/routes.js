@@ -34,7 +34,7 @@ Router.route("/user/signup").post(validator, addUser);
 
 Router.route("/user/signin").post(signIn);
 
-Router.route("/user/signin/token").post(
+Router.route("/user/signin/token").get(
   passport.authenticate("jwt", { session: false }),
   startWithToken
 );

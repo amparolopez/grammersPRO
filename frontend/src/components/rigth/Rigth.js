@@ -70,7 +70,6 @@ const Rigth = (props) => {
           ></input>
           <FaRegBell className="bell" />
           <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-          <button onClick={() => props.logOut()}>Log Out</button>
             </>
             :
             <h1>Sign In</h1>

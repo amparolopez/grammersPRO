@@ -87,19 +87,20 @@ const userActions = {
     return async (dispatch, getState) => {
       try {
         const token = localStorage.getItem('token')
-        console.log(token)
         const response = await axios.get("http://localhost:4000/api/user/signin/token", {
           headers: {
             Authorization: "Bearer " + token,
           },
         });
+        console.log(response)
         dispatch({
           type: "user",
           payload: {
             token,
-            firstName: response.data.firstName,
-            img: response.data.img,
-            _id: response.data._id,
+            firstName: response.data.answer.firstName,
+            img: response.data.answer.imgUrl,
+            _id: response.data.answer.id,
+            userAdmin: response.data.answer.userAdmin,
           },
         });
       } catch (error) {

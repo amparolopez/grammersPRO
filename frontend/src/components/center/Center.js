@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 // import Comments from '../Comments';
 import Autito from "../../assets/ea34ea057fd0b05696faf2791b539d47.jpg"
-
 const Center = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
@@ -51,7 +50,7 @@ const Center = (props) => {
   const handleFilterFollowing = () => {
     const postFilter = postsAux.filter((post) => post.user === user);
   };
-  console.log(props)
+  console.log(posts)
   return (
     <div className="CenterContent">
       <div className="ContenedorCenter">
@@ -60,7 +59,7 @@ const Center = (props) => {
             <div className="ContenedorFilerCent">
               <p>Feeds</p>
               <div>
-                <p className="filtActiveCen">All</p>
+                <p onClick={() => setPosts(postsAux)} className="filtActiveCen">All</p>
                 <p onClick={handleFilterFollowing}>Following</p>
                 <p onClick={handleFilterNewest}>Newest</p>
                 <p onClick={handleFilterPopular}>Popular</p>
@@ -70,18 +69,13 @@ const Center = (props) => {
               {props.post ? (
                 props.post.map((post, key) => {
                   return (
-                    <>
-                      <div className="publicContainerProfil" key={key}>
-                        <img className="ContainerImgPublic" src={Autito}/>
-                          {/* {post.postImage && post.postImage}{" "} */}
-                        <div className="publicProfilContainer">
-                          <div className="ProfilePublicTotal">
-                            <div></div>
-                            <p>{post.postTitle && post.postTitle}</p>
-                          </div>
-                          <div className="ProfilePublicTotal">
-                            <p>{post.postText && post.postText}</p>
-                          </div>
+                    <div className="publicContainerProfil" key={key}>
+                      {post.postImage && <img className="ContainerImgPublic" alt="hola" src={require(`../../images/${post.postImage}`)}/>}
+                      <div className="publicProfilContainer">
+                        <div className="ProfilePublicTotal">
+                          <div></div>
+                          <p>{post.postTitle && post.postTitle}</p>
+                        </div>
                           <div className="IconsPublicVoted">
                             {/* {like ? (
                               <AiFillHeart
@@ -98,10 +92,9 @@ const Center = (props) => {
                             <AiFillMessage />
                             <p>300</p>
                           </div>
-                        </div>
                       </div>
                       
-                    </>
+                    </div>
                   );
                 })
               ) : (

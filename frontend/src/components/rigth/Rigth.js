@@ -7,44 +7,50 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Avatar from "@mui/material/Avatar";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import axios from "axios";
 import userActions from "../../redux/actions/userActions";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
-  const [imageAsset, setImageAsset] = useState();
-  const [wrongImageType, setWrongImageType] = useState(false);
+  const [postState, setPostState] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
+  const [file, setFile] = useState(null);
   const { postAPost, user } = props;
-
-  // const uploadImage = (e) => {
-  //   const selectedFile = e.target.files[0];
-  //   // uploading asset to sanity
-  //   if (selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/tiff') {
-  //     setWrongImageType(false);
-  //     client.assets
-  //       .upload('image', selectedFile, { contentType: selectedFile.type, filename: selectedFile.name })
-  //       .then((document) => {
-  //         setImageAsset(document);
-  //       })
-  //       .catch((error) => {
-  //         console.log('Upload failed:', error.message);
-  //       });
-  //   } else {
-  //     setWrongImageType(true);
-  //   }
-  // };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postAPost(postTitleRef.current.value,postRef.current.value);
+    const formData = new FormData();
+    formData.append("image", file);
+    const newPost = {
+      title: postTitleRef.current.value,
+      body: postRef.current.value,
+    };
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+      try {
+        await axios.post("http://localhost:4000/api/upload", data);
+      } catch (err) {}
+    }
+    postAPost(newPost).then(res => setPostState(res.success))
+    if(postState){
+      console.log('su post se a subido exitosamente')
+      handleClose()
+    }else{
+      console.log('error al subir post')
+    }
   };
 
   const handleClose = () => {
@@ -79,14 +85,14 @@ const Rigth = (props) => {
               style={{ marginRight: "2rem", marginTop: "1rem" }}
             />
             <form onSubmit={(e) => handleSubmit(e)}>
-            <TextField
-            label="Title"
+              <TextField
+                label="Title"
                 inputRef={postTitleRef}
                 id="standard-multiline-static"
                 variant="standard"
               />
               <TextField
-              label="What are you gonna tell us?"
+                label="What are you gonna tell us?"
                 inputRef={postRef}
                 id="standard-multiline-static"
                 multiline
@@ -94,14 +100,23 @@ const Rigth = (props) => {
                 variant="standard"
                 className="postInput"
               />
-          <DialogActions>
-            <button onClick={handleClose} className="btn-Follow">
-              Cancel
-            </button>
-            <button type="submit" className="btn-Follow">
-              Public
-            </button>
-          </DialogActions>
+              <Button variant="contained" component="label">
+                Upload File
+                <input
+                  type="file"
+                  hidden
+                  accept=".png,.jpeg,.jpg"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </Button>
+              <DialogActions>
+                <button onClick={handleClose} className="btn-Follow">
+                  Cancel
+                </button>
+                <button type="submit" className="btn-Follow">
+                  Public
+                </button>
+              </DialogActions>
             </form>
           </DialogContent>
         </Dialog>

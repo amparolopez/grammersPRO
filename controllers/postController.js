@@ -10,17 +10,15 @@ const PostController = {
     }
   },
   postAPost: async (req, res) => {
-    
-    const { postTitle, postText,postImage, user, comments, commentDate, like } = req.body;
-    console.log(postTitle, postText, postImage)
+    const { postTitle,postText,postImage, user, comments, commentDate } = req.body;
+    console.log(postImage)
     let post = await new Post({
       postTitle,
       postText,
       postImage,
       user,
       comments,
-      commentDate,
-      like
+      commentDate
     });
     try {
       await post.save();

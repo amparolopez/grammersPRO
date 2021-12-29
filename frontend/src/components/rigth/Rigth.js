@@ -62,7 +62,7 @@ const Rigth = (props) => {
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          {user.token ? (
+          {userData.token ? (
             <>
               <input
                 placeholder="Search"

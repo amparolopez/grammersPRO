@@ -1,5 +1,6 @@
 const initialState = {
-    users : []
+    users : [],
+    post: []
 };
 
 const userReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 users: action.payload,
             };
+        case 'post': 
+        return {
+            ...state,
+            post: action.payload
+        }
         default:
             return state;
     }

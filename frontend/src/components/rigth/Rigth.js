@@ -204,7 +204,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
-  logOut: userActions.logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

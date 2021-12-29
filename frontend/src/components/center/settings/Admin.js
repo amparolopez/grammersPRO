@@ -6,9 +6,11 @@ const Admin = (props) => {
 
     const [email, setEmail] = useState()
     const [admin, setAdmin] = useState()
+    const [post, setPost] = useState()
 
     useEffect(() =>{
         props.fetchUsers()
+        props.fetchPost()
     },[])
 
     console.log(props.users)
@@ -21,7 +23,7 @@ const Admin = (props) => {
         }
         props.obtenerAdmin(admins)
     }
-
+    console.log(props.posts)
     return (
         <>
             <h1>ban user for bad behavior</h1>
@@ -40,8 +42,18 @@ const Admin = (props) => {
             })}
             <h2>ban post</h2>
             <select>
-                <option>Id post</option>
+                {props.posts.map((post, index)=> {
+                    return(<option key={index} value={post._id}>{post._id}</option>)
+                })
+            }
             </select>
+            {/* <select>
+                {props.posts.map((post)=> {
+
+                    <option>Id post</option>
+                } )
+            }
+            </select> */}
             <div>Foto Post Select</div>
             <h3>Change the rol user</h3>
             <form onSubmit={handleSubmit}>
@@ -59,12 +71,14 @@ const Admin = (props) => {
 }
 const mapStateToProps = (state) =>{
     return{
-        users: state.adminReducer.users
+        users: state.adminReducer.users,
+        posts: state.adminReducer.post
     }
 }
 const mapDispatchToProps = {
     fetchUsers : adminActions.getUsers,
-    obtenerAdmin : adminActions.obtenerAdmin
+    obtenerAdmin : adminActions.obtenerAdmin,
+    fetchPost : adminActions.getPost
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Admin)

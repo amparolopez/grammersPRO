@@ -29,6 +29,16 @@ const adminActions = {
                 console.log(error)
             }
         }
+    },
+    getPost : () => {
+        return async (dispatch, getState) => {
+            try{
+                const post = await axios.get("http://localhost:4000/api/post")
+                dispatch({type:"post", payload:post.data.response})
+            }catch(error){
+                console.log(error)
+            }
+        }
     }
 }
 

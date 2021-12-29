@@ -21,6 +21,10 @@ const Rigth = (props) => {
   const [file, setFile] = useState(null);
   const { postAPost, user } = props;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> bdfa6b849e93897380195ae4bfacd08d871f5d6d
   const handleClickOpen = () => {
     setOpen(true);
   };

@@ -695,29 +695,68 @@ div .vertical-lines {
   flex-direction: column;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.287);
-  width: 30rem;
+ 
   padding-bottom: 1rem;
   border-radius: 1rem;
 }
 input{
-  margin-bottom: 1rem;
+  margin-bottom: 1.3rem;
   text-align: center;
-  height: 1.5rem;
-  width: 25rem;
+  height: 2rem;
+  width: 100%;
   border-radius: 5px;
   border-style: none;
+ 
+}
+
+@media (max-width: 768px) {
+  input{
+    width: 90%
+    
+  }
+}
+@media (max-width: 1024px) {
+  input{
+    width: 90%
+    
+  }
+}
+@media (min-width: 1024px) {
+  input{
+    width: 90%
+    
+  }
 }
 select{
-  margin-bottom: 1rem;  
+  margin-bottom: 1.3rem;  
   text-align: center;
-  height: 1.7rem;
+  height: 2rem;
   border-radius: 5px;
   border-style: none;
+  width: 100%;
+  }
+  @media (max-width: 768px) {
+    select{
+      width: 90%
+    }
+  }
+  @media (max-width: 1024px) {
+    select{
+      width: 90%
+    }
+  }
+  @media (min-width: 1024px) {
+    select{
+      width: 90%
+    }
+  }
 
-}
+
+
 .inputs{
 display: flex;
 flex-direction: column;
+align-items: center;
 }
 .container-Sign{
   display: flex;
@@ -725,15 +764,21 @@ flex-direction: column;
   align-items: center;
 }
 .btn-sign{
+  padding-top: .9rem;
+  padding-bottom: 1.8rem;
   height: 2rem;
-  width: 5rem;
-  border-radius: 5px;
+  width: 6.5rem;
+  border-radius: 2px;
   border-style: none;
+  box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
 }
 .sign-Btn{
 width: 100%; 
 display: flex; 
+flex-wrap: wrap;
 justify-content: space-evenly;;
+align-items: center;
+
 }
 
 
@@ -775,7 +820,7 @@ justify-content: space-evenly;;
   height: 32px;
   font-size: 20px;
   outline: none;
-  width: 100%;
+  width: 90%;
   border-top-style: none;
   border-left-style: none;
   border-right-style: none;
@@ -814,4 +859,8 @@ button:active {
   margin-top: 250px;
   min-width: 370px;
   color: #f00e0e;
+}
+
+.userForm h3{
+  margin: 1rem;
 }

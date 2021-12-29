@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import React, { useRef, useState, useEffect } from "react";
-import userActions from "../redux/actions/userActions";
-import { connect } from "react-redux";
-import GoogleLogin from "react-google-login";
-import { toast } from "react-toastify";
-import axios from "axios";
-=======
 import React, { useRef, useState, useEffect } from 'react';
 import userActions from '../redux/actions/userActions';
 import { connect } from 'react-redux';
@@ -120,7 +112,6 @@ const FormSignUp = (props) => {
             .then(res => setCountries(res.data))
 
     }, [])
->>>>>>> cf34657f2fd36fc80024fc01c3b1b43cc0de0933
 
 // import Swal from 'sweetalert2';
 
@@ -160,131 +151,6 @@ const FormSignUp = (props) => {
         })
       );
     }
-<<<<<<< HEAD
-  };
-
-  // if(user.success && !user.error){
-  //     Swal.fire({
-  //         position: 'top-end',
-  //         icon: 'success',
-  //         title: 'Correctly Registered!',
-  //         showConfirmButton: false,
-  //         timer: 8500
-  //       })
-  //       setNewUser({
-  //         userName: "",
-  //         lastName: "",
-  //         email: "",
-  //         password: "",
-  //         imgUrl: "",
-  //         // job: "",
-  //         country: ""
-  //       })
-  //    }else{
-
-  //     toast.fire({
-  //         icon: 'error',
-  //         toast: true,
-  //         html:  user.response.map(
-  //         e => `<p>${e.message}</p>`
-  //         )
-  //       })
-
-  //    }
-
-  // const handleSubmit = async (
-  //     user
-  // ) => {
-  //     const errors = await props.userSignUp(
-  //         user
-  //     );
-  //     if (errors) {
-  //         errors.errors.map((e) =>
-  //             toast.warning(e.message, {
-  //                 position: "top-left",
-  //                 autoClose: 4000,
-  //                 hideProgressBar: false,
-  //                 closeOnClick: true,
-  //                 pauseOnHover: true,
-  //                 draggable: true,
-  //                 progress: undefined,
-  //                 theme: "light",
-  //             })
-  //         );
-  //     }
-  // };
-
-  const inputHandler = (ref, input) => {
-    setNewUser({
-      ...newUser,
-      [input]: ref.current.value,
-    });
-  };
-
-  const [countries, setCountries] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get(`https://restcountries.com/v2/all?fields=name`)
-      .then((res) => setCountries(res.data));
-  }, []);
-
-  const handlerSelect = (e) => {
-    setNewUser({
-      ...newUser,
-      country: e.target.value,
-    });
-  };
-
-  const responseGoogle = (res) => {
-    console.log(res);
-    let googleUser = {
-      userName: res.profileObj.givenName,
-      lastName: res.profileObj.familyName,
-      email: res.profileObj.email,
-      password: res.profileObj.googleId,
-      country: "Argentina",
-      imgUrl: res.profileObj.imageUrl,
-      googleFlag: true,
-    };
-    props
-      .userSignUp(googleUser)
-      .then((response) => response.data.success)
-      .catch((error) => console.log(error));
-  };
-
-  return (
-    <>
-      
-      <div className="containerForm">
-        <div className="userForm">
-          <h3>Sign Up</h3>
-          <form onSubmit={handleSubmit}>
-            <div className="inputs">
-              <input
-                type="text"
-                name="UserName"
-                placeholder="First Name"
-                onChange={() => inputHandler(UserName, "userName")}
-                ref={UserName}
-              />
-
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                onChange={() => inputHandler(LastName, "lastName")}
-                ref={LastName}
-              />
-
-              <input
-                type="url"
-                name="imgUrl"
-                placeholder="Your Url picture"
-                onChange={() => inputHandler(ImgUrl, "imgUrl")}
-                ref={ImgUrl}
-              />
-=======
 
 
     const responseGoogle = (res) => {
@@ -302,7 +168,7 @@ const FormSignUp = (props) => {
             .userSignUp(googleUser)
             .then((response) => response.data.success)
             .catch((error) => console.log(error));
-        };
+        }
         
     return (
         <>
@@ -364,7 +230,6 @@ const FormSignUp = (props) => {
                     <div className="container-Sign">
                     </div>
                 </div>
->>>>>>> cf34657f2fd36fc80024fc01c3b1b43cc0de0933
             </div>
             <div className="inputs">
               <select name="country" onChange={handlerSelect}>

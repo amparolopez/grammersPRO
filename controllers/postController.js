@@ -10,9 +10,10 @@ const PostController = {
     }
   },
   postAPost: async (req, res) => {
-    const { postText,postImage, user, comments, commentDate } = req.body;
-    console.log(postText)
+    const { postTitle,postText,postImage, user, comments, commentDate } = req.body;
+    console.log(postImage)
     let post = await new Post({
+      postTitle,
       postText,
       postImage,
       user,

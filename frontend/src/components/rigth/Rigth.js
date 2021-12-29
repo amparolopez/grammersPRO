@@ -1,5 +1,7 @@
 import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
 import { useState, useRef } from "react";
+import { FaUser } from "react-icons/fa";
+import { Dropdown } from "react-bootstrap"
 import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -60,20 +62,40 @@ const Rigth = (props) => {
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
-        <div className="Searchs">
-          {props.user.token ?
-            <>
-          <input
-            placeholder="Search"
-            className="inputSearch"
-            type="text"
-          ></input>
+          <div className="dropDown">
+          <Dropdown>
+          <Dropdown.Toggle aria-controls="responsive-navbar-nav" >
+          <FaUser className="loginImg"/>
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+              {props.user !== "" ? (
+                <>
+                  <div className="signIn-out">
+                  <Dropdown.Item className="text-center ps-0 pe-0" href="/Signup">
+                    Sign Up
+                  </Dropdown.Item>
+                  </div>
+                  <div>
+                  <Dropdown.Item className="text-center ps-0 pe-0" href="/Signin">
+                    Sing In
+                  </Dropdown.Item>
+                  </div>
+                </>
+              ) : (
+                <Dropdown.Item onClick={() => props.logOut()} className="text-center ps-0 pe-0">
+                  Log Out
+                </Dropdown.Item>
+              )}
+            </Dropdown.Menu>
+          </Dropdown>
+          </div>
+
+          <div className="Searchs">
+          <>
+          <input placeholder="Search" className="inputSearch" type="text"></input>
           <FaRegBell className="bell" />
           <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-            </>
-            :
-            <h1>Sign In</h1>
-        }
+          </>
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>

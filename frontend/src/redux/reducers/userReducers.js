@@ -1,6 +1,7 @@
 
 const initialState = {
     userData: { email:"", img:"", firstName:"", token: "", _id:"", },
+    usersArray:[],
     user:false,
     errors: '', 
 };
@@ -26,6 +27,11 @@ const userReducer = (state = initialState, action) => {
                 userData: '',
                 user:false
             };
+        case 'getAllUser':
+            return{
+                ...state,
+                usersArray:action.payload
+            }
         default:
             return state;
     }

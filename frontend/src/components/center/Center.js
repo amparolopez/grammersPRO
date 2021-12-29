@@ -3,23 +3,23 @@ import { AiFillHeart } from "react-icons/ai";
 import postsActions from "../../redux/actions/postsActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-import userActions from "../../redux/actions/userActions";
+// import Comments from '../Comments';
 const Center = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
   const { getAllPosts, user, userData, likeDislikePost } = props;
-  const [likesArray, setLikeArray] = useState(posts.like);
-  const [like, setLike] = useState(
-    user && likesArray.find((like) => like.user === userData._id)
-  );
-  const handleLike = (postId) => {
-    if (user) {
-      likeDislikePost(postId, userData, like).then((res) => {
-        setLikeArray(res.response);
-        setLike(!like);
-      });
-    }
-  };
+  // const [likesArray, setLikeArray] = useState(posts.like);
+  // const [like, setLike] = useState(
+  //   user && likesArray.find((like) => like.user === userData._id)
+  // );
+  // const handleLike = (postId) => {
+  //   if (user) {
+  //     likeDislikePost(postId, userData, like).then((res) => {
+  //       setLikeArray(res.response);
+  //       setLike(!like);
+  //     });
+  //   }
+  // };
 
   useEffect(() => {
     getAllPosts().then((res) => {
@@ -27,7 +27,7 @@ const Center = (props) => {
       setPostsAux(res.response);
     });
   }, []);
-  console.log(posts);
+
   const handleFilterNewest = () => {
     const postFilter = postsAux.sort((a, b) => {
       if (new Date(b.date) < new Date(a.date)) return -1;
@@ -36,6 +36,7 @@ const Center = (props) => {
     });
     setPosts(postFilter);
   };
+
   const handleFilterPopular = () => {
     const postFilter = postsAux.sort((a, b) => {
       if (b.like.length < a.like.length) return -1;
@@ -44,9 +45,11 @@ const Center = (props) => {
     });
     setPosts(postFilter);
   };
+
   const handleFilterFollowing = () => {
     const postFilter = postsAux.filter((post) => post.user === user);
   };
+
   return (
     <div className="CenterContent">
       <div className="ContenedorCenter">
@@ -62,35 +65,35 @@ const Center = (props) => {
               </div>
             </div>
             <div className="ContainerTotalPublics">
-              {posts ? (
-                posts.map((post, key) => {
+              {props.post ? (
+                props.post.map((post, key) => {
+                  console.log(post.postImage)
                   return (
                     <div className="publicContainerProfil" key={key}>
-                      <div className="ContainerImgPublic">
-                        {post.postImage && post.postImage}{" "}
-                      </div>
+                      {post.postImage && <img className="ContainerImgPublic" alt="hola" src={require(`../../images/${post.postImage}`)}/>}
                       <div className="publicProfilContainer">
                         <div className="ProfilePublicTotal">
                           <div></div>
                           <p>{post.postTitle && post.postTitle}</p>
                         </div>
-                        <div className="IconsPublicVoted">
-                          {like ? (
-                            <AiFillHeart
-                              style={{ color: "red", cursor: "pointer" }}
-                              onClick={handleLike}
-                            />
-                          ) : (
-                            <AiFillHeart
-                              onClick={handleLike}
-                              style={{ cursor: "pointer" }}
-                            />
-                          )}
-                          <p>{likesArray ? likesArray : 0}</p>
-                          <AiFillMessage />
-                          <p>300</p>
-                        </div>
+                          <div className="IconsPublicVoted">
+                            {/* {like ? (
+                              <AiFillHeart
+                                style={{ color: "red", cursor: "pointer" }}
+                                onClick={handleLike}
+                              />
+                            ) : (
+                              <AiFillHeart
+                                onClick={handleLike}
+                                style={{ cursor: "pointer" }}
+                              />
+                            )}
+                            <p>{likesArray ? likesArray : 0}</p> */}
+                            <AiFillMessage />
+                            <p>300</p>
+                          </div>
                       </div>
+                      
                     </div>
                   );
                 })

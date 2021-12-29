@@ -61,7 +61,7 @@ const Comment = (props) => {
 
 }
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         user: state.userReducers.user,
     }

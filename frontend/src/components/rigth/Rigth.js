@@ -7,36 +7,75 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Avatar from "@mui/material/Avatar";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+import axios from "axios";
+import userActions from "../../redux/actions/userActions";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
+  const [postState, setPostState] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
-  const { postAPost } = props;
+  const [file, setFile] = useState(null);
+  const { postAPost, userData, user } = props;
+
   const handleClickOpen = () => {
     setOpen(true);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    postAPost(postTitleRef.current.value,postRef.current.value);
+    const formData = new FormData();
+    formData.append("image", file);
+    const newPost = {
+      title: postTitleRef.current.value,
+      body: postRef.current.value,
+      user: userData.id,
+    };
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+      try {
+        await axios.post("http://localhost:4000/api/upload", data);
+      } catch (err) {}
+    }
+    postAPost(newPost).then((res) => setPostState(res.success));
+    if (postState) {
+      console.log("su post se a subido exitosamente");
+      handleClose();
+    } else {
+      console.log("error al subir post");
+    }
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          <input
-            placeholder="Search"
-            className="inputSearch"
-            type="text"
-          ></input>
-          <FaRegBell className="bell" />
-          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+          {userData.token ? (
+            <>
+              <input
+                placeholder="Search"
+                className="inputSearch"
+                type="text"
+              ></input>
+              <FaRegBell className="bell" />
+              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+              <button onClick={() => props.logOut()}>Log Out</button>
+            </>
+          ) : (
+            <h1>Sign In</h1>
+          )}
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
@@ -47,14 +86,14 @@ const Rigth = (props) => {
               style={{ marginRight: "2rem", marginTop: "1rem" }}
             />
             <form onSubmit={(e) => handleSubmit(e)}>
-            <TextField
-            label="Title"
+              <TextField
+                label="Title"
                 inputRef={postTitleRef}
                 id="standard-multiline-static"
                 variant="standard"
               />
               <TextField
-              label="What are you gonna tell us?"
+                label="What are you gonna tell us?"
                 inputRef={postRef}
                 id="standard-multiline-static"
                 multiline
@@ -62,20 +101,29 @@ const Rigth = (props) => {
                 variant="standard"
                 className="postInput"
               />
-          <DialogActions>
-            <button onClick={handleClose} className="btn-Follow">
-              Cancel
-            </button>
-            <button type="submit" className="btn-Follow">
-              Public
-            </button>
-          </DialogActions>
+              <Button variant="contained" component="label">
+                Upload File
+                <input
+                  type="file"
+                  hidden
+                  accept=".png,.jpeg,.jpg"
+                  onChange={(e) => setFile(e.target.files[0])}
+                />
+              </Button>
+              <DialogActions>
+                <button onClick={handleClose} className="btn-Follow">
+                  Cancel
+                </button>
+                <button type="submit" className="btn-Follow">
+                  Public
+                </button>
+              </DialogActions>
             </form>
           </DialogContent>
         </Dialog>
         <div className="Suggestions">
           <h3>Suggestions For You</h3>
-          <h4>See All</h4>
+          <Link to="/Browser">See All</Link>
         </div>
         <div className="userContainer">
           <div className="userFollow">
@@ -147,12 +195,15 @@ const Rigth = (props) => {
   );
 };
 
-const mapStateToProps = () => {
-  return {};
+const mapStateToProps = (state) => {
+  return {
+    userData: state.userReducers.userData,
+  };
 };
 
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
+  logOut: userActions.logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

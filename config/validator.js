@@ -25,11 +25,12 @@ const validator = (req, res, next) => {
             'string.email': 'A valid format of email is required',
         }),
         imgUrl: joi.string(),
-        country: joi.required(),
-        google: joi.boolean()
+        country: joi.string().required(),
+        googleFlag: joi.boolean()
     })
     const validation = schema.validate(req.body, { abortEarly: false })
     if (validation.error) {
+        console.log(validation.error)
         return res.json({ success: false, answer: validation.error.details })
     }
     next()

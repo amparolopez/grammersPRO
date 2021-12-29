@@ -4,39 +4,45 @@ const postsActions = {
   getAllPosts: () => {
     return async (dispatch, getState) => {
       const res = await axios.get("http://localhost:4000/api/post");
+      dispatch({type: "getPost", payload: res.data.response})
+      console.log(res.data)
       if (res.data.success) {
-        return res.data
+        return res.data;
       } else {
-        console.log('error')
+        console.log("error");
       }
     };
   },
-  postAPost: (postText, token) => {
+  postAPost: (newPost, token) => {
     return async (dispatch, getState) => {
       try {
+        console.log(newPost.user)
         const response = await axios.post(
           "http://localhost:4000/api/post",
-          { postText },
+          {
+            postTitle: newPost.title,
+            postText: newPost.body,
+            postImage: newPost.img,
+            user: newPost.user
+          },
           {
             headers: {
               Authorization: "Bearer" + token,
             },
           }
         );
-        if (response.data.success) return { success: true, resonse: response };
+        if (response.data.success) return { success: true, response: response };
         else throw new Error();
       } catch (error) {
         console.log(error);
       }
     };
   },
-  ////////////////////
-
   addComment: (id, comment, token) => {
     return async () => {
       try {
         const response = await axios.put(
-          "http://localhost:4000/api/comment/" + id,
+          "http://localhost:4000/api/comments" + id,
           { comment, type: "addComment" },
           {
             headers: {
@@ -56,7 +62,7 @@ const postsActions = {
     return async () => {
       try {
         const response = await axios.put(
-          "http://localhost:4000/api/comment" + id,
+          "http://localhost:4000/api/comments" + id,
           { comment, type: "editComment" },
           {
             headers: {
@@ -76,7 +82,7 @@ const postsActions = {
     return async () => {
       try {
         const response = await axios.put(
-          "http://localhost:4000/api/comment" + id,
+          "http://localhost:4000/api/comments" + id,
           { commentId, type: "deleteComment" },
           {
             headers: {
@@ -91,8 +97,6 @@ const postsActions = {
       }
     };
   },
-
-  /////////////////////////////
 
   likeDislikePost: (token, id, userId) => {
     return async () => {

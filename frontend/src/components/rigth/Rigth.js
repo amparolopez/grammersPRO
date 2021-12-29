@@ -9,19 +9,21 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Avatar from "@mui/material/Avatar";
 import { connect } from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import axios from "axios";
 import userActions from "../../redux/actions/userActions";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { Autocomplete } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
   const [postState, setPostState] = useState();
   const [lastPost, setLastPost] = useState([]);
-  const [userSuggest, setUserSuggest] = useState()
-  const [preview, setPreview] = useState();
+  const [userSuggest, setUserSuggest] = useState();
+  const [allUsers, setAllUsers] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
   const [file, setFile] = useState(null);
@@ -35,7 +37,6 @@ const Rigth = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", file);
-    setPreview(URL.createObjectURL(e.target.files[0]));
     const newPost = {
       title: postTitleRef.current.value,
       body: postRef.current.value,
@@ -73,30 +74,46 @@ const Rigth = (props) => {
       const lastPostes = res.response[res.response.length - 1];
       setLastPost(lastPostes);
     });
-    getUsers().then((res) => setUserSuggest(res.response.slice(0,3)));
+    getUsers().then((res) => {
+      setAllUsers(res.response);
+      setUserSuggest(res.response.slice(0, 3));
+    });
   }, []);
+  
+  const navigate = useNavigate();
 
-  console.log(userSuggest)
+  function handleChange(e) {
+    const idUser = allUsers.find(user => user.email === e.target.innerText)
+    console.log(idUser)
+    navigate(`/Profile/${idUser._id}`);
+  }
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
           {userData.token ? (
             <>
-              <input
-                placeholder="Search"
-                className="inputSearch"
-                type="text"
-              ></input>
+              {allUsers && (
+                <Autocomplete
+                  id="free-solo-demo"
+                  freeSolo
+                  fullWidth
+                  onChange={e => handleChange(e)}
+                  options={allUsers.map((option) => option.email)}
+                  renderInput={(user, key) => (
+                    <TextField {...user} key={key} label="Search users" />
+                  )}
+                />
+              )}
               <FaRegBell className="bell" />
               <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-            </>)
-            :
+            </>
+          ) : (
             <div>
-            <Link to ={'/Signup'} >Sign Up</Link>
-            <Link to ={'/Signin'} >Sign In</Link>
+              <Link to={"/Signup"}>Sign Up</Link>
+              <Link to={"/Signin"}>Sign In</Link>
             </div>
-        }
+          )}
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
@@ -132,7 +149,6 @@ const Rigth = (props) => {
                   hidden
                   accept=".png,.jpeg,.jpg"
                   onChange={(e) => setFile(e.target.files[0])}
-                  required
                 />
               </Button>
               {file && (
@@ -167,22 +183,31 @@ const Rigth = (props) => {
           <Link to="/Browser">See All</Link>
         </div>
         <div className="userContainer">
-          {userSuggest && userSuggest.map((user, key) => {
-            return(
-              <div className="userFollow" key={key}>
-            <div className="imgText">
-            <Avatar alt={user.username && user.username} src={user.imgUrl} className="userImg" />
-              <div className="userText">
-                <h4>{user.userName + ' ' + user.lastName}</h4>
-                <h6 className="text">{user.email }</h6>
-              </div>
-            </div>
-            <button className="btn-Follow"  >Follow</button>
-          </div>
-            )
-          })
-          }
-         </div> 
+          {userSuggest &&
+            userSuggest.map((user, key) => {
+              return (
+                <div className="userFollow" key={key}>
+                  <div className="imgText">
+                    <Link
+                      to={`/Profile/${user._id}`}
+                      style={{ display: "flex", textDecoration: "none" }}
+                    >
+                      <Avatar
+                        alt={user.username && user.username}
+                        src={user.imgUrl}
+                        className="userImg"
+                      />
+                      <div className="userText">
+                        <h4>{user.userName + " " + user.lastName}</h4>
+                        <h6 className="text">{user.email}</h6>
+                      </div>
+                    </Link>
+                  </div>
+                  <button className="btn-Follow">Follow</button>
+                </div>
+              );
+            })}
+        </div>
         <div className="horizontal-line"></div>
         <div className="latestPost">
           <h4>Latest Post Activity</h4>
@@ -191,13 +216,13 @@ const Rigth = (props) => {
               <div className="imgActivity">
                 <div className="cardPost">
                   <div className="cardActivity">
-                    {lastPost.postImage && (
+                    {/* {lastPost.postImage && (
                       <img
                         alt={lastPost.postTitle}
                         src={require(`../../images/${lastPost.postImage}`)}
                         className="ActivityImg"
                       ></img>
-                    )}
+                    )} */}
                     <div className="cardText">
                       <div className="cardIcon">
                         <h4 className="minimalStair">{lastPost.postTitle}</h4>
@@ -225,8 +250,8 @@ const Rigth = (props) => {
         <h4>About - Help - Terms - Popular - Language</h4>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

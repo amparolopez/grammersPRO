@@ -22,27 +22,6 @@ const FormSignIn = (props) => {
         })
     };
 
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault()
-    //     const user = await props.userSignIn(signInUser)
-    //     console.log(user.errors)
-    //     if (user.errors) {
-            
-    //         console.log(user.answer)
-    //         user.errors.map((e) =>
-    //             toast.warning(e.message, {
-    //                 position: "top-left",
-    //                 autoClose: 4000,
-    //                 hideProgressBar: false,
-    //                 closeOnClick: true,
-    //                 pauseOnHover: true,
-    //                 draggable: true,
-    //                 progress: undefined,
-    //                 theme: "light",
-    //             })
-    //         );
-    //     }
-    // }
 
     const handleSubmit = async (e) => {
 
@@ -59,32 +38,11 @@ const FormSignIn = (props) => {
                 text: 'You succesfully logged in!', 
                 timer: 1500,
               })
-            // user.errors.map((e) =>
-            //     toast.warning(e.message, {
-            //         position: "top-left",
-            //         autoClose: 4000,
-            //         hideProgressBar: false,
-            //         closeOnClick: true,
-            //         pauseOnHover: true,
-            //         draggable: true,
-            //         progress: undefined,
-            //         theme: "light",
-            //     })
-            // );
+
         }
 } 
             
-            
-
-
-    // const handleSubmit = async (
-    //     user
-    // ) => {
-    //     const errors = await props.userSignIn(
-    //         user
-    //     );
-    //     console.log(errors);
-    // };
+ 
 
     const responseGoogle = (res) => {
         let googleUser = {

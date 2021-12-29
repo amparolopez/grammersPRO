@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import {connect} from 'react-redux'
 
 const Left = ({location, userData}) => {
-    console.log(userData)
     return (
         <div className="LeftNavbar">
             <div className="LeftContainer">

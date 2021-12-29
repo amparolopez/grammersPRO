@@ -3,15 +3,16 @@ const Post = require("../models/Post.js");
 const PostController = {
   getAllPosts: async (req, res) => {
     try {
-      const post = await Post.find();
-      res.json({ success: true, response: post });
+      const post = await Post.find().populate('user')
+      console.log(post)
+      res.json({ success: true, response:  post});
     } catch (error) {
       res.json({ success: false, response: error });
     }
   },
   postAPost: async (req, res) => {
     const { postTitle,postText,postImage, user, comments, commentDate } = req.body;
-    console.log(postImage)
+
     let post = await new Post({
       postTitle,
       postText,

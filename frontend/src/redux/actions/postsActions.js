@@ -15,7 +15,6 @@ const postsActions = {
   postAPost: (newPost, token) => {
     return async (dispatch, getState) => {
       try {
-        console.log(newPost.user)
         const response = await axios.post(
           "http://localhost:4000/api/post",
           {

@@ -10,7 +10,6 @@ const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case 'user':
-            console.log(action.payload)
             localStorage.setItem("token", action.payload.token)                  
             localStorage.setItem("firstName", action.payload.firstName)         
             localStorage.setItem("img", action.payload.img)

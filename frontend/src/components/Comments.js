@@ -34,7 +34,7 @@ const Comments = (props) => {
             setComments(comments.filter(comment => comment._id !== commentId ))
             else throw new Error()
         }) .catch (error)
-        {console.log(error)}
+        {}
     },
 
     const editComment = (commentId, comment, token) => {
@@ -50,7 +50,7 @@ const Comments = (props) => {
                 setRender(!render)
             }   
         } ) .catch(error)
-        {console.log(error)}
+        {}
     },
 
     const sendHandler = () => {
@@ -61,7 +61,7 @@ const Comments = (props) => {
             setComments(res.response.data.response)
             commentValue = ""
         }) .catch(error)
-        {console.log(error)}
+        {}
     }, 
     
     const handleKeyPress = (e) => {

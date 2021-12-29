@@ -10,10 +10,10 @@ const Home = (props) => {
         <div className="containerHome">
             <Left location={props.location.pathname}/>
                 {props.location.pathname === "/" ? <Center /> : null}
-                {props.location.pathname === "/Profile" ? <Profile /> : null}
+                {props.location.pathname === `/Profile/${props.params.id}` ? <Profile /> :null}
                 {props.location.pathname === "/Browser" ? <Browser /> : null}
                 {props.location.pathname === "/Settings" ? <Settings /> : null}
-            {props.location.pathname === "/Settings" ? null : <Rigth />}
+                {props.location.pathname === "/Settings" ? null : <Rigth />}
         </div>
     )
 }

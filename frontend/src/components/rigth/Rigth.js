@@ -64,14 +64,13 @@ const Rigth = (props) => {
         <div className="Searchs">
           {userData.token ? (
             <>
-              <input
-                placeholder="Search"
-                className="inputSearch"
-                type="text"
-              ></input>
-              <FaRegBell className="bell" />
-              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-              <button onClick={() => props.logOut()}>Log Out</button>
+          <input
+            placeholder="Search"
+            className="inputSearch"
+            type="text"
+          ></input>
+          <FaRegBell className="bell" />
+          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
             </>
           ) : (
             <h1>Sign In</h1>

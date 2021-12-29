@@ -1,6 +1,6 @@
 
 const initialState = {
-    userData: { email:"", img:"", firstName:"", token: "", _id:"", },
+    userData: { email:"", img:"", firstName:"", token: "", _id:"", userAdmin:"" },
     usersArray:[],
     user:false,
     errors: '', 

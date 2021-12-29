@@ -47,9 +47,9 @@ const userControllers = {
                 if (samePass) {
                     const token = jwt.sign({...userExists},process.env.SECRET_KEY)
                     console.log(token)
-                    const { userName, imgUrl, email, _id } = userExists
+                    const { userName, imgUrl, email, _id, userAdmin } = userExists
                     
-                    res.json({ success: true, answer: { token, userName, imgUrl, email, id:_id }, error: null })
+                    res.json({ success: true, answer: { token, userName, imgUrl, email, id:_id , userAdmin }, error: null })
                 } else {
                     res.json({ success: false, error: true, answer:[{message:"password is incorrect"}]})
                 }
@@ -60,14 +60,9 @@ const userControllers = {
             res.json({ success: false, answer: null, error: error })
         }
     },
-    getToken: async (req, res) => {
-        try {
-          const userAuth = req.user;
-          res.json({ succes: true, response: userAuth, error: null });
-        } catch (error) {
-          res.json({ success: false, response: null, error: error });
-        }
-      },
+    startWithToken: async (req, res) => {
+        res.json({ success: true, answer: {firstName: req.user.userName, email:req.user.email, imgUrl:req.user.imgUrl, id: req.user._id, userAdmin:req.user.userAdmin}, error: null })
+    },
     getUser: async(req, res) => {
         try {
             const user = await User.find();
@@ -75,6 +70,15 @@ const userControllers = {
           } catch (error) {
             res.json({ success: false, response: error });
           }
+    },
+    obtenerAdmin: async (req, res) => {
+        const {userAdmin, idUser} = req.body
+        try{
+            const user = await User.findOneAndUpdate({_id : idUser}, {userAdmin : userAdmin});
+            res.json({ success: true, response: user });
+        }catch(error){
+            res.json({succes:null})
+        }
     }
   }
 

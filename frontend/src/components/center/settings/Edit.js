@@ -3,8 +3,8 @@ const Edit = () => {
         <>
             <div></div>
             <div>
-                <input type="text" value="NameUser"/>
-                <input type="text" value="LastName"/>
+                <input type="text" defaultValue="NameUser"/>
+                <input type="text" defaultValue="LastName"/>
                 <select name="country">
                     <option value="pais">Valor defecto pais</option>
                 </select>

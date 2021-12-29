@@ -12,6 +12,7 @@ import postsActions from "../../redux/actions/postsActions";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
+import userActions from "../../redux/actions/userActions";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
@@ -60,17 +61,20 @@ const Rigth = (props) => {
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          <>
-            <input
-              placeholder="Search"
-              className="inputSearch"
-              type="text"
-            ></input>
-            <FaRegBell className="bell" />
-            <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-          </>
-
-          <h1>Sign In</h1>
+          {props.user.token ?
+            <>
+          <input
+            placeholder="Search"
+            className="inputSearch"
+            type="text"
+          ></input>
+          <FaRegBell className="bell" />
+          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+          <button onClick={() => props.logOut()}>Log Out</button>
+            </>
+            :
+            <h1>Sign In</h1>
+        }
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
@@ -192,12 +196,13 @@ const Rigth = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducers.user,
+    user: state.userReducers.userData
   };
 };
 
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
+  logOut: userActions.logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

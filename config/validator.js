@@ -28,7 +28,7 @@ const validator = (req, res, next) => {
         //  job: joi.string(),
         imgUrl: joi.string(),
         country: joi.string().required(),
-        // googleFlag: joi.boolean()
+        googleFlag: joi.boolean()
     })
     const validation = schema.validate(req.body, { abortEarly: false })
     if (validation.error) {

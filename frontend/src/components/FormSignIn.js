@@ -48,21 +48,29 @@ const FormSignIn = (props) => {
 
         e.preventDefault()
         const user = await props.userSignIn(signInUser)
-        if (user.errors) {
+        
+        if (!user) {
             
-            console.log(user.answer)
-            user.errors.map((e) =>
-                toast.warning(e.message, {
-                    position: "top-left",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                })
-            );
+            // console.log(user.answer)
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Welcome!!',
+                text: 'You succesfully logged in!', 
+                timer: 1500,
+              })
+            // user.errors.map((e) =>
+            //     toast.warning(e.message, {
+            //         position: "top-left",
+            //         autoClose: 4000,
+            //         hideProgressBar: false,
+            //         closeOnClick: true,
+            //         pauseOnHover: true,
+            //         draggable: true,
+            //         progress: undefined,
+            //         theme: "light",
+            //     })
+            // );
         }
 } 
             

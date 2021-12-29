@@ -3,11 +3,12 @@ const initialState = {
 }
 
 const postsReducers = (state = initialState, action) => {
+   
     switch (action.type){
         case 'getPost':
             return {
                 ...state, 
-                post: action.payload.response
+                post: action.payload
             }
             default:
                 return state

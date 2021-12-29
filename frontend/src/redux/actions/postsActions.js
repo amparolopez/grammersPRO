@@ -4,8 +4,10 @@ const postsActions = {
   getAllPosts: () => {
     return async (dispatch, getState) => {
       const res = await axios.get("http://localhost:4000/api/post");
+      dispatch({type: "getPost", payload: res.data.response})
+      console.log(res.data)
       if (res.data.success) {
-        return res.data
+        return res.data.response
       } else {
         console.log('error')
       }

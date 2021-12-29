@@ -10,14 +10,17 @@ const PostController = {
     }
   },
   postAPost: async (req, res) => {
-    const { postText,postImage, user, comments, commentDate } = req.body;
-    console.log(postText)
+    
+    const { postTitle, postText,postImage, user, comments, commentDate, like } = req.body;
+    console.log(postTitle, postText, postImage)
     let post = await new Post({
+      postTitle,
       postText,
       postImage,
       user,
       comments,
       commentDate,
+      like
     });
     try {
       await post.save();
@@ -43,7 +46,7 @@ const PostController = {
           });
     }
     res.json({
-      res: itinerary,
+      res: post,
       success: true,
     });
   },

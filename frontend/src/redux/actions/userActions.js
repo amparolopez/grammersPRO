@@ -10,7 +10,7 @@ const userActions = {
                 console.log(user)
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem("token", user.data.response.token);
-                    dispatch({ type: 'user', payload: user.data.response })
+                    dispatch({ type: 'user', payload: user.data.response.newUser })
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -43,20 +43,13 @@ const userActions = {
             try {
 
                 const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
-                
+                console.log(user)
                 if (user.data.success) {
                  
                   localStorage.setItem('token', user.data.answer.token);
                   localStorage.setItem('userName', user.data.answer.userName);
+                  console.log(user.data.answer)
                   dispatch({ type: 'user', payload: user.data.answer })
-                    // Swal.fire({
-                    //   position: 'top-end',
-                    //   icon: 'success',
-                    //   title: 'agagasdas',
-                    //   text: 'Please sign in to continue.', 
-                    //   timer: 1500,
-                    // })
-                    console.log(user.data.response)
                 } else {
                   const error = user.data.answer[0].message
                   console.log(user.data)
@@ -90,9 +83,11 @@ const userActions = {
     }
         
   },
-  isAuth: (token) => {
+  isAuth: () => {
     return async (dispatch, getState) => {
       try {
+        const token = localStorage.getItem('token')
+        console.log(token)
         const response = await axios.get("http://localhost:4000/api/user/signin/token", {
           headers: {
             Authorization: "Bearer " + token,

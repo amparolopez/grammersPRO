@@ -4,6 +4,7 @@ import postsActions from "../../redux/actions/postsActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 // import Comments from '../Comments';
+import Autito from "../../assets/ea34ea057fd0b05696faf2791b539d47.jpg"
 
 const Center = (props) => {
   const [posts, setPosts] = useState([]);
@@ -71,9 +72,8 @@ const Center = (props) => {
                   return (
                     <>
                       <div className="publicContainerProfil" key={key}>
-                        <div className="ContainerImgPublic">
-                          {post.postImage && post.postImage}{" "}
-                        </div>
+                        <img className="ContainerImgPublic" src={Autito}/>
+                          {/* {post.postImage && post.postImage}{" "} */}
                         <div className="publicProfilContainer">
                           <div className="ProfilePublicTotal">
                             <div></div>
@@ -81,9 +81,6 @@ const Center = (props) => {
                           </div>
                           <div className="ProfilePublicTotal">
                             <p>{post.postText && post.postText}</p>
-                          </div>
-                          <div className="ProfilePublicTotal">
-                            <p>{post.date && post.date}</p>
                           </div>
                           <div className="IconsPublicVoted">
                             {/* {like ? (

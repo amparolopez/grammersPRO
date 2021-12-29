@@ -27,24 +27,18 @@ const FormSignUp = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await props.userSignUp(newUser)
-       
-        if (user.errors) {
-            
-            console.log(user.answer)
-            user.errors.map((e) =>
-                toast.warning(e.message, {
-                    position: "top-left",
-                    autoClose: 4000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
+        (user.errors ? user.errors.map((e) => toast.warning(e.message, {
+                                                position: "top-left",
+                                                autoClose: 4000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                                theme: "light",
                 })
-            );
+            ) : null)
         }
-    }
 
     // if(user.success && !user.error){
     //     Swal.fire({

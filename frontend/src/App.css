@@ -864,3 +864,114 @@ button:active {
 .userForm h3{
   margin: 1rem;
 }
+
+@media (max-width: 362px) {
+    .userForm{
+      border-radius: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+  .rigthUsers{
+    display: none;
+    width: 0%;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .CenterContent{
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .LeftNavbar{
+    width: 30%;
+  }
+  div .vertical-line{
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .containerHome{
+    flex-direction: column;
+  }
+  .ContenedorCenter{
+    width: 100%
+  }
+  div .vertical-line{
+    display: none;
+  }
+
+  .CenterContent{
+    width: 100%;
+  }
+  .LeftNavbar{
+    width: 100%;
+  }
+  .LogoLeft {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MenuTitleSecond{
+  display: none;
+}
+
+.MenuLeft .MenuLeftDirection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+}
+.ContenedorProfileLeft{
+  display: none;
+}
+
+.AccountLeft{
+  display: none;
+}
+.LeftNavbar{
+  height: 30%;
+} 
+.LeftContainer{
+  width: 100%;
+}
+.ContenedorPublicCen{
+  height: 100%;
+}
+.ContenedorFilerCent{
+  flex-direction: column;
+  height: 5rem;
+}
+.ContenedorFilerCent div{
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2rem;
+}
+
+.ContainerTotalPublics{
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+.publicContainerProfil{
+  width: 70%;
+  height: 70%;
+}
+
+.ContainerTotalPublics{
+  overflow-y: scroll;
+}
+}

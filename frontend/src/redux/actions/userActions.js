@@ -7,6 +7,7 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const user = await axios.post('http://localhost:4000/api/user/signup', { ...User });
+                console.log(user)
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem("token", user.data.response.token);
                     dispatch({ type: 'user', payload: user.data.response })
@@ -18,8 +19,8 @@ const userActions = {
                         timer: 1500,
                       })
                 } else {
-                    const error =user.data.answer.message
-                    console.log(error)
+                    const error = user.data.answer[0].message
+                    console.log(user.data)
                     if(error){
                     
                     Swal.fire({
@@ -42,19 +43,23 @@ const userActions = {
             try {
 
                 const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
-                if (user.data.success && !user.data.error) {
-                    localStorage.setItem('token', user.data.response.token);
-                    dispatch({ type: 'user', payload: user.data.response })
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'You are successfully logged in!',
-                        showConfirmButton: false,
-                        timer: 8500
-                    })
+                
+                if (user.data.success) {
+                 
+                  localStorage.setItem('token', user.data.answer.token);
+                  localStorage.setItem('userName', user.data.answer.userName);
+                  dispatch({ type: 'user', payload: user.data.answer })
+                    // Swal.fire({
+                    //   position: 'top-end',
+                    //   icon: 'success',
+                    //   title: 'agagasdas',
+                    //   text: 'Please sign in to continue.', 
+                    //   timer: 1500,
+                    // })
+                    console.log(user.data.response)
                 } else {
-                    console.log(user.data)
-                    const error = user.data.answer.message
+                  const error = user.data.answer[0].message
+                  console.log(user.data)
                     Swal.fire({
                         position: 'top.end',
                         icon: 'error',
@@ -71,12 +76,24 @@ const userActions = {
     },
 
     logOut: () => {
+      return (dispatch, getState) => {
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'You have successfully unlogged!',
+            text: 'See you soon!',
+            showConfirmButton: false,
+            timer: 3000
+        })
+        dispatch({ type: 'logOut', payload: {} })
+        localStorage.removeItem("token", "userLogged")
+    }
         
   },
   isAuth: (token) => {
     return async (dispatch, getState) => {
       try {
-        const response = await axios.get("#", {
+        const response = await axios.get("http://localhost:4000/api/user/signin/token", {
           headers: {
             Authorization: "Bearer " + token,
           },

@@ -10,6 +10,7 @@ import Avatar from "@mui/material/Avatar";
 import {connect} from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
 import {Link} from 'react-router-dom'
+import userActions from "../../redux/actions/userActions";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
@@ -18,6 +19,24 @@ const Rigth = (props) => {
   const postRef = useRef();
   const postTitleRef = useRef();
   const { postAPost, user } = props;
+
+  // const uploadImage = (e) => {
+  //   const selectedFile = e.target.files[0];
+  //   // uploading asset to sanity
+  //   if (selectedFile.type === 'image/png' || selectedFile.type === 'image/svg' || selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/gif' || selectedFile.type === 'image/tiff') {
+  //     setWrongImageType(false);
+  //     client.assets
+  //       .upload('image', selectedFile, { contentType: selectedFile.type, filename: selectedFile.name })
+  //       .then((document) => {
+  //         setImageAsset(document);
+  //       })
+  //       .catch((error) => {
+  //         console.log('Upload failed:', error.message);
+  //       });
+  //   } else {
+  //     setWrongImageType(true);
+  //   }
+  // };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -36,7 +55,7 @@ const Rigth = (props) => {
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          {user ?
+          {props.user.token ?
             <>
           <input
             placeholder="Search"
@@ -45,6 +64,7 @@ const Rigth = (props) => {
           ></input>
           <FaRegBell className="bell" />
           <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+          <button onClick={() => props.logOut()}>Log Out</button>
             </>
             :
             <h1>Sign In</h1>
@@ -161,12 +181,13 @@ const Rigth = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducers.user
+    user: state.userReducers.userData
   };
 };
 
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
+  logOut: userActions.logOut,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

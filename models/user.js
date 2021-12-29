@@ -7,10 +7,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, required: true },
     password: { type: String, required: true },
     imgUrl: { type: String, required: true },
-    job: { type: String, required: true },
     country: { type: String, required: true },
-    googleFlag: {type: Boolean, default: false},
-    followUsers:[{ type:mongoose.Types.ObjectId, ref:'user'}]
+    googleFlag: {type: Boolean, default: false}
 })
 
 const User = mongoose.model('user', userSchema)

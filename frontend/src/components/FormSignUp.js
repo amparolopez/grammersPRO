@@ -27,7 +27,7 @@ const FormSignUp = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         const user = await props.userSignUp(newUser)
-        console.log(user.errors)
+       
         if (user.errors) {
             
             console.log(user.answer)
@@ -137,8 +137,8 @@ const FormSignUp = (props) => {
             .userSignUp(googleUser)
             .then((response) => response.data.success)
             .catch((error) => console.log(error));
-    };
-
+        };
+        
     return (
         <>
             <div className="containerForm">

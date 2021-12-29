@@ -24,11 +24,9 @@ const validator = (req, res, next) => {
             'string.empty': 'An email is required',
             'string.email': 'A valid format of email is required',
         }),
-
-        //  job: joi.string(),
         imgUrl: joi.string(),
         country: joi.string().required(),
-        // googleFlag: joi.boolean()
+        googleFlag: joi.boolean()
     })
     const validation = schema.validate(req.body, { abortEarly: false })
     if (validation.error) {

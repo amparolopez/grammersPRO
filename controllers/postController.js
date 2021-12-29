@@ -18,7 +18,7 @@ const PostController = {
       postImage,
       user,
       comments,
-      commentDate,
+      commentDate
     });
     try {
       await post.save();
@@ -44,7 +44,7 @@ const PostController = {
           });
     }
     res.json({
-      res: itinerary,
+      res: post,
       success: true,
     });
   },

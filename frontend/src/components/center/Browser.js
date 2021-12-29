@@ -8,21 +8,23 @@ const Browser = (props) => {
   const { getUsers } = props;
 
   useEffect(() => {
-    getUsers().then((res) => setUsers(res));
+    getUsers().then((res) => setUsers(res.response.slice(10,res.response.length)));
   }, []);
+
+  console.log(users)
 
   return (
     <div className="CenterContent">
       <div className="ContenedorCenter">
         <div className="ContenedorSecCenter ScrollBarFollorProfile">
           {users && users.length > 0 ? (
-            users.map((user) => {
+            users.map((user, key) => {
               return(
-              <div className="ContenedorFollowProfile">
-                <Avatar alt={user.username && user.username} src={user.imageUrl && user.imageUrl} />
+              <div className="ContenedorFollowProfile" key={key} >
+                <Avatar alt={user.username && user.username} src={user.imgUrl} />
                 <div className="ContainerProfileFollowData">
                   <h2>{user.name && user.name}</h2>
-                  <p>{user.username && user.username}</p>
+                  <p>{user.userName + ' ' + user.lastName}</p>
                 </div>
                 <p className="buttonFollowProfile">Follow</p>
               </div>)

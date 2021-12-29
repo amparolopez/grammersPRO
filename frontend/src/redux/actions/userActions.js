@@ -7,7 +7,6 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const user = await axios.post('http://localhost:4000/api/user/signup', { ...User });
-                console.log(user)
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem("token", user.data.response.token);
                     dispatch({ type: 'user', payload: user.data.response.newUser })
@@ -92,7 +91,6 @@ const userActions = {
             Authorization: "Bearer " + token,
           },
         });
-        console.log(response)
         dispatch({
           type: "user",
           payload: {
@@ -110,7 +108,7 @@ const userActions = {
   },
   getUsers: () => {
     return async (dispatch, getstate) => {
-      const res = await axios.get("http://localhost:4000/api/post");
+      const res = await axios.get("http://localhost:4000/api/user/signup");
       if (res.data.success) {
         return res.data;
       } else {
@@ -118,6 +116,11 @@ const userActions = {
       }
     };
   },
+  followers: () => {
+    return async(dispatch, getstate) => {
+      const res = await axios.put('')
+    }
+  }
 };
 
 export default userActions;

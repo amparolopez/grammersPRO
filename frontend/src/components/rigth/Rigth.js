@@ -1,5 +1,5 @@
 import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -10,17 +10,22 @@ import Avatar from "@mui/material/Avatar";
 import { connect } from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import axios from "axios";
 import userActions from "../../redux/actions/userActions";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
   const [postState, setPostState] = useState();
+  const [lastPost, setLastPost] = useState([]);
+  const [userSuggest, setUserSuggest] = useState()
+  const [preview, setPreview] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
   const [file, setFile] = useState(null);
-  const { postAPost, userData, user } = props;
+  const { postAPost, userData, getAllPosts, getUsers } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -30,6 +35,7 @@ const Rigth = (props) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", file);
+    setPreview(URL.createObjectURL(e.target.files[0]));
     const newPost = {
       title: postTitleRef.current.value,
       body: postRef.current.value,
@@ -58,19 +64,32 @@ const Rigth = (props) => {
     setOpen(false);
   };
 
+  const removeSelectedImage = () => {
+    setFile();
+  };
+
+  useEffect(() => {
+    getAllPosts().then((res) => {
+      const lastPostes = res.response[res.response.length - 1];
+      setLastPost(lastPostes);
+    });
+    getUsers().then((res) => setUserSuggest(res.response.slice(0,3)));
+  }, []);
+
+  console.log(userSuggest)
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
           {userData.token ? (
             <>
-          <input
-            placeholder="Search"
-            className="inputSearch"
-            type="text"
-          ></input>
-          <FaRegBell className="bell" />
-          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+              <input
+                placeholder="Search"
+                className="inputSearch"
+                type="text"
+              ></input>
+              <FaRegBell className="bell" />
+              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
             </>
           ) : (
             <h1>Sign In</h1>
@@ -90,6 +109,7 @@ const Rigth = (props) => {
                 inputRef={postTitleRef}
                 id="standard-multiline-static"
                 variant="standard"
+                required
               />
               <TextField
                 label="What are you gonna tell us?"
@@ -99,16 +119,35 @@ const Rigth = (props) => {
                 rows={4}
                 variant="standard"
                 className="postInput"
+                required
               />
-              <Button variant="contained" component="label">
+              <Button variant="contained" component="label" color="secondary">
+                <AddIcon />
                 Upload File
                 <input
                   type="file"
                   hidden
                   accept=".png,.jpeg,.jpg"
                   onChange={(e) => setFile(e.target.files[0])}
+                  required
                 />
               </Button>
+              {file && (
+                <>
+                  <img
+                    alt="uploaded"
+                    src={URL.createObjectURL(file)}
+                    className="ContainerImgPublic"
+                  />
+                  <IconButton
+                    onClick={removeSelectedImage}
+                    style={{ color: "red" }}
+                  >
+                    <DeleteIcon />
+                    delete
+                  </IconButton>
+                </>
+              )}
               <DialogActions>
                 <button onClick={handleClose} className="btn-Follow">
                   Cancel
@@ -125,74 +164,66 @@ const Rigth = (props) => {
           <Link to="/Browser">See All</Link>
         </div>
         <div className="userContainer">
-          <div className="userFollow">
+          {userSuggest && userSuggest.map((user, key) => {
+            return(
+              <div className="userFollow">
             <div className="imgText">
-              <FaEarlybirds className="userImg" />
+            <Avatar alt={user.username && user.username} src={user.imgUrl} className="userImg" />
               <div className="userText">
-                <h4>Pajarito Ito</h4>
-                <h6 className="text">@Pajarito.Ito</h6>
+                <h4>{user.userName + ' ' + user.lastName}</h4>
+                <h6 className="text">{user.email }</h6>
               </div>
             </div>
-            <button className="btn-Follow">Follow</button>
+            <button className="btn-Follow"  >Follow</button>
           </div>
-          <div className="userFollow">
-            <div className="imgText">
-              <FaEarlybirds className="userImg" />
-              <div className="userText">
-                <h4>Pajarito Ito</h4>
-                <h6 className="text">@Pajarito.Ito</h6>
-              </div>
-            </div>
-            <button className="btn-Follow">Follow</button>
-          </div>
-          <div className="userFollow">
-            <div className="imgText">
-              <FaEarlybirds className="userImg" />
-              <div className="userText">
-                <h4>Pajarito Ito</h4>
-                <h6 className="text">@Pajarito.Ito</h6>
-              </div>
-            </div>
-            <button className="btn-Follow">Follow</button>
-          </div>
-        </div>
+            )
+          })
+          }
+         </div> 
         <div className="horizontal-line"></div>
         <div className="latestPost">
           <h4>Latest Post Activity</h4>
-
-          <div>
-            <div className="imgActivity">
-              <div className="cardPost">
-                <div className="cardActivity">
-                  <div className="ActivityImg"></div>
-                  <div className="cardText">
-                    <div className="cardIcon">
-                      <h4 className="minimalStair">Minimalist Stairs</h4>
-                      <div className="iconActivity">
-                        <AiFillHeart />
-                        <h6 className="text">12</h6>
-                        <AiFillMessage />
-                        <h6 className="text">9</h6>
-                        <AiFillTag />
-                        <h6 className="text">3</h6>
+          {lastPost && (
+            <div>
+              <div className="imgActivity">
+                <div className="cardPost">
+                  <div className="cardActivity">
+                    {lastPost.postImage && (
+                      <img
+                        alt={lastPost.postTitle}
+                        src={require(`../../images/${lastPost.postImage}`)}
+                        className="ActivityImg"
+                      ></img>
+                    )}
+                    <div className="cardText">
+                      <div className="cardIcon">
+                        <h4 className="minimalStair">{lastPost.postTitle}</h4>
+                        <div className="iconActivity">
+                          <AiFillHeart />
+                          <h6 className="text">{lastPost.like}</h6>
+                          <AiFillMessage />
+                          <h6 className="text">{lastPost.comment}</h6>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <h4 className="textAllPost">See All Post</h4>
+                  <div>
+                    <Link to="/Center" className="textAllPost">
+                      See All Post
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="InfoRigthApp">
         <h4>About - Help - Terms - Popular - Language</h4>
       </div>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
@@ -203,6 +234,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
   logOut: userActions.logOut,
+  getAllPosts: postsActions.getAllPosts,
+  getUsers: userActions.getUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

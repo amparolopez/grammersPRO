@@ -6,7 +6,7 @@ const passport = require("../config/passport");
 const multer = require("multer");
 const path = require('path')
 
-const { addUser, signIn, startWithToken, getUser, obtenerAdmin } = userControllers;
+const { addUser, signIn, startWithToken, getUser, obtenerAdmin} = userControllers;
 const {
   getAllPosts,
   postAPost,
@@ -30,7 +30,7 @@ Router.route("/comments/:id")
   .post(passport.authenticate("jwt", { session: false }), postACommentary)
   .put(passport.authenticate("jwt", { session: false }), editCommentary)
   .delete(passport.authenticate("jwt", { session: false }), deleteCommentary)
-Router.route("/user/signup").post(validator, addUser);
+Router.route("/user/signup").post(validator, addUser).get(getUser)
 
 Router.route("/user/signin").post(signIn);
 

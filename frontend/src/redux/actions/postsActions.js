@@ -5,7 +5,6 @@ const postsActions = {
     return async (dispatch, getState) => {
       const res = await axios.get("http://localhost:4000/api/post");
       dispatch({type: "getPost", payload: res.data.response})
-      console.log(res.data)
       if (res.data.success) {
         return res.data;
       } else {
@@ -16,12 +15,14 @@ const postsActions = {
   postAPost: (newPost, token) => {
     return async (dispatch, getState) => {
       try {
+        console.log(newPost.user)
         const response = await axios.post(
           "http://localhost:4000/api/post",
           {
             postTitle: newPost.title,
             postText: newPost.body,
             postImage: newPost.img,
+            user: newPost.user
           },
           {
             headers: {

@@ -19,7 +19,7 @@ const FormSignUp = (props) => {
         email: "",
         password: "",
         imgUrl: "",
-        // job: "",
+        //job: "",
         country: ""
     })
 
@@ -114,6 +114,7 @@ const FormSignUp = (props) => {
                             </select>
                             <select name="job" onChange={handlerSelect}>
                                 <option>Choose your job</option>
+                                <option>Programmer</option>
                             </select>
                             <input
                                 type="email"

@@ -30,7 +30,7 @@ Router.route("/comments/:id")
   .post(passport.authenticate("jwt", { session: false }), postACommentary)
   .put(passport.authenticate("jwt", { session: false }), editCommentary)
   .delete(passport.authenticate("jwt", { session: false }), deleteCommentary)
-Router.route("/user/signup").post(validator, addUser);
+Router.route("/user/signup").post(validator, addUser).get(getUser)
 
 Router.route("/user/signin").post(signIn);
 
@@ -47,9 +47,11 @@ Router.route("/user/signin/token").get(
   Router.route("/users")
   .get(getUser)
   .put(obtenerAdmin)
+
+  Router.route("/users/:id")
   .delete(adminBan)
 
-  Router.route("/admin/post")
+  Router.route("/admin/post/:id")
   .delete(adminBanPost)
 // Router.route("/admin/user").delete(adminBan)
 

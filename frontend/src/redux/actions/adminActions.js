@@ -10,7 +10,8 @@ const adminActions = {
                 users.data.response.map((user)=>{
                     const userF = {
                         email:user.email,
-                        url: user.imgUrl
+                        url: user.imgUrl,
+                        id: user._id
                     }
                     modificado.push(userF)
                 })
@@ -35,6 +36,27 @@ const adminActions = {
             try{
                 const post = await axios.get("http://localhost:4000/api/post")
                 dispatch({type:"post", payload:post.data.response})
+            }catch(error){
+                console.log(error)
+            }
+        }
+    },
+    banedPost : (post) => {
+        return async (dispatch, getState) => {
+            console.log(post)
+            try{
+                const banedpost = await axios.delete(`http://localhost:4000/api/admin/post/${post}`)
+                console.log(banedpost)
+            }catch(error){
+                console.log(error)
+            }
+        }
+    },
+    adminBan : (id) => {
+        return async (dispatch, getState) => {
+            try{
+                const banuser = await axios.delete(`http://localhost:4000/api/users/${id}`)
+                console.log(banuser)
             }catch(error){
                 console.log(error)
             }

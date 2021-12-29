@@ -7,7 +7,6 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const user = await axios.post('http://localhost:4000/api/user/signup', { ...User });
-                console.log(user)
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem("token", user.data.response.token);
                     dispatch({ type: 'user', payload: user.data.response.newUser })
@@ -39,16 +38,13 @@ const userActions = {
 
     userSignIn: (userLogIn) => {
         return async (dispatch, getState) => {
-
             try {
-
                 const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
                 console.log(user)
                 if (user.data.success) {
                  
                   localStorage.setItem('token', user.data.answer.token);
                   localStorage.setItem('userName', user.data.answer.userName);
-                  console.log(user.data.answer)
                   dispatch({ type: 'user', payload: user.data.answer })
                 } else {
                   const error = user.data.answer[0].message
@@ -92,13 +88,12 @@ const userActions = {
             Authorization: "Bearer " + token,
           },
         });
-        console.log(response)
         dispatch({
           type: "user",
           payload: {
             token,
             firstName: response.data.answer.firstName,
-            img: response.data.answer.imgUrl,
+            imgUrl: response.data.answer.imgUrl,
             _id: response.data.answer.id,
             userAdmin: response.data.answer.userAdmin,
           },
@@ -110,7 +105,7 @@ const userActions = {
   },
   getUsers: () => {
     return async (dispatch, getstate) => {
-      const res = await axios.get("http://localhost:4000/api/post");
+      const res = await axios.get("http://localhost:4000/api/user/signup");
       if (res.data.success) {
         return res.data;
       } else {
@@ -118,6 +113,16 @@ const userActions = {
       }
     };
   },
+  followers: (user) => {
+    return async (dispatch,getState) => {
+      try{
+          const admin = await axios.put("http://localhost:4000/api/users",{...user})
+          console.log(admin)
+      }catch(error){
+          console.log(error)
+      }
+  }
+  }
 };
 
 export default userActions;

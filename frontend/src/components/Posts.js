@@ -1,26 +1,28 @@
-import { connect } from 'react-redux';
-import postsActions from '../redux/actions/postsActions';
-import Comments from '../components/Comments';
+// import { connect } from 'react-redux';
+// import postsActions from '../redux/actions/postsActions';
+// import Comments from '../components/Comments';
 
-const Posts = (props) => {
 
-    return (
-        <>
-        <Comments comments={props.post.comments} postId={props.post._id}/>
-        </>
-    )
-}
+// const Posts = (props) => {
 
-const mapStateToProps = (state) => {
-    return {
-        user: state.userReducers.user,
-        post: state.postsReducers.post
-    }
-}
+//     return (
+//         <>
+       
+//         </>
+//     )
+// }
 
-const mapDispatchToProps= {
-    getAllPosts: postsActions.getAllPosts,
-    likeDislikePost: postsActions.likeDislikePost
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         user: state.userReducers.user,
+//         post: state.postsReducers.post
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+// const mapDispatchToProps= {
+//     getAllPosts: postsActions.getAllPosts,
+//     likeDislikePost: postsActions.likeDislikePost
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+<Comments comments={props.post.comments} postId={props.post._id} />

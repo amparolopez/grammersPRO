@@ -4,7 +4,6 @@ import postsActions from "../../redux/actions/postsActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 // import Comments from '../Comments';
-
 const Center = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
@@ -70,22 +69,13 @@ const Center = (props) => {
                 props.post.map((post, key) => {
                   console.log(post.postImage)
                   return (
-                    <>
-                      <div className="publicContainerProfil" key={key}>
-                        <div className="ContainerImgPublic">
-                          <img alt={post.postTitle} src={`../../images/1640778195735federico-di-dio-photography-nqLR2ZRKGbk-unsplash`} />
+                    <div className="publicContainerProfil" key={key}>
+                      {post.postImage && <img className="ContainerImgPublic" alt="hola" src={require(`../../images/${post.postImage}`)}/>}
+                      <div className="publicProfilContainer">
+                        <div className="ProfilePublicTotal">
+                          <div></div>
+                          <p>{post.postTitle && post.postTitle}</p>
                         </div>
-                        <div className="publicProfilContainer">
-                          <div className="ProfilePublicTotal">
-                            <div></div>
-                            <p>{post.postTitle && post.postTitle}</p>
-                          </div>
-                          <div className="ProfilePublicTotal">
-                            <p>{post.postText && post.postText}</p>
-                          </div>
-                          <div className="ProfilePublicTotal">
-                            <p>{post.date && post.date}</p>
-                          </div>
                           <div className="IconsPublicVoted">
                             {/* {like ? (
                               <AiFillHeart
@@ -102,10 +92,9 @@ const Center = (props) => {
                             <AiFillMessage />
                             <p>300</p>
                           </div>
-                        </div>
                       </div>
                       
-                    </>
+                    </div>
                   );
                 })
               ) : (

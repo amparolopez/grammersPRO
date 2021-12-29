@@ -20,7 +20,6 @@ const userControllers = {
                     password: hashPass,
                     userName,
                     lastName,
-                    
                     country,
                     imgUrl,
                     googleFlag

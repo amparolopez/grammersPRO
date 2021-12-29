@@ -9,7 +9,7 @@ import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Home2 from './pages/Home2';
+import Home2 from './pages/Home2'
 
 
 const HomeRouter = withRouter(Home)
@@ -21,20 +21,18 @@ function App(props) {
       props.isAuth(localStorage.getItem("token"))
     }
   }, [])
-  console.log(props.user)
+  console.log(props.user.token)
   return (
     <div className="container-all">
       <BrowserRouter>
         <Routes>
+          <Route path="/Profile" element={<HomeRouter />}/>
+          <Route path="/Browser" element={<HomeRouter />}/>
+          <Route path="/Settings" element={<HomeRouter />}/>
           <Route path="/" key="home" element={<HomeRouter/>} />
-          <Route path="/Profile" element={<HomeRouter/>} />
-          <Route path="/Browser" element={<HomeRouter/>} />
-          {/* <Route path="/Signup" element={<SignUp />} />
-          <Route path="/Signin" element={<SignIn />} /> */}
-          {props.user.token ? 
-            <Route path="*" key="home" element={<Home2/>} />
-
-           : 
+          {props.user.token !== "" ?
+            <Route path="*" key="home" element={<Home2 />}/>
+          : 
             <>
               <Route path="/Signup" element={<SignUp />} />
               <Route path="/Signin" element={<SignIn />} />

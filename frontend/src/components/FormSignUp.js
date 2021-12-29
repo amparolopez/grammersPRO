@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import Swal from 'sweetalert2';
 
 const FormSignUp = (props) => {
 
@@ -45,57 +44,6 @@ const FormSignUp = (props) => {
             );
         }
     }
-
-    // if(user.success && !user.error){
-    //     Swal.fire({
-    //         position: 'top-end',
-    //         icon: 'success',
-    //         title: 'Correctly Registered!',
-    //         showConfirmButton: false,
-    //         timer: 8500
-    //       })
-    //       setNewUser({
-    //         userName: "",
-    //         lastName: "",
-    //         email: "",
-    //         password: "",
-    //         imgUrl: "",
-    //         // job: "",
-    //         country: ""
-    //       })
-    //    }else{
-
-    //     toast.fire({
-    //         icon: 'error',
-    //         toast: true,
-    //         html:  user.response.map(
-    //         e => `<p>${e.message}</p>`
-    //         )
-    //       })         
-     
-    //    }
-
-    // const handleSubmit = async (
-    //     user
-    // ) => {
-    //     const errors = await props.userSignUp(
-    //         user
-    //     );
-    //     if (errors) {
-    //         errors.errors.map((e) =>
-    //             toast.warning(e.message, {
-    //                 position: "top-left",
-    //                 autoClose: 4000,
-    //                 hideProgressBar: false,
-    //                 closeOnClick: true,
-    //                 pauseOnHover: true,
-    //                 draggable: true,
-    //                 progress: undefined,
-    //                 theme: "light",
-    //             })
-    //         );
-    //     }
-    // };
 
     const inputHandler = (ref, input) => {
         setNewUser({

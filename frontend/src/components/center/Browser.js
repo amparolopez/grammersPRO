@@ -15,7 +15,7 @@ const Browser = (props) => {
     <div className="CenterContent">
       <div className="ContenedorCenter">
         <div className="ContenedorSecCenter ScrollBarFollorProfile">
-          {users ? (
+          {users && users.length > 0 ? (
             users.map((user) => {
               return(
               <div className="ContenedorFollowProfile">

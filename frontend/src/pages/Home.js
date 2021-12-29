@@ -3,6 +3,7 @@ import Profile from "../components/center/Profile"
 import Left from "../components/left/Left"
 import Rigth from "../components/rigth/Rigth"
 import Browser from "../components/center/Browser"
+import Settings from "../components/center/Settings"
 
 const Home = (props) => {
     return (
@@ -11,7 +12,8 @@ const Home = (props) => {
                 {props.location.pathname === "/" ? <Center /> : null}
                 {props.location.pathname === "/Profile" ? <Profile /> : null}
                 {props.location.pathname === "/Browser" ? <Browser /> : null}
-            <Rigth />
+                {props.location.pathname === "/Settings" ? <Settings /> : null}
+            {props.location.pathname === "/Settings" ? null : <Rigth />}
         </div>
     )
 }

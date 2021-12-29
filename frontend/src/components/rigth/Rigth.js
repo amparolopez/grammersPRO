@@ -39,7 +39,7 @@ const Rigth = (props) => {
     const newPost = {
       title: postTitleRef.current.value,
       body: postRef.current.value,
-      user: userData.id,
+      user: userData._id,
     };
     if (file) {
       const data = new FormData();
@@ -90,17 +90,20 @@ const Rigth = (props) => {
               ></input>
               <FaRegBell className="bell" />
               <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-            </>
-          ) : (
-            <h1>Sign In</h1>
-          )}
+            </>)
+            :
+            <div>
+            <Link to ={'/Signup'} >Sign Up</Link>
+            <Link to ={'/Signin'} >Sign In</Link>
+            </div>
+        }
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
           <DialogContent style={{ display: "flex" }}>
             <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              alt={userData.username && userData.username}
+              src={userData.imgUrl}
               style={{ marginRight: "2rem", marginTop: "1rem" }}
             />
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -166,7 +169,7 @@ const Rigth = (props) => {
         <div className="userContainer">
           {userSuggest && userSuggest.map((user, key) => {
             return(
-              <div className="userFollow">
+              <div className="userFollow" key={key}>
             <div className="imgText">
             <Avatar alt={user.username && user.username} src={user.imgUrl} className="userImg" />
               <div className="userText">

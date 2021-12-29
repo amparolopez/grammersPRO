@@ -3,7 +3,10 @@ import { FaUser } from "react-icons/fa";
 import { BsFillBookmarkDashFill } from "react-icons/bs";
 import { AiTwotoneSetting } from "react-icons/ai";
 import { Link } from "react-router-dom";
-const Left = ({location}) => {
+import {connect} from 'react-redux'
+
+const Left = ({location, userData}) => {
+    console.log(userData)
     return (
         <div className="LeftNavbar">
             <div className="LeftContainer">
@@ -19,7 +22,7 @@ const Left = ({location}) => {
                         </div>
                         <div>
                             <FaUser className={location === "/Profile" ? "ActiveSvg" : null}/>
-                            <Link to="/Profile">Profile</Link>
+                            <Link to={`/Profile/${userData._id}`} >Profile</Link>
                         </div>
                         <div>
                             <BsFillBookmarkDashFill />
@@ -49,4 +52,10 @@ const Left = ({location}) => {
     )
 }
 
-export default Left
+const mapStateToProps = (state) => {
+    return {
+      userData: state.userReducers.userData,
+    };
+  };
+
+export default connect(mapStateToProps, null)(Left)

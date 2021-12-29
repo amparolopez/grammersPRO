@@ -6,7 +6,7 @@ const passport = require("../config/passport");
 const multer = require("multer");
 const path = require('path')
 
-const { addUser, signIn, startWithToken, getUser, obtenerAdmin} = userControllers;
+const { addUser, signIn, startWithToken, getUser, obtenerAdmin, adminBan, adminBanPost } = userControllers;
 const {
   getAllPosts,
   postAPost,
@@ -47,6 +47,10 @@ Router.route("/user/signin/token").get(
   Router.route("/users")
   .get(getUser)
   .put(obtenerAdmin)
+  .delete(adminBan)
+
+  Router.route("/admin/post")
+  .delete(adminBanPost)
 // Router.route("/admin/user").delete(adminBan)
 
 module.exports = Router;

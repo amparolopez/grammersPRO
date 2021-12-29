@@ -1,6 +1,6 @@
 
 const initialState = {
-    userData: { email:"", img:"", firstName:"", token: "", _id:"", userAdmin:"" },
+    userData: { email:"", imgUrl:"", firstName:"", token: "", _id:"", userAdmin:"" },
     usersArray:[],
     user:false,
     errors: '', 
@@ -9,8 +9,8 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
 
     switch (action.type) {
-
         case 'user':
+            console.log(action.payload)
             localStorage.setItem("token", action.payload.token)                  
             localStorage.setItem("firstName", action.payload.firstName)         
             localStorage.setItem("img", action.payload.img)
@@ -24,7 +24,7 @@ const userReducer = (state = initialState, action) => {
         case 'logOut':
             return {
                 ...state,
-                userData: '',
+                userData: action.payload,
                 user:false
             };
         case 'getAllUser':

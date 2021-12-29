@@ -10,6 +10,7 @@ import SignIn from './pages/SignIn';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home2 from './pages/Home2'
+import Profile from './components/center/Profile';
 
 
 const HomeRouter = withRouter(Home)
@@ -21,11 +22,12 @@ function App(props) {
       props.isAuth(localStorage.getItem("token"))
     }
   }, [])
+
   return (
     <div className="container-all">
       <BrowserRouter>
         <Routes>
-          <Route path="/Profile" element={<HomeRouter />}/>
+          <Route path="/Profile/:id" element={<HomeRouter />}/>
           <Route path="/Browser" element={<HomeRouter />}/>
           <Route path="/Settings" element={<HomeRouter />}/>
           <Route path="/" key="home" element={<HomeRouter/>} />

@@ -61,9 +61,14 @@ const userControllers = {
             res.json({ success: false, answer: null, error: error })
         }
     },
-    startWithToken: async (req, res) => {
-        res.json({ success: true, answer: {email:req.user.email, imgUrl:req.user.imgUrl, id: req.user._id}, error: null })
-    },
+    getToken: async (req, res) => {
+        try {
+          const userAuth = req.user;
+          res.json({ succes: true, response: userAuth, error: null });
+        } catch (error) {
+          res.json({ success: false, response: null, error: error });
+        }
+      },
     getUser: async(req, res) => {
         try {
             const user = await User.find();

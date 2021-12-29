@@ -20,7 +20,7 @@ const Rigth = (props) => {
   const postRef = useRef();
   const postTitleRef = useRef();
   const [file, setFile] = useState(null);
-  const { postAPost, user } = props;
+  const { postAPost, userData, user } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,6 +33,7 @@ const Rigth = (props) => {
     const newPost = {
       title: postTitleRef.current.value,
       body: postRef.current.value,
+      user: userData.id,
     };
     if (file) {
       const data = new FormData();
@@ -44,12 +45,12 @@ const Rigth = (props) => {
         await axios.post("http://localhost:4000/api/upload", data);
       } catch (err) {}
     }
-    postAPost(newPost).then(res => setPostState(res.success))
-    if(postState){
-      console.log('su post se a subido exitosamente')
-      handleClose()
-    }else{
-      console.log('error al subir post')
+    postAPost(newPost).then((res) => setPostState(res.success));
+    if (postState) {
+      console.log("su post se a subido exitosamente");
+      handleClose();
+    } else {
+      console.log("error al subir post");
     }
   };
 
@@ -61,20 +62,20 @@ const Rigth = (props) => {
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          {props.user.token ?
+          {user.token ? (
             <>
-          <input
-            placeholder="Search"
-            className="inputSearch"
-            type="text"
-          ></input>
-          <FaRegBell className="bell" />
-          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-          <button onClick={() => props.logOut()}>Log Out</button>
+              <input
+                placeholder="Search"
+                className="inputSearch"
+                type="text"
+              ></input>
+              <FaRegBell className="bell" />
+              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+              <button onClick={() => props.logOut()}>Log Out</button>
             </>
-            :
+          ) : (
             <h1>Sign In</h1>
-        }
+          )}
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
@@ -196,7 +197,7 @@ const Rigth = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducers.userData
+    userData: state.userReducers.userData,
   };
 };
 

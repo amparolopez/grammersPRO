@@ -20,7 +20,7 @@ const FormSignUp = (props) => {
         email: "",
         password: "",
         imgUrl: "",
-        // job: "",
+        //job: "",
         country: ""
     })
 
@@ -113,43 +113,12 @@ const FormSignUp = (props) => {
 
     }, [])
 
-// import Swal from 'sweetalert2';
 
-const FormSignUp = (props) => {
-  const UserName = useRef();
-  const LastName = useRef();
-  const Email = useRef();
-  const Password = useRef();
-  const ImgUrl = useRef();
-
-  const [newUser, setNewUser] = useState({
-    userName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    imgUrl: "",
-    // job: "",
-    country: "",
-  });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const user = await props.userSignUp(newUser);
-    console.log(user.errors);
-    if (user.errors) {
-      console.log(user.answer);
-      user.errors.map((e) =>
-        toast.warning(e.message, {
-          position: "top-left",
-          autoClose: 4000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
+    const handlerSelect = (e) => {
+        setNewUser({
+            ...newUser,
+            "country": e.target.value
         })
-      );
     }
 
 
@@ -168,7 +137,7 @@ const FormSignUp = (props) => {
             .userSignUp(googleUser)
             .then((response) => response.data.success)
             .catch((error) => console.log(error));
-        }
+        };
         
     return (
         <>
@@ -197,6 +166,7 @@ const FormSignUp = (props) => {
                             </select>
                             <select name="job" onChange={handlerSelect}>
                                 <option>Choose your job</option>
+                                <option>Programmer</option>
                             </select>
                             <input
                                 type="email"
@@ -231,64 +201,21 @@ const FormSignUp = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="inputs">
-              <select name="country" onChange={handlerSelect}>
-                <option>Choose your country</option>
-                {countries.map((Country, index) => {
-                  return <option key={index}>{Country.name}</option>;
-                })}
-              </select>
-              <select name="job" onChange={handlerSelect}>
-                <option>Choose your job</option>
-              </select>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                autoComplete="nope"
-                onChange={() => inputHandler(Email, "email")}
-                ref={Email}
-              />
+        </>
+    )
 
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                autoComplete="nope"
-                onChange={() => inputHandler(Password, "password")}
-                ref={Password}
-              />
-            </div>
-            <div className="sign-Btn">
-              <button className="btn-sign" type="submit">
-                Sign Up
-              </button>
-              {/* <button className="btn-sign">Sign With Google</button> */}
-
-              <GoogleLogin
-                clientId="574668222379-d66arovv4jaa96l8s98rk9ad85snbgsc.apps.googleusercontent.com"
-                buttonText="Google"
-                onSuccess={responseGoogle}
-                onFailure={responseGoogle}
-                cookiePolicy={"single_host_origin"}
-              />
-            </div>
-          </form>
-          <div className="container-Sign"></div>
-        </div>
-      </div>
-    </>
-  );
-};
+}
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.userReducers.user,
-  };
+    return {
+        user: state.userReducers.user,
+    };
 };
 
 const mapDispatchToProps = {
-  userSignUp: userActions.userSignUp,
+
+    userSignUp: userActions.userSignUp,
+
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormSignUp);

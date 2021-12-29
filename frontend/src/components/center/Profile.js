@@ -1,4 +1,22 @@
-const Profile = () => {
+import {connect } from 'react-redux'
+import { useState, useEffect } from 'react';
+import postsActions from '../../redux/actions/postsActions';
+
+const Profile = (props) => {
+    const [posts, setPosts] = useState([]);
+  const [postsAux, setPostsAux] = useState([]);
+    const {userData , getAllPosts} = props
+    const id = props.userData.id
+
+    useEffect(() => {
+        getAllPosts().then((res) => {
+          setPosts(res.response);
+          setPostsAux(res.response);
+        });
+      }, []);
+
+    const postProfile = posts.filter(posts => posts.user === id)
+    
     return (
         <div className="CenterContent">
             <div className="ContenedorCenter">
@@ -7,17 +25,17 @@ const Profile = () => {
                         <div className="ProfileFondoImgAbsolute"></div>
                         <div className="OcupadorDeEspacio"></div>
                         <div className="ContenedorUserDates">
-                            <div className="ContainerUserImgNice"></div>
+                            <div className="ContainerUserImgNice" style={{backgroundImage:`url("${userData.imgUrl}")`, backgroundPosition:"cover"}}></div>
                             <div className="ContainerDataUserNice">
-                                <h1>Dean Smithers</h1>
-                                <p>Programmer FullStack</p>
-                                <p>Jamaica</p>
+                                <h1>{userData.name ? userData.name : userData.userName}</h1>
+                                <p>{userData.job}</p>
+                                <p>{userData.country}</p>
                             </div>
                         </div>
                         <div className="ContainerStaticsUser">
                             <div className="OcupadorDeEspacioVTwo"></div>
                             <div className="EstatisFollowerAndPost">
-                                <div className="ContenedorEstadisticasDeTodo"><h2>57</h2><p>Post</p></div><div className="vertical-lines"></div>
+                                <div className="ContenedorEstadisticasDeTodo"><h2>{postProfile.length}</h2><p>Post</p></div><div className="vertical-lines"></div>
                                 <div className="ContenedorEstadisticasDeTodo"><h2>256</h2><p>Follower</p></div><div className="vertical-lines"></div>
                                 <div className="ContenedorEstadisticasDeTodo"><h2>543</h2><p>Following</p></div>
                             </div>
@@ -39,4 +57,14 @@ const Profile = () => {
     )
 }
 
-export default Profile
+const mapStateToProps = (state) => {
+    return{
+        userData: state.userReducers.userData
+    }
+}
+
+const mapDispatchToProps = {
+    getAllPosts: postsActions.getAllPosts,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

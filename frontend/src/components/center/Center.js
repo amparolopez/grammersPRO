@@ -50,7 +50,7 @@ const Center = (props) => {
   const handleFilterFollowing = () => {
     const postFilter = postsAux.filter((post) => post.user === user);
   };
-  console.log(posts)
+
   return (
     <div className="CenterContent">
       <div className="ContenedorCenter">
@@ -59,7 +59,7 @@ const Center = (props) => {
             <div className="ContenedorFilerCent">
               <p>Feeds</p>
               <div>
-                <p onClick={() => setPosts(postsAux)} className="filtActiveCen">All</p>
+                <p className="filtActiveCen">All</p>
                 <p onClick={handleFilterFollowing}>Following</p>
                 <p onClick={handleFilterNewest}>Newest</p>
                 <p onClick={handleFilterPopular}>Popular</p>
@@ -68,15 +68,12 @@ const Center = (props) => {
             <div className="ContainerTotalPublics">
               {props.post ? (
                 props.post.map((post, key) => {
+                  console.log(post.postImage)
                   return (
-                    <div className="publicContainerProfil" key={key}>
-                      <div className="ContainerImgPublic" >
-                      <img alt="hola" src="../../images/1640730806474morgan-C9W47WlsvMk-unsplash.jpg" />
-                      </div>
-                      <div className="publicProfilContainer">
-                        <div className="ProfilePublicTotal">
-                          <div></div>
-                          <p>{post.postTitle && post.postTitle}</p>
+                    <>
+                      <div className="publicContainerProfil" key={key}>
+                        <div className="ContainerImgPublic">
+                          <img alt={post.postTitle} src={`../../images/1640778195735federico-di-dio-photography-nqLR2ZRKGbk-unsplash`} />
                         </div>
                         <div className="publicProfilContainer">
                           <div className="ProfilePublicTotal">

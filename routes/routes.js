@@ -6,7 +6,7 @@ const passport = require("../config/passport");
 const multer = require("multer");
 const path = require('path')
 
-const { addUser, signIn, startWithToken } = userControllers;
+const { addUser, signIn, startWithToken, getUser, obtenerAdmin } = userControllers;
 const {
   getAllPosts,
   postAPost,
@@ -34,11 +34,19 @@ Router.route("/user/signup").post(validator, addUser);
 
 Router.route("/user/signin").post(signIn);
 
+
 Router.route("/user/signin/token").get(
   passport.authenticate("jwt", { session: false }),
   startWithToken
-);
-
-Router.route("/like/:id").put(likeDislike);
+  );
+  
+  Router.route("/like/:id").put(likeDislike);
+  
+  // Routes Admin
+  
+  Router.route("/users")
+  .get(getUser)
+  .put(obtenerAdmin)
+// Router.route("/admin/user").delete(adminBan)
 
 module.exports = Router;

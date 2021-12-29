@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     imgUrl: { type: String, required: true },
     country: { type: String, required: true },
-    googleFlag: {type: Boolean, default: false}
+    googleFlag: {type: Boolean, default: false},
+    userAdmin: { type: Boolean, default:false },
 })
 
 const User = mongoose.model('user', userSchema)

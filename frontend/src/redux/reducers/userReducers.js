@@ -24,7 +24,7 @@ const userReducer = (state = initialState, action) => {
         case 'logOut':
             return {
                 ...state,
-                userData: '',
+                userData: action.payload,
                 user:false
             };
         case 'getAllUser':

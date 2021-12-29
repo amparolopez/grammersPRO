@@ -78,8 +78,8 @@ const userActions = {
             showConfirmButton: false,
             timer: 3000
         })
-        dispatch({ type: 'logOut', payload: {} })
         localStorage.removeItem("token", "userLogged")
+        dispatch({ type: 'logOut', payload:{ email:"", img:"", firstName:"", token: "", _id:"", userAdmin:"" }})
     }
         
   },
@@ -104,7 +104,7 @@ const userActions = {
           },
         });
       } catch (error) {
-        // return dispatch({ type: 'logOut'})
+        return dispatch({ type: 'logOut'})
       }
     };
   },

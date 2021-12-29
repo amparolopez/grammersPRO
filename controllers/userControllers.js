@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const Post = require('../models/Post')
 
 const userControllers = {
 
@@ -74,10 +75,28 @@ const userControllers = {
     obtenerAdmin: async (req, res) => {
         const {userAdmin, idUser} = req.body
         try{
-            const user = await User.findOneAndUpdate({_id : idUser}, {userAdmin : userAdmin});
+            const user = await User.findOneAndUpdate({email : idUser}, {userAdmin : userAdmin});
             res.json({ success: true, response: user });
         }catch(error){
-            res.json({succes:null})
+            res.json({success: false, response: error})
+        }
+    },
+    adminBan: async (req, res) => {
+        const {idUser} = req.body
+        try{
+            const user = await User.findOneAndDelete({_id : idUser})
+            res.json({success: true, response: user});
+        }catch(error){
+            res.json({success: false, response: error})
+        }
+    },
+    adminBanPost: async (req, res) => {
+        const {idPost} = req.body
+        try{
+            const post = await Post.findOneAndDelete({_id : idPost})
+            res.json({success: true, response: post});
+        }catch(error){
+            res.json({success: false, response: error})
         }
     }
   }

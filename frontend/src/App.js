@@ -21,6 +21,7 @@ function App(props) {
       props.isAuth(localStorage.getItem("token"))
     }
   }, [])
+  console.log(props.user)
   return (
     <div className="container-all">
       <BrowserRouter>

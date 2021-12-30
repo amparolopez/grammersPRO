@@ -1,8 +1,7 @@
-
 import { useState, useRef, useEffect } from "react";
 import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { Dropdown } from "react-bootstrap"
+import { Dropdown } from "react-bootstrap";
 import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -91,7 +90,7 @@ const Rigth = (props) => {
     const idUser = allUsers.find((user) => user.email === e.target.innerText);
     navigate(`/Profile/${idUser._id}`);
   }
-  console.log(userData)
+  console.log(userData);
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
@@ -118,177 +117,183 @@ const Rigth = (props) => {
               )}
             </>
           ) : (
-            
-              <div className="dropDown">
-          <Dropdown>
-          <Dropdown.Toggle aria-controls="responsive-navbar-nav" >
-          <FaUser className="loginImg"/>
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-              {props.user !== "" ? (
-                <>
-                  <div className="signIn-out">
-                  <Dropdown.Item className="text-center ps-0 pe-0" >
-                  <Link to={"/Signup"}>Sign Up</Link>
-                  </Dropdown.Item>
-                  </div>
-                  <div>
-                  <Dropdown.Item className="text-center ps-0 pe-0">
-                  <Link to={"/Signin"}>Sign In</Link>
-                  </Dropdown.Item>
-                  </div>
-                </>
-              ) : (
-                <Dropdown.Item onClick={() => props.logOut()} className="text-center ps-0 pe-0">
-                  Log Out
-                </Dropdown.Item>
-              )}
-            </Dropdown.Menu>
-          </Dropdown>
-          </div>
+            <div className="dropDown">
+              <Dropdown>
+                <Dropdown.Toggle aria-controls="responsive-navbar-nav">
+                  <FaUser className="loginImg" />
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {props.user !== "" ? (
+                    <>
+                      <div className="signIn-out">
+                        <Dropdown.Item className="text-center ps-0 pe-0">
+                          <Link to={"/Signup"}>Sign Up</Link>
+                        </Dropdown.Item>
+                      </div>
+                      <div>
+                        <Dropdown.Item className="text-center ps-0 pe-0">
+                          <Link to={"/Signin"}>Sign In</Link>
+                        </Dropdown.Item>
+                      </div>
+                    </>
+                  ) : (
+                    <Dropdown.Item
+                      onClick={() => props.logOut()}
+                      className="text-center ps-0 pe-0"
+                    >
+                      Log Out
+                    </Dropdown.Item>
+                  )}
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
           )}
           <div className="Searchs">
-          <>
-          <input placeholder="Search" className="inputSearch" type="text"></input>
-          <FaRegBell className="bell" />
-          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
-          </>
-        </div>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle className="postLabel">Create a post</DialogTitle>
-          <DialogContent style={{ display: "flex" }}>
-            <Avatar
-              alt={userData.username && userData.username}
-              src={userData.imgUrl}
-              style={{ marginRight: "2rem", marginTop: "1rem" }}
-            />
-            <form onSubmit={(e) => handleSubmit(e)}>
-              <TextField
-                label="Title"
-                inputRef={postTitleRef}
-                id="standard-multiline-static"
-                variant="standard"
-                required
+            <>
+              <input
+                placeholder="Search"
+                className="inputSearch"
+                type="text"
+              ></input>
+              <FaRegBell className="bell" />
+              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+            </>
+          </div>
+          <Dialog open={open} onClose={handleClose}>
+            <DialogTitle className="postLabel">Create a post</DialogTitle>
+            <DialogContent style={{ display: "flex" }}>
+              <Avatar
+                alt={userData.username && userData.username}
+                src={userData.imgUrl}
+                style={{ marginRight: "2rem", marginTop: "1rem" }}
               />
-              <TextField
-                label="What are you gonna tell us?"
-                inputRef={postRef}
-                id="standard-multiline-static"
-                multiline
-                rows={4}
-                variant="standard"
-                className="postInput"
-                required
-              />
-              <Button variant="contained" component="label" color="secondary">
-                <AiFillFolderAdd />
-                Upload File
-                <input
-                  type="file"
-                  hidden
-                  accept=".png,.jpeg,.jpg"
-                  onChange={(e) => setFile(e.target.files[0])}
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <TextField
+                  label="Title"
+                  inputRef={postTitleRef}
+                  id="standard-multiline-static"
+                  variant="standard"
+                  required
                 />
-              </Button>
-              {file && (
-                <>
-                  <img
-                    alt="uploaded"
-                    src={URL.createObjectURL(file)}
-                    className="ContainerImgPublic"
+                <TextField
+                  label="What are you gonna tell us?"
+                  inputRef={postRef}
+                  id="standard-multiline-static"
+                  multiline
+                  rows={4}
+                  variant="standard"
+                  className="postInput"
+                  required
+                />
+                <Button variant="contained" component="label" color="secondary">
+                  <AiFillFolderAdd />
+                  Upload File
+                  <input
+                    type="file"
+                    hidden
+                    accept=".png,.jpeg,.jpg"
+                    onChange={(e) => setFile(e.target.files[0])}
                   />
-                  <IconButton
-                    onClick={removeSelectedImage}
-                    style={{ color: "red" }}
-                  >
-                    <AiTwotoneDelete />
-                    delete
-                  </IconButton>
-                </>
-              )}
-              <DialogActions>
-                <button onClick={handleClose} className="btn-Follow">
-                  Cancel
-                </button>
-                <button type="submit" className="btn-Follow">
-                  Public
-                </button>
-              </DialogActions>
-            </form>
-          </DialogContent>
-        </Dialog>
-        <div className="Suggestions">
-          <h3>Suggestions For You</h3>
-          <Link to="/Browser">See All</Link>
-        </div>
-        <div className="userContainer">
-          {userSuggest &&
-            userSuggest.map((user, key) => {
-              return (
-                <div className="userFollow" key={key}>
-                  <div className="imgText">
-                    <Link
-                      to={`/Profile/${user._id}`}
-                      style={{ display: "flex", textDecoration: "none" }}
+                </Button>
+                {file && (
+                  <>
+                    <img
+                      alt="uploaded"
+                      src={URL.createObjectURL(file)}
+                      className="ContainerImgPublic"
+                    />
+                    <IconButton
+                      onClick={removeSelectedImage}
+                      style={{ color: "red" }}
                     >
-                      <Avatar
-                        alt={user.username && user.username}
-                        src={user.imgUrl}
-                        className="userImg"
-                      />
-                      <div className="userText">
-                        <h4>{user.userName + " " + user.lastName}</h4>
-                        <h6 className="text">{user.email}</h6>
-                      </div>
-                    </Link>
+                      <AiTwotoneDelete />
+                      delete
+                    </IconButton>
+                  </>
+                )}
+                <DialogActions>
+                  <button onClick={handleClose} className="btn-Follow">
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn-Follow">
+                    Public
+                  </button>
+                </DialogActions>
+              </form>
+            </DialogContent>
+          </Dialog>
+          <div className="Suggestions">
+            <h3>Suggestions For You</h3>
+            <Link to="/Browser">See All</Link>
+          </div>
+          <div className="userContainer">
+            {userSuggest &&
+              userSuggest.map((user, key) => {
+                return (
+                  <div className="userFollow" key={key}>
+                    <div className="imgText">
+                      <Link
+                        to={`/Profile/${user._id}`}
+                        style={{ display: "flex", textDecoration: "none" }}
+                      >
+                        <Avatar
+                          alt={user.username && user.username}
+                          src={user.imgUrl}
+                          className="userImg"
+                        />
+                        <div className="userText">
+                          <h4>{user.userName + " " + user.lastName}</h4>
+                          <h6 className="text">{user.email}</h6>
+                        </div>
+                      </Link>
+                    </div>
+                    <button className="btn-Follow">Follow</button>
                   </div>
-                  <button className="btn-Follow">Follow</button>
-                </div>
-              );
-            })}
-        </div>
-        <div className="horizontal-line"></div>
-        <div className="latestPost">
-          <h4>Latest Post Activity</h4>
-          {lastPost && (
-            <div>
-              <div className="imgActivity">
-                <div className="cardPost">
-                  <div className="cardActivity">
-                    <div className="cardText">
-                      <div className="cardIcon">
-                        <h4 className="minimalStair">{lastPost.postTitle}</h4>
-                        <div className="iconActivity">
-                          <AiFillHeart />
-                          <h6 className="text">{lastPost.comment}</h6>
-                          <AiFillMessage />
-                          <h6 className="text">{lastPost.comment}</h6>
+                );
+              })}
+          </div>
+          <div className="horizontal-line"></div>
+          <div className="latestPost">
+            <h4>Latest Post Activity</h4>
+            {lastPost && (
+              <div>
+                <div className="imgActivity">
+                  <div className="cardPost">
+                    <div className="cardActivity">
+                      <div className="cardText">
+                        <div className="cardIcon">
+                          <h4 className="minimalStair">{lastPost.postTitle}</h4>
+                          <div className="iconActivity">
+                            <AiFillHeart />
+                            <h6 className="text">{lastPost.comment}</h6>
+                            <AiFillMessage />
+                            <h6 className="text">{lastPost.comment}</h6>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div>
-                    <Link to="/" className="textAllPost">
-                      See All Post
-                    </Link>
+                    <div>
+                      <Link to="/" className="textAllPost">
+                        See All Post
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        </div>
+        <div className="InfoRigthApp">
+          <h4>About - Help - Terms - Popular - Language</h4>
         </div>
       </div>
-      <div className="InfoRigthApp">
-        <h4>About - Help - Terms - Popular - Language</h4>
-      </div>
-    </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducers.userData
+    user: state.userReducers.userData,
   };
 };
 

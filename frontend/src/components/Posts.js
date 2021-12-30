@@ -44,9 +44,9 @@ const Posts = (props) => {
   console.log(userPost);
   return (
     <>
-      {/* {post.postImage && <img alt={post.postTitle className="ContainerImgPublic" src={require(`../../images/${post.postImage}`)} />} */}
+      {props.post.postImage && <img alt={props.post.postTitle} className="ContainerImgPublicPost" src={require(`../images/${props.post.postImage}`)} />}
       <div className="publicProfilContainer">
-        <Link to={`/Post/${props.post._id}`} className="publicContainerProfil">
+        <Link to={`/Post/${props.post._id}`} >
           <div className="ProfilePublicTotal">
             {userPost && <Avatar src={userPost.imgUrl} alt="profile" />}
             <p>{props.post.postTitle && props.post.postTitle}</p>

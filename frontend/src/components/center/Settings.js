@@ -3,9 +3,17 @@ import Admin from "./settings/Admin"
 import Help from "./settings/Help"
 import { connect } from "react-redux";
 import userActions from "../../redux/actions/userActions";
+import { useNavigate } from "react-router-dom";
+
 const Settings = (props) => {
 
     const [tipos, setTipos] = useState("Edit")
+    const navigate = useNavigate();
+
+    const handleLogOut = () => {
+        props.logOut()
+        navigate("/");
+    }
     return (
         <div className="CenterContentSettings">
             <div className="ContenedorCenterSettings">
@@ -19,7 +27,7 @@ const Settings = (props) => {
                     }
                     <p onClick={()=>{setTipos("Help")}}>Help</p>
                     <span>-</span>
-                    <p onClick={() => props.logOut()}>Log Out</p>
+                    <p onClick={() => handleLogOut}>Log Out</p>
                 </div>
                 <div className="horizontal-line"></div>
                 <div className="TiposSettignsUser">

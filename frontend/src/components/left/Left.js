@@ -36,17 +36,6 @@ const Left = ({ location, userData }) => {
           </div>
         </div>
         <div className="AccountLeft">
-          <p className="MenuTitleSecond">Account</p>
-          <div className="ContenedorProfileLeft">
-            <div className="ContenedorProfileLeftSec">
-              <div className="ProfileIconLeft"></div>
-              <div className="TitleProfileSecLeft">
-                <h2>Michael</h2>
-                <p>@MichaleScot</p>
-              </div>
-            </div>
-            <div className="ContenedorPublicidadLeft"></div>
-          </div>
         </div>
       </div>
     </div>

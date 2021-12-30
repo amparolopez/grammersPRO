@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { useState, useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
-import userReducer from '../redux/reducers/userReducers';
 
 const Comment = (props) => {
     const token = localStorage.getItem('token')

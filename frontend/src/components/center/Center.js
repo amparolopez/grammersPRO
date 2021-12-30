@@ -1,5 +1,4 @@
-import { AiFillMessage } from "react-icons/ai";
-import { AiFillHeart } from "react-icons/ai";
+import Posts from "../Posts";
 import postsActions from "../../redux/actions/postsActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
@@ -38,56 +37,6 @@ const Center = (props) => {
   const handleFilterFollowing = () => {
     const postFilter = postsAux.filter((post) => post.user === props.user);
   };
-<<<<<<< HEAD
-
-  return (
-    <div className="CenterContent">
-      <div className="ContenedorCenter">
-        <div className="ContenedorSecCenter">
-          <div className="ContenedorPublicCen">
-            <div className="ContenedorFilerCent">
-              <p>Feeds</p>
-              <div>
-                <p className="filtActiveCen">All</p>
-                <p onClick={handleFilterFollowing}>Following</p>
-                <p onClick={handleFilterNewest}>Newest</p>
-                <p onClick={handleFilterPopular}>Popular</p>
-              </div>
-            </div>
-            <div className="ContainerTotalPublics">
-              {props.post ? (
-                props.post.map((post, key) => {
-                  return (
-                    <div className="publicContainerProfil" key={key}>
-                      {/* {post.postImage && <img className="ContainerImgPublic" alt="hola" src={require(`../../images/${post.postImage}`)}/>} */}
-                      <div className="publicProfilContainer">
-                        <div className="ProfilePublicTotal">
-                          <div></div>
-                          <p>{post.postTitle && post.postTitle}</p>
-                        </div>
-                          <div className="IconsPublicVoted">
-                            {/* {like ? (
-                              <AiFillHeart
-                                style={{ color: "red", cursor: "pointer" }}
-                                onClick={handleLike}
-                              />
-                            ) : (
-                              <AiFillHeart
-                                onClick={handleLike}
-                                style={{ cursor: "pointer" }}
-                              />
-                            )}
-                            <p>{likesArray ? likesArray : 0}</p> */}
-                            <AiFillMessage />
-                            <p>300</p>
-                          </div>
-                      </div>
-                      
-                    </div>
-                  );
-=======
-  // console.log(props)
-
 
   return (
     <>
@@ -104,12 +53,13 @@ const Center = (props) => {
                   <p onClick={handleFilterPopular}>Popular</p>
                 </div>
               </div>
+              <div className="ContainerTotalPublics">
               {
                 props.posts.map(post => {
                   return <Posts post={post} />
->>>>>>> 135af57670afb53d22263971be31af70bfa21e50
                 })
               }
+              </div>
             </div>
           </div>
         </div>

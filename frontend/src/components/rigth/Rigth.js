@@ -95,7 +95,7 @@ const Rigth = (props) => {
           {userData.token ? (
             <>
               {allUsers && (
-                <div style={{ display: "flex", width: "100%" }}>
+                <div style={{ display: "flex", width: "100%", alignItems: "flex-end" }}>
                   <Autocomplete
                     id="free-solo-demo"
                     freeSolo
@@ -115,8 +115,6 @@ const Rigth = (props) => {
             </>
           ) : (
             <div>
-              <Link to={"/Signup"}>Sign Up</Link>
-              <Link to={"/Signin"}>Sign In</Link>
             </div>
           )}
         </div>
@@ -220,15 +218,10 @@ const Rigth = (props) => {
               <div className="imgActivity">
                 <div className="cardPost">
                   <div className="cardActivity">
+                      {lastPost.postImage && <img alt={lastPost.postTitle} className="ActivityImg" src={require(`../../images/${lastPost.postImage}`)} />}
                     <div className="cardText">
                       <div className="cardIcon">
                         <h4 className="minimalStair">{lastPost.postTitle}</h4>
-                        <div className="iconActivity">
-                          <AiFillHeart />
-                          <h6 className="text">{lastPost.comment}</h6>
-                          <AiFillMessage />
-                          <h6 className="text">{lastPost.comment}</h6>
-                        </div>
                       </div>
                     </div>
                   </div>

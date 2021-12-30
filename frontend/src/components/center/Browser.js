@@ -33,8 +33,6 @@ const Browser = (props) => {
                       <p>{user.userName + " " + user.lastName}</p>
                     </div>
                   </Link>
-
-                  <p className="buttonFollowProfile">Follow</p>
                 </div>
               );
             })

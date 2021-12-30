@@ -23,7 +23,7 @@ const Post = (props) => {
   }, []);
 
   const post = posts.find((post) => post._id === id);
-  const userPost = allUsers.find(user => user._id === post.user)
+  const userPost = allUsers.find(user => user._id && user._id === post.user)
   
   return (
     <div className="containerHome">

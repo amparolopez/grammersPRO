@@ -39,7 +39,7 @@ const userActions = {
   userSignIn: (userLogIn) => {
     return async (dispatch, getState) => {
       try {
-        const user = await axios.post("http://localhost:4000/api/user/signin", {
+        const user = await axios.post("https://gramers-pro.herokuapp.com/api/user/signin", {
           ...userLogIn,
         });
         if (user.data.success) {
@@ -89,7 +89,7 @@ const userActions = {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:4000/api/user/signin/token",
+          "https://gramers-pro.herokuapp.com/api/user/signin/token",
           {
             headers: {
               Authorization: "Bearer " + token,
@@ -113,7 +113,7 @@ const userActions = {
   },
   getUsers: () => {
     return async (dispatch, getstate) => {
-      const res = await axios.get("http://localhost:4000/api/user/signup");
+      const res = await axios.get("https://gramers-pro.herokuapp.com/api/user/signup");
       if (res.data.success) {
         return res.data;
       } else {
@@ -124,7 +124,7 @@ const userActions = {
   followers: (user) => {
     return async (dispatch, getState) => {
       try {
-        const res = await axios.put("http://localhost:4000/api/users", {
+        const res = await axios.put("https://gramers-pro.herokuapp.com/api/users", {
           ...user,
         });
         if (res.data.success) {

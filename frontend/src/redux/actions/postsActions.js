@@ -3,7 +3,7 @@ import axios from "axios";
 const postsActions = {
   getAllPosts: () => {
     return async (dispatch, getState) => {
-      const res = await axios.get("http://localhost:4000/api/post");
+      const res = await axios.get("https://gramers-pro.herokuapp.com/api/post");
       dispatch({ type: "getPost", payload: res.data.response });
       if (res.data.success) {
         return res.data;
@@ -16,7 +16,7 @@ const postsActions = {
     return async (dispatch, getState) => {
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/post",
+          "https://gramers-pro.herokuapp.com/api/post",
           {
             postTitle: newPost.title,
             postText: newPost.body,
@@ -40,7 +40,7 @@ const postsActions = {
     return async () => {
       try {
         const response = await axios.put(
-          "http://localhost:4000/api/comments" + id,
+          "https://gramers-pro.herokuapp.com/api/comments" + id,
           { comment, type: "addComment" },
           {
             headers: {
@@ -60,7 +60,7 @@ const postsActions = {
     return async () => {
       try {
         const response = await axios.put(
-          "http://localhost:4000/api/comments" + id,
+          "https://gramers-pro.herokuapp.com/api/comments" + id,
           { comment, type: "editComment" },
           {
             headers: {
@@ -80,7 +80,7 @@ const postsActions = {
     return async () => {
       try {
         const response = await axios.put(
-          "http://localhost:4000/api/comments" + id,
+          "https://gramers-pro.herokuapp.com/api/comments" + id,
           { commentId, type: "deleteComment" },
           {
             headers: {
@@ -102,7 +102,7 @@ const postsActions = {
     return async () => {
       try {
         const response = await axios.put(
-          `http://localhost:4000/api/post/like/${id}`,
+          `https://gramers-pro.herokuapp.com/api/post/like/${id}`,
           { userId },
           {
             headers: {

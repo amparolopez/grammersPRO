@@ -92,7 +92,7 @@ const userActions = {
             Authorization: "Bearer " + token,
           },
         });
-        console.log(response)
+        
         dispatch({
           type: "user",
           payload: {

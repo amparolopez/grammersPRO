@@ -13,7 +13,7 @@ const postSchema = new Schema({
     },
   ],
   date: { type: Date, default: Date.now, require: true },
-  like:[{user:{ type:mongoose.Types.ObjectId, ref:'user',}}]
+  like:{ type: Array}
 });
 
 

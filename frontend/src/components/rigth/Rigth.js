@@ -72,7 +72,10 @@ const Rigth = (props) => {
           <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
             </>
             :
-            <h1>Sign In</h1>
+            <div>
+            <Link to ={'/Signup'} >Sign Up</Link>
+            <Link to ={'/Signin'} >Sign In</Link>
+            </div>
         }
         </div>
         <Dialog open={open} onClose={handleClose}>

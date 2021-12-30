@@ -5,7 +5,7 @@ const adminActions = {
     getUsers : () => {
         return async (dispatch, getState) => {
             try{
-                const users = await axios.get("https://gramers-pro.herokuapp.com/api/users");
+                const users = await axios.get("http://localhost:4000/api/users");
                 const modificado = []
                 users.data.response.map((user)=>{
                     const userF = {
@@ -24,7 +24,7 @@ const adminActions = {
     obtenerAdmin : (user) => {
         return async (dispatch,getState) => {
             try{
-                const admin = await axios.put("https://gramers-pro.herokuapp.com/api/users",{...user})
+                const admin = await axios.put("http://localhost:4000/api/users",{...user})
                 return({success:true})
             }catch(error){
                 console.log(error)
@@ -34,7 +34,7 @@ const adminActions = {
     getPost : () => {
         return async (dispatch, getState) => {
             try{
-                const post = await axios.get("https://gramers-pro.herokuapp.com/api/post")
+                const post = await axios.get("http://localhost:4000/api/post")
                 dispatch({type:"post", payload:post.data.response})
             }catch(error){
                 console.log(error)
@@ -45,7 +45,7 @@ const adminActions = {
         return async (dispatch, getState) => {
             console.log(post)
             try{
-                const banedpost = await axios.delete(`https://gramers-pro.herokuapp.com/api/admin/post/${post}`)
+                const banedpost = await axios.delete(`http://localhost:4000/api/admin/post/${post}`)
                 return({success:true})
             }catch(error){
                 console.log(error)
@@ -55,7 +55,7 @@ const adminActions = {
     adminBan : (id) => {
         return async (dispatch, getState) => {
             try{
-                const banuser = await axios.delete(`https://gramers-pro.herokuapp.com/api/users/${id}`)
+                const banuser = await axios.delete(`http://localhost:4000/api/users/${id}`)
                 return({success:true})
             }catch(error){
                 console.log(error)

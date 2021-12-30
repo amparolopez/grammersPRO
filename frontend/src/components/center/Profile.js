@@ -63,16 +63,6 @@ const Profile = (props) => {
                       <h2>{postProfile.length}</h2>
                       <p>Post</p>
                     </div>
-                    <div className="vertical-lines"></div>
-                    <div className="ContenedorEstadisticasDeTodo">
-                      <h2>256</h2>
-                      <p>Follower</p>
-                    </div>
-                    <div className="vertical-lines"></div>
-                    <div className="ContenedorEstadisticasDeTodo">
-                      <h2>543</h2>
-                      <p>Following</p>
-                    </div>
                   </div>
                 </div>
               </div>

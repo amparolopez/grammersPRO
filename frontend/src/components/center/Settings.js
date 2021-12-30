@@ -27,7 +27,7 @@ const Settings = (props) => {
                     }
                     <p onClick={()=>{setTipos("Help")}}>Help</p>
                     <span>-</span>
-                    <p onClick={() => handleLogOut}>Log Out</p>
+                    <p onClick={() => handleLogOut()}>Log Out</p>
                 </div>
                 <div className="horizontal-line"></div>
                 <div className="TiposSettignsUser">

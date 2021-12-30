@@ -37,11 +37,14 @@ const userControllers = {
         }
     },
     signIn: async (req, res) => {
+        
         const { email, password, googleFlag } = req.body
+        console.log(req.body)
         try {
-            const userExists = await User.findOne({ email })
-            
+            const userExists = await User.findOne({ email: email })
+            console.log(userExists)
             if (!userExists) {
+                console.log("random")
                 res.json({ success: false, error: true, answer:[{message:"Email is incorrect"}]})
             } else {
                 let samePass = bcryptjs.compareSync(password, userExists.password)

@@ -10,6 +10,7 @@ const FormSignIn = (props) => {
     const [signInUser, setSignInUser] = useState ({
         email: "", 
         password: "",
+        googleFlag: false
     })
 
     const email = useRef();

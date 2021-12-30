@@ -72,8 +72,8 @@ const PostController = {
     Post.findOne({_id: req.params.id})
     // console.log(post)
     .then((post) =>{
-      console.log(req.body.userId)
-      console.log(post)
+      // console.log(req.body.userId)
+      // console.log(post)
       if(post.like.includes(req.body.userId)){ console.log("if")
         // post.like = !req.body.userId
         // if (post.like = [false]){
@@ -82,7 +82,7 @@ const PostController = {
         // post.save()
         Post.findOneAndUpdate({_id:req.params.id}, {$pull:{like:req.body.userId}}, {new: true})
         .then((newPost)=> {
-          console.log(newPost)
+          // console.log(newPost)
           return res.json({success:true, response:newPost})})
         }else{ console.log("else")
         // post.like.push(req.body.userId)

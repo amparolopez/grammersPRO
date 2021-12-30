@@ -70,7 +70,7 @@ const Center = (props) => {
                   console.log(post.postImage)
                   return (
                     <div className="publicContainerProfil" key={key}>
-                      {post.postImage && <img className="ContainerImgPublic" alt="hola" src={require(`../../images/${post.postImage}`)}/>}
+                      {/* {post.postImage && <img className="ContainerImgPublic" alt="hola" src={require(`../../images/${post.postImage}`)}/>} */}
                       <div className="publicProfilContainer">
                         <div className="ProfilePublicTotal">
                           <div></div>

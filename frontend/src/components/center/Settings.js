@@ -1,6 +1,4 @@
 import {useState} from "react"
-import Edit from "./settings/Edit"
-import Pass from "./settings/Pass"
 import Admin from "./settings/Admin"
 import Help from "./settings/Help"
 import { connect } from "react-redux";
@@ -13,10 +11,6 @@ const Settings = (props) => {
         <div className="CenterContentSettings">
             <div className="ContenedorCenterSettings">
                 <div className="SettignsUsedProfile">
-                    <p onClick={()=>{setTipos("Edit")}}>Edit profile</p>
-                    <span>-</span>
-                    <p onClick={()=>{setTipos("Pass")}}>Change the password</p>
-                    <span>-</span>
                     {props.user.userAdmin ? 
                     <>
                         <p onClick={()=>{setTipos("Admin")}}>Admin</p>
@@ -30,8 +24,6 @@ const Settings = (props) => {
                 </div>
                 <div className="horizontal-line"></div>
                 <div className="TiposSettignsUser">
-                    {tipos === "Edit" ? <Edit />:null}
-                    {tipos === "Pass" ? <Pass />:null}
                     {tipos === "Admin" ? <Admin />:null}
                     {tipos === "Help" ? <Help />:null}
                 </div>

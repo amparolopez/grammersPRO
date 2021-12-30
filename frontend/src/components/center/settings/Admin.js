@@ -1,6 +1,9 @@
 import { connect } from "react-redux";
 import adminActions from "../../../redux/actions/adminActions";
 import {useEffect, useState} from "react"
+import {BsFillPersonCheckFill}  from "react-icons/bs";
+import {BsFillBookmarkXFill}  from "react-icons/bs";
+import {BsFillPersonXFill}  from "react-icons/bs";
 
 const Admin = (props) => {
 
@@ -36,56 +39,79 @@ const Admin = (props) => {
     console.log(props.posts)
     return (
         <>
-        <div className="AdminUserDeleteContent">
-            <h1>Ban User</h1>
-            <div>
-                <form onSubmit={banUser}>
-                    <select onChange={(e) => setEmail(e.target.value)}>
-                        <option>Users</option>
-                        {props.users.map((user, index) => {
-                            return(
-                                <option key={index} value={user.id}>{user.email}</option>
+            <div className="AdminUserDeleteContent">
+                <h1>Change the rol user</h1>
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <select onChange={(e) => setAdmin(e.target.value)}>
+                            <option>Users</option>
+                            {props.users.map((user, index) => {
+                                return(
+                                    <option key={index} value={user.email}>{user.email}</option>
                                 )
                             })}
-                    </select>
-                    <button type="submit">banUser</button>
-                </form>
-            </div>
-            <div className="AdminUserDelImg">
-            {props.users.map(user => {
-                return(
-                    email === user.id ? <img src={user.url}/> : null
-                    )
-                })}
-            </div>
-        </div>
-            <h2>ban post</h2>
-            <form onSubmit={banPost}>
-                <select onChange={(e) => setEmailPost(e.target.value)}>
-                    {props.users.map((user,index)=> {
-                        return(<option key={index} value={user.id}>{user.email}</option>)
-                    } )
-                }
-                </select>
-                <select onClick={(e)=> setPost(e.target.value)}>
-                    {props.posts.map((post, index)=> {
-                        return(emailpost === post.user ? <option key={index} value={post._id}>{post._id}</option> : null)
-                    })
-                }
-                </select>
-                <button type="submit">banPost</button>
-            </form>
-            <h3>Change the rol user</h3>
-            <form onSubmit={handleSubmit}>
-                <select onChange={(e) => setAdmin(e.target.value)}>
-                    {props.users.map((user, index) => {
-                        return(
-                            <option key={index} value={user.email}>{user.email}</option>
+                        </select>
+                        <button type="submit" class="noselect"><span class='text'>Change</span><span class="icon"><BsFillPersonCheckFill /></span></button>
+                    </form>
+                </div>
+                <div className="AdminUserDelImg">
+                {props.users.map(user => {
+                    return(
+                        admin === user.email ? <img src={user.url}/> : null
                         )
                     })}
-                </select>
-                <button type="submit">Sign Up</button>
-            </form>
+                </div>
+            </div>
+            <div className="AdminUserDeleteContent">
+                <h1>Ban User</h1>
+                <div>
+                    <form onSubmit={banUser}>
+                        <select onChange={(e) => setEmail(e.target.value)}>
+                            <option>Users</option>
+                            {props.users.map((user, index) => {
+                                return(
+                                    <option key={index} value={user.id}>{user.email}</option>
+                                    )
+                                })}
+                        </select>
+                        <button type="submit" class="noselect"><span class='text'>Ban</span><span class="icon"><BsFillPersonXFill /></span></button>
+                    </form>
+                </div>
+                <div className="AdminUserDelImg">
+                {props.users.map(user => {
+                    return(
+                        email === user.id ? <img src={user.url}/> : null
+                        )
+                    })}
+                </div>
+            </div>
+            <div className="AdminUserDeleteContent">
+                <h1>ban post</h1>
+                <div>
+                    <form onSubmit={banPost}>
+                        <select onChange={(e) => setEmailPost(e.target.value)}>
+                            {props.users.map((user,index)=> {
+                                return(<option key={index} value={user.id}>{user.email}</option>)
+                            } )
+                        }
+                        </select>
+                        <select onClick={(e)=> setPost(e.target.value)}>
+                            {props.posts.map((post, index)=> {
+                                return(emailpost === post.user ? <option key={index} value={post._id}>{post._id}</option> : null)
+                            })
+                        }
+                        </select>
+                        <button type="submit" class="noselect"><span class='text'>Ban Post</span><span class="icon"><BsFillBookmarkXFill /></span></button>
+                    </form>
+                </div>
+                <div className="AdminUserDelImg">
+                {props.posts.map(posts => {
+                    return(
+                        post === posts._id ? <img src={require(`../../../images/${posts.postImage}`)}/> : null
+                        )
+                    })}
+                </div>
+            </div>
         </>
     )
 }

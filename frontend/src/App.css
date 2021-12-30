@@ -276,6 +276,9 @@ div .vertical-line {
   flex-wrap: wrap;
   overflow-y: scroll;
 }
+.ContainerTotalPublics::-webkit-scrollbar{
+  display: none;
+}
 .publicContainerProfil {
   text-decoration: none;
   width: 48.5%;

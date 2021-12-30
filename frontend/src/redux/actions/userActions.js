@@ -5,7 +5,7 @@ const userActions = {
   userSignUp: (User) => {
     return async (dispatch, getState) => {
       try {
-        const user = await axios.post("http://localhost:4000/api/user/signup", {
+        const user = await axios.post("https://gramers-pro.herokuapp.com/api/user/signup", {
           ...User,
         });
         if (user.data.success && !user.data.error) {

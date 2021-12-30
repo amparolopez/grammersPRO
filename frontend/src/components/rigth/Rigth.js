@@ -221,13 +221,6 @@ const Rigth = (props) => {
               <div className="imgActivity">
                 <div className="cardPost">
                   <div className="cardActivity">
-                    {/* {lastPost.postImage && (
-                      <img
-                        alt={lastPost.postTitle}
-                        // src={require(`../../images/${lastPost.postImage}`)}
-                        className="ActivityImg"
-                      ></img>
-                    )} */}
                     <div className="cardText">
                       <div className="cardIcon">
                         <h4 className="minimalStair">{lastPost.postTitle}</h4>
@@ -235,7 +228,7 @@ const Rigth = (props) => {
                           <AiFillHeart />
                           <h6 className="text">{lastPost.comment}</h6>
                           <AiFillMessage />
-                          <h6 className="text">{lastPost.comment}</h6> */}
+                          <h6 className="text">{lastPost.comment}</h6>
                         </div>
                       </div>
                     </div>

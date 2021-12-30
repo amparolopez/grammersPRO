@@ -63,6 +63,7 @@ body {
   background-color: var(--ColorFondComment);
   display: flex;
   justify-content: space-between;
+  
 }
 .rigthUsers {
   width: 25%;
@@ -89,7 +90,7 @@ div .vertical-line {
 }
 .LogoLeft {
   width: 100%;
-  height: 13%;
+  height: 16%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -273,10 +274,7 @@ div .vertical-line {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  overflow-y:scroll;
-}
-.ContainerTotalPublics::-webkit-scrollbar{
-  display: none;
+  overflow-y: scroll;
 }
 .publicContainerProfil {
   text-decoration: none;
@@ -307,6 +305,7 @@ div .vertical-line {
   align-items: center;
   height: 100%;
   color: var(--OffColor);
+  margin-right: 10px;
 }
 .IconsPublicVoted svg {
   margin: 0 0.5vw 0 0.5vw;
@@ -464,9 +463,7 @@ div .vertical-line {
 .cardText {
   display: flex;
 }
-.minimalStair {
-  width: 110px;
-}
+
 .cardPost {
   height: 200px;
   border-radius: 1rem;
@@ -993,22 +990,131 @@ button:active {
       border-radius: 0px;
     }
 }
+@media (max-width: 1024px) {
+  .cardPost{
+    margin-top: 0px;
+  }
 
+  .rigthUsers{
+    padding-left: .3rem;
+    padding-right: .3rem;
+  }
+  .cardIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: .5rem;
+    width: 40%;
+}
+.iconActivity {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.userFollow {
+  margin-top: .8rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.userContainer {
+  padding-bottom: 1rem;
+}
+.ActivityImg {
+  width: 9rem;
+  height: 7rem;
+  background-color: rgb(176, 255, 97);
+  border: 4px solid var(--ColorTopMenu);
+  border-radius: 1.5rem;
+  padding-left: 6rem;
+}
+.latestPost h4 {
+  font-size: .9rem;
+}
+.minimalStair {
+  width: 75px;
+}
+    
+}
 @media (max-width: 768px) {
+  .CenterContent{
+    width: 70%;
+    border-radius: 2rem;
+  }
   .rigthUsers{
     display: none;
     width: 0%;
   }
-
+  .LeftNavbar{
+    width: 30%;
+  }
+  div .vertical-line{
+    display: none;
+  }
 }
+@media (max-width: 1280px) {
+  .cardPost{
+    margin-top: 0px;
+  }
+ 
 
+  .rigthUsers{
+    padding-left: .3rem;
+    padding-right: .3rem;
+  }
+  .cardIcon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-left: .5rem;
+    width: 40%;
+}
+.iconActivity {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+.userFollow {
+  margin-top: .8rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.userContainer {
+  padding-bottom: 1rem;
+}
+.ActivityImg {
+  width: 9rem;
+  height: 7rem;
+  background-color: rgb(176, 255, 97);
+  border: 4px solid var(--ColorTopMenu);
+  border-radius: 1.5rem;
+  padding-left: 6rem;
+}
+.latestPost h4 {
+  font-size: .9rem;
+}
+.minimalStair {
+  width: 75px;
+}
+    
+}
 @media (max-width: 768px) {
   .CenterContent{
     width: 70%;
   }
-}
-
-@media (max-width: 768px) {
+  .rigthUsers{
+    display: none;
+    width: 0%;
+  }
   .LeftNavbar{
     width: 30%;
   }
@@ -1036,7 +1142,7 @@ button:active {
   }
   .LogoLeft {
     width: 100%;
-    height: 80%;
+    height: 85%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1073,6 +1179,10 @@ button:active {
   flex-direction: column;
   height: 5rem;
 }
+.ContenedorFilerCent p{
+  font-size: larger;
+  
+}
 .ContenedorFilerCent div{
   width: 100%;
   flex-direction: row;
@@ -1085,12 +1195,13 @@ button:active {
     justify-content: center;
     flex-wrap: wrap;
     flex-direction: row;
+    
     align-items: center;
     padding-top: 2rem;
 }
 .publicContainerProfil{
-  width: 70%;
-  height: 70%;
+  width: 95%;
+  height: 85%;
 }
 
 .ContainerTotalPublics{
@@ -1165,4 +1276,40 @@ button:active {
 
 .noselect:focus {
 	outline: none;
+}
+.MenuLeft .MenuLeftDirection a{
+  font-size: 1rem;
+}
+
+.container-all{
+  height: 100vh;
+    width: 100vw;
+    border-radius: 0px;
+}
+.ContainerImgPublic{
+  height: 80%;
+}
+
+
+@media (max-width: 375px) {
+  .MenuLeft .MenuLeftDirection a{
+    font-size: .9rem;
+  }
+  .container-all{
+    height: 100vh;
+      width: 100vw;
+  }
+}
+
+@media (max-width: 320px) {
+  .MenuLeft .MenuLeftDirection a{
+    font-size: .8rem;
+  }
+  .container-all{
+    height: 100vh;
+      width: 100vw;
+  }
+  .publicContainerProfil{
+     height: 75%;
+  }
 }

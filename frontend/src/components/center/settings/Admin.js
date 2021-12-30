@@ -109,7 +109,7 @@ const Admin = (props) => {
                                 )
                             })}
                         </select>
-                        <button type="submit" class="noselect"><span class='text'>Change</span><span class="icon"><BsFillPersonCheckFill /></span></button>
+                        <button type="submit" class="noselect verde"><span class='text'>Change</span><span class="icon"><BsFillPersonCheckFill /></span></button>
                     </form>
                 </div>
                 <div className="AdminUserDelImg">

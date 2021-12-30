@@ -1,13 +1,18 @@
 import FormSignUp from "../components/FormSignUp";
 import {Navigate} from 'react-router-dom';
+import Left from "../components/left/Left"
+import Rigth from "../components/rigth/Rigth"
 
 const SignUp = () => {
-    // const token = localStorage.getItem("token")
-    // if(token){
-    //     return <Navigate to="/"/>
-    // }
+
     return (
-        <FormSignUp/>
+        <>
+        <div className="containerHome">
+            <Left />
+            <FormSignUp/>
+            <Rigth />
+        </div>
+        </>
     )
 }
 

@@ -2,9 +2,8 @@ import Posts from "../Posts";
 import postsActions from "../../redux/actions/postsActions";
 import { connect } from "react-redux";
 import { useEffect, useState } from "react";
-// import Comments from '../Comments';
-const Center = (props) => {
 
+const Center = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
   const { getAllPosts } = props;
@@ -47,18 +46,21 @@ const Center = (props) => {
               <div className="ContenedorFilerCent">
                 <p>Feeds</p>
                 <div>
-                  <p onClick={() => setPosts(postsAux)} className="filtActiveCen">All</p>
+                  <p
+                    onClick={() => setPosts(postsAux)}
+                    className="filtActiveCen"
+                  >
+                    All
+                  </p>
                   <p onClick={handleFilterFollowing}>Following</p>
                   <p onClick={handleFilterNewest}>Newest</p>
                   <p onClick={handleFilterPopular}>Popular</p>
                 </div>
               </div>
               <div className="ContainerTotalPublics">
-              {
-                props.posts.map((post, key) => {
-                  return <Posts post={post} key={key} />
-                })
-              }
+                {props.posts.map((post, key) => {
+                  return <Posts post={post} key={key} />;
+                })}
               </div>
             </div>
           </div>

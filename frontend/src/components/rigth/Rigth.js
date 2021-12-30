@@ -94,7 +94,7 @@ const Rigth = (props) => {
           {userData.token ? (
             <>
               {allUsers && (
-                <div style={{display:"flex",width:"100%"}}>
+                <div style={{ display: "flex", width: "100%" }}>
                   <Autocomplete
                     id="free-solo-demo"
                     freeSolo

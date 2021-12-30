@@ -4,7 +4,7 @@ const postsActions = {
   getAllPosts: () => {
     return async (dispatch, getState) => {
       const res = await axios.get("http://localhost:4000/api/post");
-      dispatch({type: "getPost", payload: res.data.response})
+      dispatch({ type: "getPost", payload: res.data.response });
       if (res.data.success) {
         return res.data;
       } else {
@@ -21,7 +21,7 @@ const postsActions = {
             postTitle: newPost.title,
             postText: newPost.body,
             postImage: newPost.img,
-            user: newPost.user
+            user: newPost.user,
           },
           {
             headers: {
@@ -97,22 +97,24 @@ const postsActions = {
   },
 
   likeDislikePost: (token, id, userId) => {
-    console.log(token)
-    console.log(id)
+    console.log(token);
+    console.log(id);
     return async () => {
       try {
-        const response = await axios.put(`http://localhost:4000/api/post/like/${id}`, {userId},
+        const response = await axios.put(
+          `http://localhost:4000/api/post/like/${id}`,
+          { userId },
           {
             headers: {
               Authorization: "Bearer" + token,
             },
           }
-          );
-          console.log(response)
-          return response.data.response;
-        } catch (error) {
-          console.log(error);
-        }
+        );
+        console.log(response);
+        return response.data.response;
+      } catch (error) {
+        console.log(error);
+      }
     };
   },
 };

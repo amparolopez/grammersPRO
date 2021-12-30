@@ -12,6 +12,7 @@ const Browser = (props) => {
     getUsers().then((res) =>
       setUsers(res.response)
     );
+    // eslint-disable-next-line
   }, []);
 
   return (

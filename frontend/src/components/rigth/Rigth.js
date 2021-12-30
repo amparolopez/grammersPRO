@@ -1,4 +1,4 @@
-import { FaRegBell, FaCloudUploadAlt } from "react-icons/fa";
+import {  FaCloudUploadAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import { AiFillHeart, AiFillMessage } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
@@ -79,6 +79,7 @@ const Rigth = (props) => {
       setAllUsers(res.response);
       setUserSuggest(res.response.slice(0, 3));
     });
+    // eslint-disable-next-line
   }, []);
 
   const navigate = useNavigate();

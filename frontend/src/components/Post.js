@@ -19,6 +19,7 @@ const Post = (props) => {
     getUsers().then((res) => {
         setAllUsers(res.response);
       });
+      // eslint-disable-next-line
   }, []);
 
   const post = posts.find((post) => post._id === id);

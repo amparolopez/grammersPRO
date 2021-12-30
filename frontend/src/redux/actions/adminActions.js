@@ -7,6 +7,7 @@ const adminActions = {
             try{
                 const users = await axios.get("http://localhost:4000/api/users");
                 const modificado = []
+                // eslint-disable-next-line
                 users.data.response.map((user)=>{
                     const userF = {
                         email:user.email,
@@ -23,6 +24,7 @@ const adminActions = {
     obtenerAdmin : (user) => {
         return async (dispatch,getState) => {
             try{
+                // eslint-disable-next-line
                 const admin = await axios.put("http://localhost:4000/api/users",{...user})
             }catch(error){
                 console.log(error)

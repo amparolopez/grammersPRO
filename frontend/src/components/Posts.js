@@ -11,10 +11,12 @@ const Posts = (props) => {
   const [likePost, setLikePosts] = useState(props.post.like);
   const [likes, setLikes] = useState(props.post.like.length);
   const [allUsers, setAllUsers] = useState([]);
+
   useEffect(() => {
     props.getUsers().then((res) => {
       setAllUsers(res.response);
     });
+    // eslint-disable-next-line
   }, []);
 
   const likePosts = async () => {

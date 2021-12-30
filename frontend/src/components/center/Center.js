@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 
 const Center = (props) => {
+  // eslint-disable-next-line
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
   const { getAllPosts } = props;
@@ -13,6 +14,7 @@ const Center = (props) => {
       setPosts(res.response);
       setPostsAux(res.response);
     });
+    // eslint-disable-next-line
   }, []);
 
   const handleFilterNewest = () => {
@@ -35,6 +37,7 @@ const Center = (props) => {
 
   const handleFilterFollowing = () => {
     const postFilter = postsAux.filter((post) => post.user === props.user);
+    console.log(postFilter)
   };
 
   return (

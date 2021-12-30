@@ -7,6 +7,7 @@ import Posts from "../Posts";
 
 const Profile = (props) => {
   const [posts, setPosts] = useState([]);
+  // eslint-disable-next-line
   const [postsAux, setPostsAux] = useState([]);
   const [users, setUsers] = useState([]);
   const { getAllPosts, getUsers } = props;
@@ -20,6 +21,7 @@ const Profile = (props) => {
     getUsers().then((res) =>
       setUsers(res.response)
     );
+    // eslint-disable-next-line
   }, []);
 
   let userProfile = users.find((user) => user._id === id);

@@ -7,19 +7,7 @@ import { useEffect, useState } from "react";
 const Center = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
-  const { getAllPosts, user, userData, likeDislikePost } = props;
-  // const [likesArray, setLikeArray] = useState(posts.like);
-  // const [like, setLike] = useState(
-  //   user && likesArray.find((like) => like.user === userData._id)
-  // );
-  // const handleLike = (postId) => {
-  //   if (user) {
-  //     likeDislikePost(postId, userData, like).then((res) => {
-  //       setLikeArray(res.response);
-  //       setLike(!like);
-  //     });
-  //   }
-  // };
+  const { getAllPosts, user } = props;
 
   useEffect(() => {
     getAllPosts().then((res) => {

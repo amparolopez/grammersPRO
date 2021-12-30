@@ -10,7 +10,7 @@ const Browser = (props) => {
 
   useEffect(() => {
     getUsers().then((res) =>
-      setUsers(res.response.slice(10, res.response.length))
+      setUsers(res.response)
     );
   }, []);
 

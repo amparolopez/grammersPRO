@@ -3,7 +3,7 @@ const Post = require("../models/Post.js");
 const PostController = {
   getAllPosts: async (req, res) => {
     try {
-      const post = await Post.find().populate('user')
+      const post = await Post.find()
       console.log(post)
       res.json({ success: true, response:  post});
     } catch (error) {

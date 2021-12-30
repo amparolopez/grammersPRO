@@ -11,8 +11,6 @@ const Admin = (props) => {
         props.fetchUsers()
     },[])
 
-    console.log(props.users)
-    
     const handleSubmit=(e)=>{
         e.preventDefault()
         const admins = {

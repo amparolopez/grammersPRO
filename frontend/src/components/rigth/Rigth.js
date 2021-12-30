@@ -1,6 +1,6 @@
-import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
+import { FaRegBell, FaCloudUploadAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
-import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
+import { AiFillHeart, AiFillMessage } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -9,7 +9,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Avatar from "@mui/material/Avatar";
 import { connect } from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Button, IconButton } from "@mui/material";
 import axios from "axios";
 import userActions from "../../redux/actions/userActions";
@@ -53,6 +53,7 @@ const Rigth = (props) => {
       } catch (err) {}
     }
     postAPost(newPost).then((res) => setPostState(res.success));
+    console.log(postState)
     if (postState) {
       console.log("su post se a subido exitosamente");
       handleClose();
@@ -79,12 +80,11 @@ const Rigth = (props) => {
       setUserSuggest(res.response.slice(0, 3));
     });
   }, []);
-  
+
   const navigate = useNavigate();
 
   function handleChange(e) {
     const idUser = allUsers.find(user => user.email === e.target.innerText)
-    console.log(idUser)
     navigate(`/Profile/${idUser._id}`);
   }
   return (
@@ -228,7 +228,7 @@ const Rigth = (props) => {
                         <h4 className="minimalStair">{lastPost.postTitle}</h4>
                         <div className="iconActivity">
                           <AiFillHeart />
-                          <h6 className="text">{lastPost.like}</h6>
+                          <h6 className="text">{lastPost.comment}</h6>
                           <AiFillMessage />
                           <h6 className="text">{lastPost.comment}</h6>
                         </div>
@@ -236,7 +236,7 @@ const Rigth = (props) => {
                     </div>
                   </div>
                   <div>
-                    <Link to="/Center" className="textAllPost">
+                    <Link to="/" className="textAllPost">
                       See All Post
                     </Link>
                   </div>

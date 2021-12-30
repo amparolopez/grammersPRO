@@ -19,7 +19,6 @@ const userActions = {
                       })
                 } else {
                     const error = user.data.answer[0].message
-                    console.log(user.data)
                     if(error){
                     
                     Swal.fire({
@@ -40,7 +39,6 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
-                console.log(user)
                 if (user.data.success) {
                  
                   localStorage.setItem('token', user.data.answer.token);
@@ -48,7 +46,6 @@ const userActions = {
                   dispatch({ type: 'user', payload: user.data.answer })
                 } else {
                   const error = user.data.answer[0].message
-                  console.log(user.data)
                     Swal.fire({
                         position: 'top.end',
                         icon: 'error',
@@ -116,8 +113,10 @@ const userActions = {
   followers: (user) => {
     return async (dispatch,getState) => {
       try{
-          const admin = await axios.put("http://localhost:4000/api/users",{...user})
-          console.log(admin)
+          const res = await axios.put("http://localhost:4000/api/users",{...user})
+          if(res.data.success){
+            return res.data
+          }
       }catch(error){
           console.log(error)
       }

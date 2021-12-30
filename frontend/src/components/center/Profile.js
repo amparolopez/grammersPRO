@@ -8,8 +8,8 @@ const Profile = (props) => {
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
   const [users, setUsers] = useState([]);
-  const { userData, getAllPosts, user, getUsers } = props;
-  let { id } = useParams()
+  const { getAllPosts, getUsers } = props;
+  let { id } = useParams();
 
   useEffect(() => {
     getAllPosts().then((res) => {
@@ -17,12 +17,13 @@ const Profile = (props) => {
       setPostsAux(res.response);
     });
     getUsers().then((res) =>
-    setUsers(res.response.slice(10, res.response.length))
+      setUsers(res.response)
     );
   }, []);
-  
-  let userProfile = users.find(user => user._id === id)
+console.log(posts)
+  let userProfile = users.find((user) => user._id === id);
   const postProfile = posts.filter((posts) => posts.user === id);
+
   return (
     <div className="CenterContent">
       <div className="ContenedorCenter">
@@ -43,7 +44,11 @@ const Profile = (props) => {
                     }}
                   ></div>
                   <div className="ContainerDataUserNice">
-                    <h1>{userProfile.name ? userProfile.name : userProfile.userName}</h1>
+                    <h1>
+                      {userProfile.name
+                        ? userProfile.name
+                        : userProfile.userName}
+                    </h1>
                     <p>{userProfile.job}</p>
                     <p>{userProfile.country}</p>
                   </div>
@@ -71,11 +76,9 @@ const Profile = (props) => {
               <div className="horizontal-line"></div>
               <div className="PostUserSolari">
                 {postProfile &&
-                postProfile.map(post => {
-                  return(
-                    <h3>post</h3>
-                  )
-                })}
+                  postProfile.map((post) => {
+                    return <h3>post</h3>;
+                  })}
               </div>
             </>
           ) : (
@@ -96,7 +99,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   getAllPosts: postsActions.getAllPosts,
-  getUsers: userActions.getUsers
+  getUsers: userActions.getUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);

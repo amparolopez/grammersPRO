@@ -24,7 +24,6 @@ const adminActions = {
         return async (dispatch,getState) => {
             try{
                 const admin = await axios.put("http://localhost:4000/api/users",{...user})
-                console.log(admin)
             }catch(error){
                 console.log(error)
             }

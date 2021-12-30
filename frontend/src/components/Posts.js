@@ -5,6 +5,7 @@ import Toast from "sweetalert2";
 import userActions from "../redux/actions/userActions";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
+import {BsFillHeartFill} from "react-icons/bs";
 const Posts = (props) => {
   const token = props.user.token;
   const [likeIcon, setLikeIcon] = useState(true);
@@ -39,7 +40,7 @@ const Posts = (props) => {
     setLikeIcon(true);
   };
 
-  let like = likePost.includes(props.user._id) ? "❤️" : "🤍";
+  let like = likePost.includes(props.user._id) ? true : false;
   const userPost = allUsers.find((post) => post._id === props.post.user);
   console.log(userPost);
   return (
@@ -53,9 +54,7 @@ const Posts = (props) => {
           </div>
         </Link>
         <div className="IconsPublicVoted">
-          <button className="boton-like" onClick={likeIcon ? likePosts : null}>
-            <p className="like"> {like}</p>
-          </button>
+            <BsFillHeartFill onClick={likeIcon ? likePosts : null} className={like ? "likeActive" : "offLike"}/>
           <p>{likes}</p>
         </div>
       </div>

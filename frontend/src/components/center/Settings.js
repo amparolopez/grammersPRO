@@ -1,6 +1,5 @@
 import {useState} from "react"
 import Admin from "./settings/Admin"
-import Help from "./settings/Help"
 import { connect } from "react-redux";
 import userActions from "../../redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
@@ -25,14 +24,11 @@ const Settings = (props) => {
                     </>
                     : null
                     }
-                    <p onClick={()=>{setTipos("Help")}}>Help</p>
-                    <span>-</span>
                     <p onClick={() => handleLogOut()}>Log Out</p>
                 </div>
                 <div className="horizontal-line"></div>
                 <div className="TiposSettignsUser">
                     {tipos === "Admin" ? <Admin />:null}
-                    {tipos === "Help" ? <Help />:null}
                 </div>
             </div>
         </div>

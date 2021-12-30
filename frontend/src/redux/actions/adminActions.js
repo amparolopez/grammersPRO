@@ -7,7 +7,6 @@ const adminActions = {
             try{
                 const users = await axios.get("http://localhost:4000/api/users");
                 const modificado = []
-                // eslint-disable-next-line
                 users.data.response.map((user)=>{
                     const userF = {
                         email:user.email,
@@ -25,8 +24,8 @@ const adminActions = {
     obtenerAdmin : (user) => {
         return async (dispatch,getState) => {
             try{
-                // eslint-disable-next-line
                 const admin = await axios.put("http://localhost:4000/api/users",{...user})
+                return({success:true})
             }catch(error){
                 console.log(error)
             }
@@ -47,7 +46,7 @@ const adminActions = {
             console.log(post)
             try{
                 const banedpost = await axios.delete(`http://localhost:4000/api/admin/post/${post}`)
-                console.log(banedpost)
+                return({success:true})
             }catch(error){
                 console.log(error)
             }
@@ -57,7 +56,7 @@ const adminActions = {
         return async (dispatch, getState) => {
             try{
                 const banuser = await axios.delete(`http://localhost:4000/api/users/${id}`)
-                console.log(banuser)
+                return({success:true})
             }catch(error){
                 console.log(error)
             }

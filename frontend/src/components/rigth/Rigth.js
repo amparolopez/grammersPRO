@@ -208,7 +208,6 @@ const Rigth = (props) => {
                       </div>
                     </Link>
                   </div>
-                  <button className="btn-Follow">Follow</button>
                 </div>
               );
             })}

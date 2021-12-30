@@ -1316,3 +1316,9 @@ button:active {
      height: 75%;
   }
 }
+.likeActive{
+  color: var(--LikeAndNotify);
+}
+.offLike{
+  color:var(--OffColor)
+}

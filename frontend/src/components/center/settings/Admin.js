@@ -4,6 +4,7 @@ import {useEffect, useState} from "react"
 import {BsFillPersonCheckFill}  from "react-icons/bs";
 import {BsFillBookmarkXFill}  from "react-icons/bs";
 import {BsFillPersonXFill}  from "react-icons/bs";
+const Swal = require('sweetalert2');
 
 const Admin = (props) => {
 
@@ -19,22 +20,79 @@ const Admin = (props) => {
 
     console.log(props.users)
     
-    const banUser = (e) => {
+    const banUser = async(e) => {
         e.preventDefault()
-        props.adminBan(email)
+        const response = await props.adminBan(email)
+        if(response.success){
+            props.fetchUsers()
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+                })
+
+                Toast.fire({
+                icon: 'success',
+                title: 'banned user'
+})
+        }
     }
 
-    const handleSubmit=(e)=>{
+    const handleSubmit= async(e)=>{
         e.preventDefault()
         const admins = {
             idUser : admin,
             userAdmin : true
         }
-        props.obtenerAdmin(admins)
+        const response = await props.obtenerAdmin(admins)
+        if(response.success){
+            props.fetchUsers()
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: 'Successful Admin'
+              })
+        }
     }
-    const banPost=(e)=> {
+    const banPost= async(e)=> {
         e.preventDefault()
-        props.banedPost(post)
+        const response = await props.banedPost(post)
+            if(response.success){
+                props.fetchPost()
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'banned post'
+                  })
+            }
     }
     console.log(props.posts)
     return (

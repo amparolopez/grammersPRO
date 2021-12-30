@@ -55,9 +55,6 @@ const Center = (props) => {
                   >
                     All
                   </p>
-                  <p onClick={handleFilterFollowing}>Following</p>
-                  <p onClick={handleFilterNewest}>Newest</p>
-                  <p onClick={handleFilterPopular}>Popular</p>
                 </div>
               </div>
               <div className="ContainerTotalPublics">

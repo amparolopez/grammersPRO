@@ -20,18 +20,17 @@ const Left = ({ location, userData }) => {
               <Link to="/">Home</Link>
             </div>
             <div>
-              <FaUser
+            {userData.token.length > 0 ? <><FaUser
                 className={location === "/Profile" ? "ActiveSvg" : null}
               />
-              <Link to={`/Profile/${userData._id}`}>Profile</Link>
+               <Link to={`/Profile/${userData._id}`}>Profile</Link></> : null}
             </div>
             <div>
-              <BsFillBookmarkDashFill />
-              <Link to="/Save">Saved Post</Link>
-            </div>
-            <div>
+            {userData.token.length > 0 ? <>
               <AiTwotoneSetting />
               <Link to="/Settings">Settings</Link>
+            </>:null }
+              
             </div>
           </div>
         </div>

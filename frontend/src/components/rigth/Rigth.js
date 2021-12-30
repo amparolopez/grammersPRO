@@ -108,21 +108,12 @@ const Rigth = (props) => {
               <FaRegBell className="bell" />
               <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
             </>
-<<<<<<< HEAD
-            :
+          ) : (
             <div>
             <Link to ={'/Signup'} >Sign Up</Link>
             <Link to ={'/Signin'} >Sign In</Link>
             </div>
-        }
-=======
-          ) : (
-            <div>
-              <Link to={"/Signup"}>Sign Up</Link>
-              <Link to={"/Signin"}>Sign In</Link>
-            </div>
           )}
->>>>>>> 5639ea69e46e6be37c824a7e93a83fc38ffab4d8
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>

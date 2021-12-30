@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import postsActions from "../redux/actions/postsActions";
-import {  useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Toast from "sweetalert2";
 import userActions from "../redux/actions/userActions";
 import { Avatar } from "@mui/material";
-import{Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 const Posts = (props) => {
   const token = props.user.token;
   const [likeIcon, setLikeIcon] = useState(true);
@@ -38,30 +38,25 @@ const Posts = (props) => {
   };
 
   let like = likePost.includes(props.user._id) ? "❤️" : "🤍";
-    const userPost = allUsers.find(post => post._id === props.post.user)
- console.log(userPost)
+  const userPost = allUsers.find((post) => post._id === props.post.user);
+  console.log(userPost);
   return (
     <>
-    <Link to={`/Post/${props.post._id}`} className="publicContainerProfil">
-    
-        {/* {post.postImage && <img alt={post.postTitle className="ContainerImgPublic" src={require(`../../images/${post.postImage}`)} />} */}
-        <div className="publicProfilContainer">
+      {/* {post.postImage && <img alt={post.postTitle className="ContainerImgPublic" src={require(`../../images/${post.postImage}`)} />} */}
+      <div className="publicProfilContainer">
+        <Link to={`/Post/${props.post._id}`} className="publicContainerProfil">
           <div className="ProfilePublicTotal">
-            {userPost && <Avatar src={userPost.imgUrl} alt='profile' />}
+            {userPost && <Avatar src={userPost.imgUrl} alt="profile" />}
             <p>{props.post.postTitle && props.post.postTitle}</p>
           </div>
-          <div className="IconsPublicVoted">
-            <button
-              className="boton-like"
-              onClick={likeIcon ? likePosts : null}
-            >
-              <p className="like"> {like}</p>
-            </button>
-            <p>{likes}</p>
-          </div>
+        </Link>
+        <div className="IconsPublicVoted">
+          <button className="boton-like" onClick={likeIcon ? likePosts : null}>
+            <p className="like"> {like}</p>
+          </button>
+          <p>{likes}</p>
         </div>
-     
-      </Link>
+      </div>
     </>
   );
 };

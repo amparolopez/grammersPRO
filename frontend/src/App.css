@@ -1316,3 +1316,9 @@ button:active {
      height: 75%;
   }
 }
+
+.form-input-login{
+  margin: 1rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}

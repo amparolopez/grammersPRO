@@ -91,7 +91,7 @@ const FormSignUp = (props) => {
         <>
             <div className="containerForm">
                 <div className="userForm">
-                    <h3>Create an Account!</h3>
+                    <h3>Sign Up</h3>
                     <form onSubmit={handleSubmit}>
                         <div className="inputs">
                             <input type="text" name="UserName" placeholder="First Name" onChange={() => inputHandler(UserName, "userName")} ref={UserName} />
@@ -138,7 +138,7 @@ const FormSignUp = (props) => {
 
                             <GoogleLogin
                                 clientId="574668222379-d66arovv4jaa96l8s98rk9ad85snbgsc.apps.googleusercontent.com"
-                                buttonText="Sign Up with Google"
+                                buttonText="Google"
                                 onSuccess={responseGoogle}
                                 onFailure={responseGoogle}
                                 cookiePolicy={'single_host_origin'}

@@ -56,54 +56,49 @@ const FormSignIn = (props) => {
 
     return(
         <>
-        <div className="formSignIn-container">
-            <div className="app-wrapper" >
+        <div className="containerForm">
+            <div className="userForm" >
                 <div>
-                    <h2 className='title'>Sign In</h2>
+                    <h3>Sign In</h3>
                 </div>
-                <form className="form-wrapper" onSubmit={handleSubmit}>
-                    <div className='form-inputs'>
-                        <label htmlFor="email" className="form-label">
-                            Email
-                        </label>
+                <form  onSubmit={handleSubmit}>
+                    <div className='inputs'>
+                       
                         <input
                             id='email'
                             type='email'
                             name='email'
-                            className='form-input'
+                            
                             placeholder='Enter your email'
                             onChange={() => inputHandler(email, "email")} ref={email}
                         />
-                    </div>
-                    <div className='form-inputs'>
-                        <label htmlFor="password" className="form-label">
-                            Password
-                        </label>
+                                           
                         <input
                             id='password'
                             type='password'
                             name='password'
-                            className='form-input'
+                           
                             placeholder='Enter your password'
                             onChange={() => inputHandler(password, "password")} ref={password}
                         />
                     </div>
-
-                    <button className="form-input-btn" type="submit">
+                    <div className="sign-Btn">
+                    <button className="btn-sign" type="submit">
                         Sign in
                     </button>
-                    <div>
-                        <span className="form-input-login">
-                            You don't have an account? Sign up <a href="/signUp">here</a>
-                        </span>
-                    </div>
+                  
                     <GoogleLogin
                         clientId="574668222379-d66arovv4jaa96l8s98rk9ad85snbgsc.apps.googleusercontent.com"
-                        buttonText="SignIn with Google"
+                        buttonText="Google"
                         onSuccess={responseGoogle}
                         onFailure={responseGoogle}
                         cookiePolicy={"single_host_origin"}
                     />
+                     </div>
+                     <h4 className="form-input-login">
+                            You don't have an account? Sign up <a href="/signUp">here</a>
+                        </h4>
+                   
                 </form>
             </div>
         </div>

@@ -32,6 +32,13 @@ app.set('port', process.env.PORT || 4000)
 
 app.use('/api', Router)
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname + "/client/build/index.html"));
+  });
+}
+
 app.listen(app.get('port'), () => {
     console.log('server is listening on port ', app.get('port'))
 })
@@ -53,12 +60,7 @@ app.listen(app.get('port'), () => {
 // app.use(passport.initialize());
 // app.use('/api', Router);
 
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static("client/build"));
-//     app.get("*", (req, res) => {
-//       res.sendFile(path.join(__dirname + "/client/build/index.html"));
-//     });
-// }
+
 
 // app.listen(process.env.PORT || "5000", () => {
 //     console.log(`El server esta en el puerto ${process.env.PORT || "5000"}`);

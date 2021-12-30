@@ -48,9 +48,11 @@ Router.route("/post/like/:id")
 Router.route("/users")
   .get(getUser)
   .put(obtenerAdmin)
+
+  Router.route("/users/:id")
   .delete(adminBan)
 
-  Router.route("/admin/post")
+  Router.route("/admin/post/:id")
   .delete(adminBanPost)
 // Router.route("/admin/user").delete(adminBan)
 

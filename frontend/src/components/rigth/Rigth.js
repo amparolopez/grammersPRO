@@ -147,7 +147,7 @@ const Rigth = (props) => {
                 required
               />
               <Button variant="contained" component="label" color="secondary">
-                <AddIcon />
+                <AiFillFolderAdd />
                 Upload File
                 <input
                   type="file"
@@ -167,7 +167,7 @@ const Rigth = (props) => {
                     onClick={removeSelectedImage}
                     style={{ color: "red" }}
                   >
-                    <DeleteIcon />
+                    <AiTwotoneDelete />
                     delete
                   </IconButton>
                 </>
@@ -224,7 +224,7 @@ const Rigth = (props) => {
                     {/* {lastPost.postImage && (
                       <img
                         alt={lastPost.postTitle}
-                        src={require(`../../images/${lastPost.postImage}`)}
+                        // src={require(`../../images/${lastPost.postImage}`)}
                         className="ActivityImg"
                       ></img>
                     )} */}
@@ -235,7 +235,7 @@ const Rigth = (props) => {
                           <AiFillHeart />
                           <h6 className="text">{lastPost.comment}</h6>
                           <AiFillMessage />
-                          <h6 className="text">{lastPost.comment}</h6>
+                          <h6 className="text">{lastPost.comment}</h6> */}
                         </div>
                       </div>
                     </div>

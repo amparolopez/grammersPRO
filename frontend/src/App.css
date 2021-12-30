@@ -910,7 +910,65 @@ button:active {
   height: 90%;
   padding-top: 2.5%;
 }
-
+.AdminUserDeleteContent{
+  width: 100%;
+  height: 35%;
+  background-color: var(--ColorPurple);
+  border-radius: 20px;
+  border: 4px solid var(--ColorTopMenu);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.AdminUserDeleteContent h1{
+  width:100%;
+  height:15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ColorTopMenu);
+}
+.AdminUserDeleteContent div{
+  width: 70%;
+  height: 75%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.AdminUserDeleteContent div form{
+  height:100%;
+  width: 100;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.AdminUserDeleteContent div form select{
+  height:30%;
+  width: 75%;
+  background-color: #8335ff;
+  color: var(--ColorTopMenu);
+  font-family:"Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 1.1em;
+}
+.AdminUserDeleteContent .AdminUserDelImg{
+  width: 25%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: #904bff;
+  border-radius: 20px;
+  border: 4px solid var(--ColorTopMenu);
+}
+.AdminUserDelImg img{
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
   @media (max-width: 1220px) {
     .ProfilePublicTotal div {
       display: none;
@@ -928,4 +986,183 @@ button:active {
   }
 .userForm h3{
   margin: 1rem;
+}
+
+@media (max-width: 362px) {
+    .userForm{
+      border-radius: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+  .rigthUsers{
+    display: none;
+    width: 0%;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .CenterContent{
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .LeftNavbar{
+    width: 30%;
+  }
+  div .vertical-line{
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .containerHome{
+    flex-direction: column;
+  }
+  .ContenedorCenter{
+    width: 100%
+  }
+  div .vertical-line{
+    display: none;
+  }
+
+  .CenterContent{
+    width: 100%;
+  }
+  .LeftNavbar{
+    width: 100%;
+  }
+  .LogoLeft {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MenuTitleSecond{
+  display: none;
+}
+
+.MenuLeft .MenuLeftDirection{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+
+}
+.ContenedorProfileLeft{
+  display: none;
+}
+
+.AccountLeft{
+  display: none;
+}
+.LeftNavbar{
+  height: 30%;
+} 
+.LeftContainer{
+  width: 100%;
+}
+.ContenedorPublicCen{
+  height: 100%;
+}
+.ContenedorFilerCent{
+  flex-direction: column;
+  height: 5rem;
+}
+.ContenedorFilerCent div{
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2rem;
+}
+
+.ContainerTotalPublics{
+  display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    padding-top: 2rem;
+}
+.publicContainerProfil{
+  width: 70%;
+  height: 70%;
+}
+
+.ContainerTotalPublics{
+  overflow-y: scroll;
+}
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+		-webkit-tap-highlight-color: transparent;
+}
+
+.noselect {
+	width: 150px;
+	height: 50px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	background: red;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+	background: #e62222;
+}
+
+.noselect, .noselect span {
+	transition: 200ms;
+}
+
+.noselect .text {
+	transform: translateX(35px);
+	color: white;
+	font-weight: bold;
+}
+
+.noselect .icon {
+	position: absolute;
+	border-left: 1px solid #c41b1b;
+	transform: translateX(110px);
+	height: 40px;
+	width: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.noselect svg {
+	width: 15px;
+	fill: #eee;
+  height: 60%;
+  width: 100%
+}
+
+.noselect:hover {
+	background: #ff3636;
+}
+
+.noselect:hover .text {
+	color: transparent;
+}
+
+.noselect:hover .icon {
+	width: 150px;
+	border-left: none;
+	transform: translateX(0);
+}
+
+.noselect:focus {
+	outline: none;
 }

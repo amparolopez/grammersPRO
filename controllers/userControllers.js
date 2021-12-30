@@ -85,18 +85,18 @@ const userControllers = {
         }
     },
     adminBan: async (req, res) => {
-        const {idUser} = req.body
+        const {id} = req.params
         try{
-            const user = await User.findOneAndDelete({_id : idUser})
+            const user = await User.findOneAndDelete({_id : id})
             res.json({success: true, response: user});
         }catch(error){
             res.json({success: false, response: error})
         }
     },
     adminBanPost: async (req, res) => {
-        const {idPost} = req.body
+        const {id} = req.params
         try{
-            const post = await Post.findOneAndDelete({_id : idPost})
+            const post = await Post.findOneAndDelete({_id : id})
             res.json({success: true, response: post});
         }catch(error){
             res.json({success: false, response: error})

@@ -12,7 +12,7 @@ const {
   postAPost,
   deleteAPost,
   editAPost,
-  likeDislike,
+  likeDislikePost,
   postACommentary,
   getCommentaries,
   editCommentary,
@@ -21,7 +21,7 @@ const {
 
 Router.route("/post")
   .get(getAllPosts)
-  .post( postAPost);
+  .post(postAPost);
 
 Router.route("/post/:id").delete(deleteAPost).put(editAPost);
 
@@ -38,13 +38,14 @@ Router.route("/user/signin").post(signIn);
 Router.route("/user/signin/token").get(
   passport.authenticate("jwt", { session: false }),
   startWithToken
-  );
-  
-  Router.route("/like/:id").put(likeDislike);
-  
-  // Routes Admin
-  
-  Router.route("/users")
+);
+
+Router.route("/post/like/:id")
+.put(likeDislikePost);
+
+// Routes Admin
+
+Router.route("/users")
   .get(getUser)
   .put(obtenerAdmin)
   .delete(adminBan)

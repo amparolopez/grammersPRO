@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { useEffect, useState } from "react";
 // import Comments from '../Comments';
 const Center = (props) => {
+
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
   const { getAllPosts, user } = props;
@@ -35,8 +36,9 @@ const Center = (props) => {
   };
 
   const handleFilterFollowing = () => {
-    const postFilter = postsAux.filter((post) => post.user === user);
+    const postFilter = postsAux.filter((post) => post.user === props.user);
   };
+<<<<<<< HEAD
 
   return (
     <div className="CenterContent">
@@ -83,22 +85,43 @@ const Center = (props) => {
                       
                     </div>
                   );
+=======
+  // console.log(props)
+
+
+  return (
+    <>
+      <div className="CenterContent">
+        <div className="ContenedorCenter">
+          <div className="ContenedorSecCenter">
+            <div className="ContenedorPublicCen">
+              <div className="ContenedorFilerCent">
+                <p>Feeds</p>
+                <div>
+                  <p onClick={() => setPosts(postsAux)} className="filtActiveCen">All</p>
+                  <p onClick={handleFilterFollowing}>Following</p>
+                  <p onClick={handleFilterNewest}>Newest</p>
+                  <p onClick={handleFilterPopular}>Popular</p>
+                </div>
+              </div>
+              {
+                props.posts.map(post => {
+                  return <Posts post={post} />
+>>>>>>> 135af57670afb53d22263971be31af70bfa21e50
                 })
-              ) : (
-                <p>There is no post</p>
-              )}
+              }
             </div>
           </div>
         </div>
+        <div className="vertical-line"></div>
       </div>
-      <div className="vertical-line"></div>
-    </div>
+    </>
   );
 };
 const mapStateToProps = (state) => {
   return {
-    post: state.postsReducers.post,
-    user: state.userReducers.userLogg,
+    posts: state.postsReducers.post,
+    user: state.userReducers.userData,
   };
 };
 const mapDispatchToProps = {

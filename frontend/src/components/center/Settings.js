@@ -8,7 +8,6 @@ import userActions from "../../redux/actions/userActions";
 const Settings = (props) => {
 
     const [tipos, setTipos] = useState("Edit")
-    console.log(props.user)
     return (
         <div className="CenterContentSettings">
             <div className="ContenedorCenterSettings">

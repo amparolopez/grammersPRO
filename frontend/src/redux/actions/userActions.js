@@ -7,7 +7,6 @@ const userActions = {
         return async (dispatch, getState) => {
             try {
                 const user = await axios.post('http://localhost:4000/api/user/signup', { ...User });
-                console.log(user)
                 if (user.data.success && !user.data.error) {
                     localStorage.setItem("token", user.data.response.token);
                     dispatch({ type: 'user', payload: user.data.response.newUser })
@@ -20,7 +19,6 @@ const userActions = {
                       })
                 } else {
                     const error = user.data.answer[0].message
-                    console.log(user.data)
                     if(error){
                     
                     Swal.fire({
@@ -39,20 +37,15 @@ const userActions = {
 
     userSignIn: (userLogIn) => {
         return async (dispatch, getState) => {
-
             try {
-
                 const user = await axios.post('http://localhost:4000/api/user/signin', { ...userLogIn });
-                console.log(user)
                 if (user.data.success) {
                  
                   localStorage.setItem('token', user.data.answer.token);
                   localStorage.setItem('userName', user.data.answer.userName);
-                  console.log(user.data.answer)
                   dispatch({ type: 'user', payload: user.data.answer })
                 } else {
                   const error = user.data.answer[0].message
-                  console.log(user.data)
                     Swal.fire({
                         position: 'top.end',
                         icon: 'error',
@@ -78,8 +71,8 @@ const userActions = {
             showConfirmButton: false,
             timer: 3000
         })
-        dispatch({ type: 'logOut', payload: {} })
         localStorage.removeItem("token", "userLogged")
+        dispatch({ type: 'logOut', payload:{ email:"", img:"", firstName:"", token: "", _id:"", userAdmin:"" }})
     }
         
   },
@@ -98,19 +91,19 @@ const userActions = {
           payload: {
             token,
             firstName: response.data.answer.firstName,
-            img: response.data.answer.imgUrl,
+            imgUrl: response.data.answer.imgUrl,
             _id: response.data.answer.id,
             userAdmin: response.data.answer.userAdmin,
           },
         });
       } catch (error) {
-        // return dispatch({ type: 'logOut'})
+        return dispatch({ type: 'logOut'})
       }
     };
   },
   getUsers: () => {
     return async (dispatch, getstate) => {
-      const res = await axios.get("http://localhost:4000/api/post");
+      const res = await axios.get("http://localhost:4000/api/user/signup");
       if (res.data.success) {
         return res.data;
       } else {
@@ -118,6 +111,18 @@ const userActions = {
       }
     };
   },
+  followers: (user) => {
+    return async (dispatch,getState) => {
+      try{
+          const res = await axios.put("http://localhost:4000/api/users",{...user})
+          if(res.data.success){
+            return res.data
+          }
+      }catch(error){
+          console.log(error)
+      }
+  }
+  }
 };
 
 export default userActions;

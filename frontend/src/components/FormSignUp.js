@@ -19,7 +19,7 @@ const FormSignUp = (props) => {
         email: "",
         password: "",
         imgUrl: "",
-        // job: "",
+        //job: "",
         country: ""
     })
 
@@ -29,7 +29,7 @@ const FormSignUp = (props) => {
        
         if (user.errors) {
             
-            console.log(user.answer)
+
             user.errors.map((e) =>
                 toast.warning(e.message, {
                     position: "top-left",
@@ -71,7 +71,7 @@ const FormSignUp = (props) => {
 
 
     const responseGoogle = (res) => {
-        console.log(res);
+
         let googleUser = {
             userName: res.profileObj.givenName,
             lastName: res.profileObj.familyName,
@@ -114,6 +114,7 @@ const FormSignUp = (props) => {
                             </select>
                             <select name="job" onChange={handlerSelect}>
                                 <option>Choose your job</option>
+                                <option>Programmer</option>
                             </select>
                             <input
                                 type="email"

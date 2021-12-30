@@ -22,6 +22,7 @@ const postsActions = {
             postTitle: newPost.title,
             postText: newPost.body,
             postImage: newPost.img,
+            user: newPost.user
           },
           {
             headers: {

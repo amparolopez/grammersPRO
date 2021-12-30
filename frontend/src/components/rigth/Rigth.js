@@ -1,6 +1,6 @@
-import { FaRegBell, FaCloudUploadAlt, FaEarlybirds } from "react-icons/fa";
-import { useState, useRef } from "react";
-import { AiFillHeart, AiFillMessage, AiFillTag } from "react-icons/ai";
+import { FaRegBell, FaCloudUploadAlt } from "react-icons/fa";
+import { useState, useRef, useEffect } from "react";
+import { AiFillHeart, AiFillMessage } from "react-icons/ai";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -10,17 +10,24 @@ import Avatar from "@mui/material/Avatar";
 import { connect } from "react-redux";
 import postsActions from "../../redux/actions/postsActions";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import axios from "axios";
 import userActions from "../../redux/actions/userActions";
+import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Autocomplete } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
   const [postState, setPostState] = useState();
+  const [lastPost, setLastPost] = useState([]);
+  const [userSuggest, setUserSuggest] = useState();
+  const [allUsers, setAllUsers] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
   const [file, setFile] = useState(null);
-  const { postAPost, user } = props;
+  const { postAPost, userData, getAllPosts, getUsers } = props;
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -33,6 +40,7 @@ const Rigth = (props) => {
     const newPost = {
       title: postTitleRef.current.value,
       body: postRef.current.value,
+      user: userData._id,
     };
     if (file) {
       const data = new FormData();
@@ -44,12 +52,13 @@ const Rigth = (props) => {
         await axios.post("http://localhost:4000/api/upload", data);
       } catch (err) {}
     }
-    postAPost(newPost).then(res => setPostState(res.success))
-    if(postState){
-      console.log('su post se a subido exitosamente')
-      handleClose()
-    }else{
-      console.log('error al subir post')
+    postAPost(newPost).then((res) => setPostState(res.success));
+    console.log(postState)
+    if (postState) {
+      console.log("su post se a subido exitosamente");
+      handleClose();
+    } else {
+      console.log("error al subir post");
     }
   };
 
@@ -57,33 +66,70 @@ const Rigth = (props) => {
     setOpen(false);
   };
 
+  const removeSelectedImage = () => {
+    setFile();
+  };
+
+  useEffect(() => {
+    getAllPosts().then((res) => {
+      const lastPostes = res.response[res.response.length - 1];
+      setLastPost(lastPostes);
+    });
+    getUsers().then((res) => {
+      setAllUsers(res.response);
+      setUserSuggest(res.response.slice(0, 3));
+    });
+  }, []);
+
+  const navigate = useNavigate();
+
+  function handleChange(e) {
+    const idUser = allUsers.find(user => user.email === e.target.innerText)
+    navigate(`/Profile/${idUser._id}`);
+  }
   return (
     <div className="rigthUsers">
       <div className="ContainerTotalRigthUser">
         <div className="Searchs">
-          {props.user.token ?
+          {userData.token ? (
             <>
-          <input
-            placeholder="Search"
-            className="inputSearch"
-            type="text"
-          ></input>
-          <FaRegBell className="bell" />
-          <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
+              {allUsers && (
+                <Autocomplete
+                  id="free-solo-demo"
+                  freeSolo
+                  fullWidth
+                  onChange={e => handleChange(e)}
+                  options={allUsers.map((option) => option.email)}
+                  renderInput={(user, key) => (
+                    <TextField {...user} key={key} label="Search users" />
+                  )}
+                />
+              )}
+              <FaRegBell className="bell" />
+              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
             </>
+<<<<<<< HEAD
             :
             <div>
             <Link to ={'/Signup'} >Sign Up</Link>
             <Link to ={'/Signin'} >Sign In</Link>
             </div>
         }
+=======
+          ) : (
+            <div>
+              <Link to={"/Signup"}>Sign Up</Link>
+              <Link to={"/Signin"}>Sign In</Link>
+            </div>
+          )}
+>>>>>>> 5639ea69e46e6be37c824a7e93a83fc38ffab4d8
         </div>
         <Dialog open={open} onClose={handleClose}>
           <DialogTitle className="postLabel">Create a post</DialogTitle>
           <DialogContent style={{ display: "flex" }}>
             <Avatar
-              alt="Remy Sharp"
-              src="/static/images/avatar/1.jpg"
+              alt={userData.username && userData.username}
+              src={userData.imgUrl}
               style={{ marginRight: "2rem", marginTop: "1rem" }}
             />
             <form onSubmit={(e) => handleSubmit(e)}>
@@ -92,6 +138,7 @@ const Rigth = (props) => {
                 inputRef={postTitleRef}
                 id="standard-multiline-static"
                 variant="standard"
+                required
               />
               <TextField
                 label="What are you gonna tell us?"
@@ -101,8 +148,10 @@ const Rigth = (props) => {
                 rows={4}
                 variant="standard"
                 className="postInput"
+                required
               />
-              <Button variant="contained" component="label">
+              <Button variant="contained" component="label" color="secondary">
+                <AddIcon />
                 Upload File
                 <input
                   type="file"
@@ -111,6 +160,22 @@ const Rigth = (props) => {
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </Button>
+              {file && (
+                <>
+                  <img
+                    alt="uploaded"
+                    src={URL.createObjectURL(file)}
+                    className="ContainerImgPublic"
+                  />
+                  <IconButton
+                    onClick={removeSelectedImage}
+                    style={{ color: "red" }}
+                  >
+                    <DeleteIcon />
+                    delete
+                  </IconButton>
+                </>
+              )}
               <DialogActions>
                 <button onClick={handleClose} className="btn-Follow">
                   Cancel
@@ -127,66 +192,67 @@ const Rigth = (props) => {
           <Link to="/Browser">See All</Link>
         </div>
         <div className="userContainer">
-          <div className="userFollow">
-            <div className="imgText">
-              <FaEarlybirds className="userImg" />
-              <div className="userText">
-                <h4>Pajarito Ito</h4>
-                <h6 className="text">@Pajarito.Ito</h6>
-              </div>
-            </div>
-            <button className="btn-Follow">Follow</button>
-          </div>
-          <div className="userFollow">
-            <div className="imgText">
-              <FaEarlybirds className="userImg" />
-              <div className="userText">
-                <h4>Pajarito Ito</h4>
-                <h6 className="text">@Pajarito.Ito</h6>
-              </div>
-            </div>
-            <button className="btn-Follow">Follow</button>
-          </div>
-          <div className="userFollow">
-            <div className="imgText">
-              <FaEarlybirds className="userImg" />
-              <div className="userText">
-                <h4>Pajarito Ito</h4>
-                <h6 className="text">@Pajarito.Ito</h6>
-              </div>
-            </div>
-            <button className="btn-Follow">Follow</button>
-          </div>
+          {userSuggest &&
+            userSuggest.map((user, key) => {
+              return (
+                <div className="userFollow" key={key}>
+                  <div className="imgText">
+                    <Link
+                      to={`/Profile/${user._id}`}
+                      style={{ display: "flex", textDecoration: "none" }}
+                    >
+                      <Avatar
+                        alt={user.username && user.username}
+                        src={user.imgUrl}
+                        className="userImg"
+                      />
+                      <div className="userText">
+                        <h4>{user.userName + " " + user.lastName}</h4>
+                        <h6 className="text">{user.email}</h6>
+                      </div>
+                    </Link>
+                  </div>
+                  <button className="btn-Follow">Follow</button>
+                </div>
+              );
+            })}
         </div>
         <div className="horizontal-line"></div>
         <div className="latestPost">
           <h4>Latest Post Activity</h4>
-
-          <div>
-            <div className="imgActivity">
-              <div className="cardPost">
-                <div className="cardActivity">
-                  <div className="ActivityImg"></div>
-                  <div className="cardText">
-                    <div className="cardIcon">
-                      <h4 className="minimalStair">Minimalist Stairs</h4>
-                      <div className="iconActivity">
-                        <AiFillHeart />
-                        <h6 className="text">12</h6>
-                        <AiFillMessage />
-                        <h6 className="text">9</h6>
-                        <AiFillTag />
-                        <h6 className="text">3</h6>
+          {lastPost && (
+            <div>
+              <div className="imgActivity">
+                <div className="cardPost">
+                  <div className="cardActivity">
+                    {/* {lastPost.postImage && (
+                      <img
+                        alt={lastPost.postTitle}
+                        src={require(`../../images/${lastPost.postImage}`)}
+                        className="ActivityImg"
+                      ></img>
+                    )} */}
+                    <div className="cardText">
+                      <div className="cardIcon">
+                        <h4 className="minimalStair">{lastPost.postTitle}</h4>
+                        <div className="iconActivity">
+                          <AiFillHeart />
+                          <h6 className="text">{lastPost.comment}</h6>
+                          <AiFillMessage />
+                          <h6 className="text">{lastPost.comment}</h6>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div>
-                  <h4 className="textAllPost">See All Post</h4>
+                  <div>
+                    <Link to="/" className="textAllPost">
+                      See All Post
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="InfoRigthApp">
@@ -198,13 +264,15 @@ const Rigth = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducers.userData
+    userData: state.userReducers.userData,
   };
 };
 
 const mapDispatchToProps = {
   postAPost: postsActions.postAPost,
   logOut: userActions.logOut,
+  getAllPosts: postsActions.getAllPosts,
+  getUsers: userActions.getUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Rigth);

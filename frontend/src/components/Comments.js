@@ -13,6 +13,59 @@
 //     const [comments, setComments] = useState (props.comments)
 //     const inputValue = useRef()
 
+<<<<<<< HEAD
+=======
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      }),
+
+
+    const deleteComment = (postId, commentId, token) => {
+        props.deleteComment(postId, commentId, token)
+        .then(response => {
+            if (response.success)
+            setComments(comments.filter(comment => comment._id !== commentId ))
+            else throw new Error()
+        }) .catch (error)
+        {}
+    },
+
+    const editComment = (commentId, comment, token) => {
+        props.editComment(commentId, comment, token)
+        .then((response) => {
+            if (response.success){
+                comment.forEach(commentAct => {
+                    if (commentAct._id === commentId){
+                        commentAct.comment = comment
+                    }
+                }) 
+                setComments(comments)
+                setRender(!render)
+            }   
+        } ) .catch(error)
+        {}
+    },
+
+    const sendHandler = () => {
+        const commentValue = inputValue.current.value
+
+        props.addComment(props.postId, commentValue, token)
+        .then( res  => {
+            setComments(res.response.data.response)
+            commentValue = ""
+        }) .catch(error)
+        {}
+    }, 
+>>>>>>> 5639ea69e46e6be37c824a7e93a83fc38ffab4d8
     
 //     const Toast = Swal.mixin({
 //         toast: true,

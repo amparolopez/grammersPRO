@@ -1,6 +1,7 @@
 const User = require('../models/User')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const Post = require('../models/Post')
 
 const userControllers = {
 
@@ -9,7 +10,7 @@ const userControllers = {
         
         try {
             const userExists = await User.findOne({ email })
-            console.log(userExists)
+
             if (userExists) {
                 res.json({ success: false, error:true, answer:[{message:"This email is already registered"}]})
                 
@@ -25,13 +26,13 @@ const userControllers = {
                     googleFlag
                 })
                 const token = jwt.sign({...newUser},process.env.SECRET_KEY)//2 args - 2do clave secreta
-                 console.log(token)
+
                 await newUser.save()
-                console.log(newUser)
+
                 res.json({ success: true, response: {token,newUser}, error: null })
             }
         } catch (error) {
-            console.log(error)
+
             res.json({ success: false, answer: null, error: error })
         }
     },
@@ -46,7 +47,7 @@ const userControllers = {
                 let samePass = bcryptjs.compareSync(password, userExists.password)
                 if (samePass) {
                     const token = jwt.sign({...userExists},process.env.SECRET_KEY)
-                    console.log(token)
+       
                     const { userName, imgUrl, email, _id, userAdmin } = userExists
                     
                     res.json({ success: true, answer: { token, userName, imgUrl, email, id:_id , userAdmin }, error: null })
@@ -55,7 +56,7 @@ const userControllers = {
                 }
             }
             if (userExists.googleFlag && !googleFlag) throw new Error("Invalid email");
-            console.log(userExists.googleFlag)
+
         } catch (error) {
             res.json({ success: false, answer: null, error: error })
         }
@@ -74,10 +75,28 @@ const userControllers = {
     obtenerAdmin: async (req, res) => {
         const {userAdmin, idUser} = req.body
         try{
-            const user = await User.findOneAndUpdate({_id : idUser}, {userAdmin : userAdmin});
+            const user = await User.findOneAndUpdate({email : idUser}, {userAdmin : userAdmin});
             res.json({ success: true, response: user });
         }catch(error){
-            res.json({succes:null})
+            res.json({success: false, response: error})
+        }
+    },
+    adminBan: async (req, res) => {
+        const {idUser} = req.body
+        try{
+            const user = await User.findOneAndDelete({_id : idUser})
+            res.json({success: true, response: user});
+        }catch(error){
+            res.json({success: false, response: error})
+        }
+    },
+    adminBanPost: async (req, res) => {
+        const {idPost} = req.body
+        try{
+            const post = await Post.findOneAndDelete({_id : idPost})
+            res.json({success: true, response: post});
+        }catch(error){
+            res.json({success: false, response: error})
         }
     }
   }

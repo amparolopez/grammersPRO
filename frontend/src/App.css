@@ -328,27 +328,29 @@ div .vertical-line {
   color: var(--LikeAndNotify);
 }
 .rigthUsers {
-  padding: 2rem;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .inputSearch {
-  height: 3.5rem;
+  height: 3rem;
   border: 1px solid var(--OffColor);
   color: var(--OffColor);
   border-radius: 3.5rem;
   width: 10rem;
   text-align: center;
   font-size: 1.2rem;
+  margin-top: 1rem;
 }
 .bell {
   width: 3.5rem;
   height: 3.5rem;
-  padding: 15px;
+  padding: 13px;
   background-color: var(--ColorSubmit);
   border-radius: 50%;
   color: var(--ColorTopMenu);
+  margin-top: 1rem;
 }
 .bell:hover {
   background-color: var(--ColorPurple);
@@ -359,6 +361,7 @@ div .vertical-line {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+
 }
 .Suggestions {
   display: flex;
@@ -1312,4 +1315,15 @@ button:active {
   .publicContainerProfil{
      height: 75%;
   }
+.loginImg{
+  height: 2rem;
+  width: 2rem;
+  color: rgba(169, 116, 255,1);
 }
+
+.dropDown{
+  margin: 2rem;
+}
+signIn-out{
+  text-decoration: none;
+}}

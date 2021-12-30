@@ -16,7 +16,7 @@ import userActions from "../../redux/actions/userActions";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Autocomplete } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
@@ -53,7 +53,7 @@ const Rigth = (props) => {
       } catch (err) {}
     }
     postAPost(newPost).then((res) => setPostState(res.success));
-    console.log(postState)
+    console.log(postState);
     if (postState) {
       console.log("su post se a subido exitosamente");
       handleClose();
@@ -84,7 +84,7 @@ const Rigth = (props) => {
   const navigate = useNavigate();
 
   function handleChange(e) {
-    const idUser = allUsers.find(user => user.email === e.target.innerText)
+    const idUser = allUsers.find((user) => user.email === e.target.innerText);
     navigate(`/Profile/${idUser._id}`);
   }
   return (
@@ -94,19 +94,23 @@ const Rigth = (props) => {
           {userData.token ? (
             <>
               {allUsers && (
-                <Autocomplete
-                  id="free-solo-demo"
-                  freeSolo
-                  fullWidth
-                  onChange={e => handleChange(e)}
-                  options={allUsers.map((option) => option.email)}
-                  renderInput={(user, key) => (
-                    <TextField {...user} key={key} label="Search users" />
-                  )}
-                />
+                <div style={{display:"flex",width:"100%"}}>
+                  <Autocomplete
+                    id="free-solo-demo"
+                    freeSolo
+                    fullWidth
+                    onChange={(e) => handleChange(e)}
+                    options={allUsers.map((option) => option.email)}
+                    renderInput={(user, key) => (
+                      <TextField {...user} key={key} label="Search users" />
+                    )}
+                  />
+                  <FaCloudUploadAlt
+                    className="bell"
+                    onClick={handleClickOpen}
+                  />
+                </div>
               )}
-              <FaRegBell className="bell" />
-              <FaCloudUploadAlt className="bell" onClick={handleClickOpen} />
             </>
           ) : (
             <div>

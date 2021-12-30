@@ -3,7 +3,6 @@ const initialState = {
 }
 
 const postsReducers = (state = initialState, action) => {
-   console.log(action)
     switch (action.type){
         case 'getPost':
             return {

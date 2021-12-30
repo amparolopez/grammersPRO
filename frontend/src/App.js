@@ -10,7 +10,9 @@ import SignIn from './pages/SignIn';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home2 from './pages/Home2'
+import PostNoProps from './components/Post'
 
+const Post = withRouter(PostNoProps)
 const HomeRouter = withRouter(Home)
 
 function App(props) {
@@ -29,6 +31,7 @@ function App(props) {
           <Route path="/Browser" element={<HomeRouter />}/>
           <Route path="/Settings" element={<HomeRouter />}/>
           <Route path="/" key="home" element={<HomeRouter/>} />
+          <Route path="/Post/:id" element={<Post/>}/>
           {props.user.token !== "" ?
             <Route path="*" key="home" element={<Home2 />}/>
           : 

@@ -7,7 +7,7 @@ const Center = (props) => {
 
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
-  const { getAllPosts, user } = props;
+  const { getAllPosts } = props;
 
   useEffect(() => {
     getAllPosts().then((res) => {
@@ -55,8 +55,8 @@ const Center = (props) => {
               </div>
               <div className="ContainerTotalPublics">
               {
-                props.posts.map(post => {
-                  return <Posts post={post} />
+                props.posts.map((post, key) => {
+                  return <Posts post={post} key={key} />
                 })
               }
               </div>

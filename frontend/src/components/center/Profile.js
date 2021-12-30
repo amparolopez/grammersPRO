@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import postsActions from "../../redux/actions/postsActions";
 import { useParams } from "react-router-dom";
 import userActions from "../../redux/actions/userActions";
+import Posts from "../Posts";
 
 const Profile = (props) => {
   const [posts, setPosts] = useState([]);
@@ -20,7 +21,7 @@ const Profile = (props) => {
       setUsers(res.response)
     );
   }, []);
-console.log(posts)
+
   let userProfile = users.find((user) => user._id === id);
   const postProfile = posts.filter((posts) => posts.user === id);
 
@@ -74,10 +75,10 @@ console.log(posts)
                 </div>
               </div>
               <div className="horizontal-line"></div>
-              <div className="PostUserSolari">
+              <div className="ContainerTotalPublics">
                 {postProfile &&
-                  postProfile.map((post) => {
-                    return <h3>post</h3>;
+                  postProfile.map((post, key) => {
+                    return <Posts post={post} key={key} />;
                   })}
               </div>
             </>

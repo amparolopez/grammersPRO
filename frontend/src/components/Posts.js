@@ -1,16 +1,21 @@
 import { connect } from "react-redux";
 import postsActions from "../redux/actions/postsActions";
-import Comments from "../components/Comments";
-import { useEffect, useState } from "react";
+import {  useState, useEffect } from "react";
 import Toast from "sweetalert2";
-
+import userActions from "../redux/actions/userActions";
+import { Avatar } from "@mui/material";
+import{Link} from 'react-router-dom'
 const Posts = (props) => {
   const token = props.user.token;
-
   const [likeIcon, setLikeIcon] = useState(true);
   const [likePost, setLikePosts] = useState(props.post.like);
   const [likes, setLikes] = useState(props.post.like.length);
-  console.log(props.post);
+  const [allUsers, setAllUsers] = useState([]);
+  useEffect(() => {
+    props.getUsers().then((res) => {
+      setAllUsers(res.response);
+    });
+  }, []);
 
   const likePosts = async () => {
     setLikeIcon(false);
@@ -33,14 +38,16 @@ const Posts = (props) => {
   };
 
   let like = likePost.includes(props.user._id) ? "❤️" : "🤍";
-
+    const userPost = allUsers.find(post => post._id === props.post.user)
+ console.log(userPost)
   return (
     <>
-      <div className="publicContainerProfil">
-        {/* {post.postImage && <img className="ContainerImgPublic" src={require(`../../images/${post.postImage}`)} />} */}
+    <Link to={`/Post/${props.post._id}`} className="publicContainerProfil">
+    
+        {/* {post.postImage && <img alt={post.postTitle className="ContainerImgPublic" src={require(`../../images/${post.postImage}`)} />} */}
         <div className="publicProfilContainer">
           <div className="ProfilePublicTotal">
-            <div></div>
+            {userPost && <Avatar src={userPost.imgUrl} alt='profile' />}
             <p>{props.post.postTitle && props.post.postTitle}</p>
           </div>
           <div className="IconsPublicVoted">
@@ -51,15 +58,10 @@ const Posts = (props) => {
               <p className="like"> {like}</p>
             </button>
             <p>{likes}</p>
-            {/* <p>300</p> */}
           </div>
         </div>
-      </div>
-      {/* ); */}
-
-      {/* : (
-                                    <p>There is no post</p>
-                                ) */}
+     
+      </Link>
     </>
   );
 };
@@ -74,6 +76,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   getAllPosts: postsActions.getAllPosts,
   likeDislikePost: postsActions.likeDislikePost,
+  getUsers: userActions.getUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);

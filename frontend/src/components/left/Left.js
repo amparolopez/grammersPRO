@@ -75,10 +75,6 @@ const Left = ({ location, userData }) => {
               <Link to={`/Profile/${userData._id}`}>Profile</Link>
             </div>
             <div>
-              <BsFillBookmarkDashFill />
-              <Link to="/Save">Saved Post</Link>
-            </div>
-            <div>
               <AiTwotoneSetting />
               <Link to="/Settings">Settings</Link>
             </div>

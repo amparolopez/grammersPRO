@@ -3,15 +3,15 @@ const Post = require("../models/Post.js");
 const PostController = {
   getAllPosts: async (req, res) => {
     try {
-      const post = await Post.find()
-      console.log(post)
-      res.json({ success: true, response:  post});
+      const post = await Post.find();
+      res.json({ success: true, response: post });
     } catch (error) {
       res.json({ success: false, response: error });
     }
   },
   postAPost: async (req, res) => {
-    const { postTitle,postText,postImage, user, comments, commentDate } = req.body;
+    const { postTitle, postText, postImage, user, comments, commentDate } =
+      req.body;
 
     let post = await new Post({
       postTitle,
@@ -19,7 +19,7 @@ const PostController = {
       postImage,
       user,
       comments,
-      commentDate
+      commentDate,
     });
     try {
       await post.save();
@@ -37,12 +37,12 @@ const PostController = {
     let post;
     const id = req.params.id;
     try {
-        post = await Post.findOneAndDelete({ _id: id });
+      post = await Post.findOneAndDelete({ _id: id });
     } catch (error) {
-        res.json({
-            res: error,
-            success: false,
-          });
+      res.json({
+        res: error,
+        success: false,
+      });
     }
     res.json({
       res: post,
@@ -56,10 +56,10 @@ const PostController = {
     try {
       update = await Post.findOneAndUpdate({ _id: id }, { ...post });
     } catch (error) {
-        res.json({
-            res: error,
-            success: false,
-          });
+      res.json({
+        res: error,
+        success: false,
+      });
     }
     res.json({
       res: itinerary,
@@ -67,56 +67,29 @@ const PostController = {
     });
   },
 
-  likeDislikePost:(req,res) =>{
-
-    Post.findOne({_id: req.params.id})
-    // console.log(post)
-    .then((post) =>{
-      // console.log(req.body.userId)
-      // console.log(post)
-      if(post.like.includes(req.body.userId)){ console.log("if")
-        // post.like = !req.body.userId
-        // if (post.like = [false]){
-        //   return post.like=[]
-        // }
-        // post.save()
-        Post.findOneAndUpdate({_id:req.params.id}, {$pull:{like:req.body.userId}}, {new: true})
-        .then((newPost)=> {
-          // console.log(newPost)
-          return res.json({success:true, response:newPost})})
-        }else{ console.log("else")
-        // post.like.push(req.body.userId)
-        // post.save()
-            Post.findOneAndUpdate({_id: req.params.id}, {$push:{like:req.body.userId}}, {new: true})
-            .then((newPost)=>{ console.log("newpost")
-              return res.json({success:true, response:newPost})})
-            }
-    })
-    .catch((error) => res.json({success:false, response:error}), console.log("catch")) 
-},
-
-  // likeDislike: async (req, res) => {
-  //   const postId = req.params.id;
-  //   const { user, like, userId } = req.body;
-  //   // const userId = user._id;
-  //   let updateLike;
-  //   console.log(req.body)
-  //   try {
-  //     if (!like) {
-  //       updateLike = { $push: { like: { user: userId } } };
-  //     } else {
-  //       updateLike = { $pull: { like: { user: userId } } };
-  //     }
-  //     const post = await Post.findOneAndUpdate(
-  //       { _id: postId },
-  //       updateLike,
-  //       { new: true }
-  //     );
-  //     res.json({ success: true, response: post.like });
-  //   } catch (error) {
-  //     res.json({ success: false });
-  //   }
-  // },
+  likeDislikePost: (req, res) => {
+    Post.findOne({ _id: req.params.id })
+      .then((post) => {
+        if (post.like.includes(req.body.userId)) {
+          Post.findOneAndUpdate(
+            { _id: req.params.id },
+            { $pull: { like: req.body.userId } },
+            { new: true }
+          ).then((newPost) => {
+            return res.json({ success: true, response: newPost });
+          });
+        } else {
+          Post.findOneAndUpdate(
+            { _id: req.params.id },
+            { $push: { like: req.body.userId } },
+            { new: true }
+          ).then((newPost) => {
+            return res.json({ success: true, response: newPost });
+          });
+        }
+      })
+      .catch((error) => res.json({ success: false, response: error }));
+  },
   postACommentary: async (req, res) => {
     const postId = req.params.id;
     const { comment, user } = req.body;
@@ -144,9 +117,7 @@ const PostController = {
   getCommentaries: async (req, res) => {
     try {
       const postId = req.params.id;
-      let post = await Post.findOne({ _id: postId }).populate(
-        "comments.user"
-      );
+      let post = await Post.findOne({ _id: postId }).populate("comments.user");
       const comments = post.comments.map((comment) => ({
         comment: { text: comment.comment, _id: comment._id },
         user: {

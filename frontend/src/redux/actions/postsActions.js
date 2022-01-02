@@ -20,7 +20,7 @@ const postsActions = {
           {
             postTitle: newPost.title,
             postText: newPost.body,
-            postImage: newPost.img,
+            postImage: newPost.imageUrl,
             user: newPost.user,
           },
           {
@@ -32,7 +32,7 @@ const postsActions = {
         if (response.data.success) return { success: true, response: response };
         else throw new Error();
       } catch (error) {
-        console.log(error);
+        return { success: false, response: error }
       }
     };
   },
@@ -97,8 +97,6 @@ const postsActions = {
   },
 
   likeDislikePost: (token, id, userId) => {
-    console.log(token);
-    console.log(id);
     return async () => {
       try {
         const response = await axios.put(
@@ -110,7 +108,6 @@ const postsActions = {
             },
           }
         );
-        console.log(response);
         return response.data.response;
       } catch (error) {
         console.log(error);

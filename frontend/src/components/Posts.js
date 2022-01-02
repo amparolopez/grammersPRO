@@ -6,6 +6,7 @@ import userActions from "../redux/actions/userActions";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import {BsFillHeartFill} from "react-icons/bs";
+
 const Posts = (props) => {
   const token = props.user.token;
   const [likeIcon, setLikeIcon] = useState(true);
@@ -31,10 +32,8 @@ const Posts = (props) => {
       await props
         .likeDislikePost(token, props.post._id, props.user._id)
         .then((response) => {
-          console.log(response);
           setLikePosts(response.like);
           setLikes(response.like.length);
-          // setLikes(response.like.includes(props.user._id) ? "❤️" : "🤍")
         });
     }
     setLikeIcon(true);
@@ -76,4 +75,3 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Posts);
-// { <Comments comments={props.post.comments} postId={props.post._id} /> }

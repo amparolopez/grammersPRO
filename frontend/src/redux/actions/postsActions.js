@@ -97,8 +97,6 @@ const postsActions = {
   },
 
   likeDislikePost: (token, id, userId) => {
-    console.log(token);
-    console.log(id);
     return async () => {
       try {
         const response = await axios.put(
@@ -110,7 +108,6 @@ const postsActions = {
             },
           }
         );
-        console.log(response);
         return response.data.response;
       } catch (error) {
         console.log(error);

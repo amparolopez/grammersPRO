@@ -12,11 +12,9 @@ import Swal from "sweetalert2";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
 const Center = (props) => {
-  // eslint-disable-next-line
   const [posts, setPosts] = useState([]);
   const [postsAux, setPostsAux] = useState([]);
   const [open, setOpen] = useState(false);
-  const [postState, setPostState] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
   const postImg = useRef();
@@ -35,7 +33,7 @@ const Center = (props) => {
       imageUrl: postImg.current.value,
     };
     postAPost(newPost).then((res) => {
-      if(res.success){
+      if (res.success) {
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -47,18 +45,15 @@ const Center = (props) => {
           setPostsAux(res.response);
         });
         handleClose();
+      } else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          text: "Error trying to post",
+          timer: 1500,
+        });
       }
     });
-    if (postState) {
-      
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        text: "Error trying to post",
-        timer: 1500,
-      });
-    }
   };
 
   const handleClose = () => {
@@ -72,7 +67,7 @@ const Center = (props) => {
     });
     // eslint-disable-next-line
   }, []);
-
+  console.log(posts)
   const handleFilterNewest = () => {
     const postFilter = postsAux.sort((a, b) => {
       if (new Date(b.date) < new Date(a.date)) return -1;
@@ -90,11 +85,6 @@ const Center = (props) => {
     });
     setPosts(postFilter);
   };
-
-  const handleFilterFollowing = () => {
-    const postFilter = postsAux.filter((post) => post.user === props.user);
-  };
-
   return (
     <>
       <Dialog open={open} onClose={handleClose}>
@@ -159,12 +149,15 @@ const Center = (props) => {
                   >
                     All
                   </p>
+                  <p onClick={handleFilterNewest}>Newest</p>
+                  <p onClick={handleFilterPopular}>Popular</p>
                 </div>
               </div>
               <div className="ContainerTotalPublics">
-                {props.posts.map((post, key) => {
-                  return <Posts post={post} key={key} />;
-                })}
+                {posts &&
+                  posts.map((post, key) => {
+                    return <Posts post={post} key={key} />;
+                  })}
               </div>
             </div>
           </div>
@@ -176,7 +169,6 @@ const Center = (props) => {
 };
 const mapStateToProps = (state) => {
   return {
-    posts: state.postsReducers.post,
     userData: state.userReducers.userData,
   };
 };

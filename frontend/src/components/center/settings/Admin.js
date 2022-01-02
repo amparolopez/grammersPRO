@@ -17,9 +17,6 @@ const Admin = (props) => {
         props.fetchUsers()
         props.fetchPost()
     },[])
-
-    console.log(props.users)
-    
     const banUser = async(e) => {
         e.preventDefault()
         const response = await props.adminBan(email)
@@ -94,7 +91,6 @@ const Admin = (props) => {
                   })
             }
     }
-    console.log(props.posts)
     return (
         <>
             <div className="AdminUserDeleteContent">

@@ -33,7 +33,7 @@ const Post = (props) => {
           <div className="ContenedorSecCenter">
             {post && (
               <>
-              {post.postImage && <img className="ContainerImgPublicPost" src={require(`../images/${post.postImage}`)} alt={post.postTitle} />}
+              {post.postImage && <img className="ContainerImgPublicPost" src={post.postImage} alt={post.postTitle} />}
               {userPost && <Avatar src={userPost.imgUrl} alt={userPost.email}/>}
               {userPost && <h5>Author: {userPost.userName+' '+userPost.lastName}</h5>}
                 <h2 className="titlePost" >{post.postTitle}</h2>

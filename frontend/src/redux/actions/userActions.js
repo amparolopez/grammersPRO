@@ -42,9 +42,9 @@ const userActions = {
         const user = await axios.post("http://localhost:4000/api/user/signin", {
           ...userLogIn,
         });
+        console.log(user)
         if (user.data.success) {
           localStorage.setItem("token", user.data.answer.token);
-          localStorage.setItem("userName", user.data.answer.userName);
           dispatch({ type: "user", payload: user.data.answer });
         } else {
           const error = user.data.answer[0].message;
@@ -55,6 +55,7 @@ const userActions = {
             showConfirmButton: true,
             timer: 3000,
           });
+          return error
         }
       } catch (error) {}
     };

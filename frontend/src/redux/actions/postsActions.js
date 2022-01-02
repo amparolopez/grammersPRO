@@ -20,7 +20,7 @@ const postsActions = {
           {
             postTitle: newPost.title,
             postText: newPost.body,
-            postImage: newPost.img,
+            postImage: newPost.imageUrl,
             user: newPost.user,
           },
           {
@@ -32,7 +32,7 @@ const postsActions = {
         if (response.data.success) return { success: true, response: response };
         else throw new Error();
       } catch (error) {
-        console.log(error);
+        return { success: false, response: error }
       }
     };
   },

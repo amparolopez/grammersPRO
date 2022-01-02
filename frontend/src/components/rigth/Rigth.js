@@ -15,8 +15,8 @@ import axios from "axios";
 import userActions from "../../redux/actions/userActions";
 import { Autocomplete } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { AiFillFolderAdd } from "react-icons/ai";
 import { AiTwotoneDelete } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const Rigth = (props) => {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ const Rigth = (props) => {
   const [allUsers, setAllUsers] = useState();
   const postRef = useRef();
   const postTitleRef = useRef();
-  const [file, setFile] = useState(null);
+  const postImg = useRef();
   const { postAPost, userData, getAllPosts, getUsers } = props;
 
   const handleClickOpen = () => {
@@ -35,39 +35,34 @@ const Rigth = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", file);
     const newPost = {
       title: postTitleRef.current.value,
       body: postRef.current.value,
       user: userData._id,
-    };
-    if (file) {
-      const data = new FormData();
-      const fileName = Date.now() + file.name;
-      data.append("name", fileName);
-      data.append("file", file);
-      newPost.img = fileName;
-      try {
-        await axios.post("http://localhost:4000/api/upload", data);
-      } catch (err) {}
+      imageUrl: postImg.current.value
     }
     postAPost(newPost).then((res) => setPostState(res.success));
     console.log(postState);
     if (postState) {
-      console.log("su post se a subido exitosamente");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        text: 'Successfully Posted!', 
+        timer: 1500,
+      })
       handleClose();
     } else {
-      console.log("error al subir post");
+      Swal.fire({
+        position: 'top-end',
+        icon: 'error',
+        text: 'Error trying to post', 
+        timer: 1500,
+      })
     }
   };
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const removeSelectedImage = () => {
-    setFile();
   };
 
   useEffect(() => {
@@ -144,32 +139,12 @@ const Rigth = (props) => {
                 className="postInput"
                 required
               />
-              <Button variant="contained" component="label" color="secondary">
-                <AiFillFolderAdd />
-                Upload File
-                <input
-                  type="file"
-                  hidden
-                  accept=".png,.jpeg,.jpg"
-                  onChange={(e) => setFile(e.target.files[0])}
+                <TextField
+                  label="Image URL"
+                  inputRef={postImg}
+                  variant="standard"
+                  required
                 />
-              </Button>
-              {file && (
-                <>
-                  <img
-                    alt="uploaded"
-                    src={URL.createObjectURL(file)}
-                    className="ContainerImgPublic"
-                  />
-                  <IconButton
-                    onClick={removeSelectedImage}
-                    style={{ color: "red" }}
-                  >
-                    <AiTwotoneDelete />
-                    delete
-                  </IconButton>
-                </>
-              )}
               <DialogActions>
                 <button onClick={handleClose} className="btn-Follow">
                   Cancel
@@ -218,7 +193,7 @@ const Rigth = (props) => {
               <div className="imgActivity">
                 <div className="cardPost">
                   <div className="cardActivity">
-                      {lastPost.postImage && <img alt={lastPost.postTitle} className="ActivityImg" src={require(`../../images/${lastPost.postImage}`)} />}
+                      {lastPost.postImage && <img alt={lastPost.postTitle} className="ActivityImg" src={lastPost.postImage} />}
                     <div className="cardText">
                       <div className="cardIcon">
                         <h4 className="minimalStair">{lastPost.postTitle}</h4>

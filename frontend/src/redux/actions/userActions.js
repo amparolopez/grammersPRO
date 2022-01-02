@@ -44,7 +44,6 @@ const userActions = {
         });
         if (user.data.success) {
           localStorage.setItem("token", user.data.answer.token);
-          localStorage.setItem("userName", user.data.answer.userName);
           dispatch({ type: "user", payload: user.data.answer });
         } else {
           const error = user.data.answer[0].message;

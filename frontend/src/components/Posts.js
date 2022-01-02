@@ -42,10 +42,10 @@ const Posts = (props) => {
 
   let like = likePost.includes(props.user._id) ? true : false;
   const userPost = allUsers.find((post) => post._id === props.post.user);
-  console.log(userPost);
+ 
   return (
     <>
-      {props.post.postImage && <img alt={props.post.postTitle} className="ContainerImgPublicPost" src={require(`../images/${props.post.postImage}`)} />}
+      {props.post.postImage && <img alt={props.post.postTitle} className="ContainerImgPublicPost" src={props.post.postImage} />}
       <div className="publicProfilContainer">
         <Link to={`/Post/${props.post._id}`} >
           <div className="ProfilePublicTotal">

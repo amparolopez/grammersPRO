@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import userActions from '../redux/actions/userActions';
 import { connect } from 'react-redux';
 import GoogleLogin from 'react-google-login';
-import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 
 const FormSignIn = (props) => {
@@ -25,12 +24,9 @@ const FormSignIn = (props) => {
 
 
     const handleSubmit = async (e) => {
-
         e.preventDefault()
         const user = await props.userSignIn(signInUser)
-        
         if (!user) {
-            
             // console.log(user.answer)
             Swal.fire({
                 position: 'top-end',
@@ -43,8 +39,6 @@ const FormSignIn = (props) => {
         }
 } 
             
- 
-
     const responseGoogle = (res) => {
         let googleUser = {
             email: res.profileObj.email,
@@ -99,7 +93,6 @@ const FormSignIn = (props) => {
                      <h4 className="form-input-login">
                             You don't have an account? Sign up <a href="/signUp">here</a>
                         </h4>
-                   
                 </form>
                 </div>
             </div>

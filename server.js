@@ -62,6 +62,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(process.env.PORT || "4000", process.env.HOST || '0.0.0.0', () => {
+app.listen(process.env.PORT || "4000", '0.0.0.0', () => {
     console.log(`El server esta en el puerto ${process.env.PORT || "4000"}`);
   });

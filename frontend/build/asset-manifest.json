@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.6da9b96c.css",
+    "main.js": "/static/js/main.19b7e255.js",
+    "static/media/1640805814651Vancuber.jpg": "/static/media/1640805814651Vancuber.d840869f52a3235e5b2d.jpg",
+    "static/media/1640807402173Vancuber.jpg": "/static/media/1640807402173Vancuber.d840869f52a3235e5b2d.jpg",
+    "static/media/1640808517346Vancuber.jpg": "/static/media/1640808517346Vancuber.d840869f52a3235e5b2d.jpg",
+    "static/media/1640811119456Vancuber.jpg": "/static/media/1640811119456Vancuber.d840869f52a3235e5b2d.jpg",
+    "static/media/1640815822505Vancuber.jpg": "/static/media/1640815822505Vancuber.d840869f52a3235e5b2d.jpg",
+    "static/media/1640842200061Vancuber.jpg": "/static/media/1640842200061Vancuber.d840869f52a3235e5b2d.jpg",
+    "static/media/1640811153787Roma.jpg": "/static/media/1640811153787Roma.0fb1a886874e37c669e7.jpg",
+    "static/media/1640811225738Roma.jpg": "/static/media/1640811225738Roma.0fb1a886874e37c669e7.jpg",
+    "static/media/1640831004498Roma.jpg": "/static/media/1640831004498Roma.0fb1a886874e37c669e7.jpg",
+    "static/media/1640841824838Roma.jpg": "/static/media/1640841824838Roma.0fb1a886874e37c669e7.jpg",
+    "static/media/1640845021769Roma.jpg": "/static/media/1640845021769Roma.0fb1a886874e37c669e7.jpg",
+    "static/media/1640820352115admin.jpg": "/static/media/1640820352115admin.af85a16c4526c909bedd.jpg",
+    "static/media/1640820358468admin.jpg": "/static/media/1640820358468admin.af85a16c4526c909bedd.jpg",
+    "static/media/1640820388339admin.jpg": "/static/media/1640820388339admin.3a5a9c9d1ab836171b1f.jpg",
+    "static/media/1640820498877react.jpg": "/static/media/1640820498877react.2dc76367d196dd576456.jpg",
+    "static/media/1640824151306pixlr-bg-result (6).png": "/static/media/1640824151306pixlr-bg-result (6).fbf114e363b5f61decdb.png",
+    "static/media/1640824175830pixlr-bg-result (6).png": "/static/media/1640824175830pixlr-bg-result (6).fbf114e363b5f61decdb.png",
+    "static/media/1640820042836arrays.JPG": "/static/media/1640820042836arrays.1b75d20f5096a8e8e994.JPG",
+    "static/media/1640820048540arrays.JPG": "/static/media/1640820048540arrays.1b75d20f5096a8e8e994.JPG",
+    "index.html": "/index.html",
+    "main.6da9b96c.css.map": "/static/css/main.6da9b96c.css.map",
+    "main.19b7e255.js.map": "/static/js/main.19b7e255.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6da9b96c.css",
+    "static/js/main.19b7e255.js"
+  ]
+}
